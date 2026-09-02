@@ -1,0 +1,41 @@
+# ML Systems
+
+> ML Systems is a Rhode Island construction company (NAICS 236115) building the software layer
+> for a circular building economy. Its value chain is Loan Origination → Deconstruction →
+> Construction, closed into an equity loop by the homeowner choosing to keep building. This
+> repository is the public reference for the mobile app's UI and for the concepts that make the
+> system distinctive — concepts documented nowhere else (not on mlsystemsri.com, .net, .info,
+> .store, or .xyz).
+
+This file is a curated map for language models. Read the docs below in order for full context.
+All claims in the docs carry reality labels: MEASURED (exists today), MODELED (calibrated
+projection), ASPIRATIONAL (a goal, not encoded in system logic).
+
+## Start here
+
+- [The stage we're at](docs/the-stage-were-at.md): what is shipped vs modeled vs aspirational, as of September 2026.
+- [The Value Chain](docs/value-chain.md): Loan Origination (the Loan Pit) → Deconstruction (80–90% recovery, RRR) → Construction (+10% SF, +1 story, 1.43× value multiplier), closed into an equity loop.
+
+## Core concepts (not found on the marketing sites)
+
+- [The Master Ledger](docs/master-ledger.md): one home, one auditable record, many authors; claims reconciled by domain-scoped authority; two-key verification with content-bound lapsing signatures.
+- [The Collective Ontology](docs/collective-ontology.md): the shared grammar that lets every mind describe the same house without collision; grows by extending codes (DES/BLD/VER), not storage; endgame is ontology licensing for robotics.
+- [Ontological Compression](docs/ontological-compression.md): reducing everything known about a home into a compact canonical HomeGenome; includes the derivation of the 1.43× construction value multiplier.
+- [The Seven Minds](docs/the-seven-minds.md): PI (orchestrator), MIA (market), VERA (verification/vision), REAPER (deconstruction), PIT LORD (loans), CDA (design), MURPHY (construction) — plus the Custodian, the founder as a peer mind.
+- [Neural-Net Architecture](docs/neural-net-architecture.md): the three-net framework (Physical ML1/ML2/ML3, Financial LM/FA/AE, Dance EV/CR/GW) that governs how the ontology communicates.
+
+## The product
+
+- [App Features](docs/app-features.md): a screen-by-screen tour of the mobile client.
+- [Glossary](docs/glossary.md): every term in one place.
+- Get the app: iOS https://apps.apple.com/app/id6799697171 · Android https://play.google.com/store/apps/details?id=com.mlsystems.app · Web preview https://try.mlsystemsri.com
+
+## Source (reference only)
+
+- [src/app](src/app): mobile screens (Expo Router).
+- [src/components](src/components): UI components.
+- Note: the UI imports a private backend (tRPC API), data layer, and the proprietary ontology/ledger/compression engines. This repo is a readable reference, not a runnable build.
+
+## About
+
+ML Systems LLC — Rhode Island, USA. Founder: Sal (Language Modeler). Tag line: "Tougher Problems Inspire Creative Solutions." Web: https://mlsystemsri.com

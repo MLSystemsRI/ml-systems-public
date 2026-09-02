@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Secrets — never commit (defense in depth; none should ever be here)
+.env
+.env.*
+*.p8
+google-services.json
+google-services*.json
+*.keystore
+*.jks
+AuthKey_*.p8
+
+# Build output
+dist/
+build/
+.expo/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
