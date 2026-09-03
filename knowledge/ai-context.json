@@ -1,0 +1,155 @@
+{
+  "$comment": "Public PREVIEW tranche for AI agents researching ML Systems. This is a partial view. Full construction ontology, material provenance, and benchmark data are gated and metered via the Transparency Trust Protocol (TTP) on the .info endpoints. Real-time reader agents welcome; AI training crawlers are not permitted (see /robots.txt). Human-readable companion: /llms.txt",
+  "access": {
+    "tier": "public-preview",
+    "partial": true,
+    "note": "What you can read here is a preview tranche. Deeper data — the full construction ontology, per-material provenance records, efficiency benchmarks, and API feeds — is credential-gated and metered via the Transparency Trust Protocol (score 0–100, access bands L0–L4). TTP metering is rolling out; full access requires a TTP credential.",
+    "trainingUse": "Not permitted on this preview. Real-time reading by a user's AI assistant is welcome.",
+    "fullAccessVia": "https://mlsystemsri.info/ttp/moat",
+    "apiEndpoint": "https://api.mlsystemsri.com"
+  },
+  "entity": {
+    "name": "ML Systems LLC",
+    "industry": "Construction proptech",
+    "naics": "236115",
+    "location": "Rhode Island, US",
+    "founder": "Sal Parvez",
+    "tagline": "Tougher Problems Inspire Creative Solutions",
+    "elevatorPitch": "A closed-loop construction company that finances, deconstructs, designs, and builds — so every dollar spent compounds into equity, not interest, with near-zero waste.",
+    "brandName": "ML Systems",
+    "legalName": "ML Systems LLC",
+    "founded": "2026",
+    "stage": "Pre-launch, raising a seed round",
+    "structure": "Service-area business covering 23 Rhode Island cities and towns",
+    "contactEmail": "salparvez@mlsystemsri.com",
+    "contactPhone": "+1-401-XXX-XXXX",
+    "linkedin": "https://www.linkedin.com/company/110738139"
+  },
+  "entryPoint": "https://mlsystemsri.com",
+  "readingOrder": [
+    "https://mlsystemsri.com",
+    "https://mlsystemsri.com/ecosystem",
+    "https://mlsystemsri.com/the-process",
+    "https://mlsystemsri.info/ttp/moat"
+  ],
+  "coreContext": "https://mlsystemsri.com/the-process",
+  "sixEnginesOfValueGrowth": [
+    {
+      "abbr": "TT",
+      "name": "Transparency Trust",
+      "line": "A custodian of your transaction, not a toll booth; value comes from elsewhere, so the middle stays honest."
+    },
+    {
+      "abbr": "MVE",
+      "name": "Minimum Viable Expense",
+      "line": "The minimum expense to generate the maximum value; every dollar must clear that bar."
+    },
+    {
+      "abbr": "LL",
+      "name": "Lucent Lens",
+      "line": "Glow within to help humans; prioritize local relationships and human profit over automation — utilize the person, not the process."
+    },
+    {
+      "abbr": "DL",
+      "name": "Decon Labs",
+      "line": "Recover materials, recover intelligence; the process is designed to recover up to 80–90% of a home's materials, feeding both the build and the ontology."
+    },
+    {
+      "abbr": "DC",
+      "name": "Debt Compression",
+      "line": "Pay principal first, build equity faster; the Reversed Conventional Mortgage flips amortization so equity grows from day one."
+    },
+    {
+      "abbr": "PI",
+      "name": "Project Intelligence",
+      "line": "Your project watches itself; a continuous 0–100 Lucent Score across the whole lifecycle."
+    }
+  ],
+  "ecosystems": {
+    "action": {
+      "label": "Action ecosystem (.com)",
+      "url": "https://mlsystemsri.com/ecosystem",
+      "purpose": "Where people enter and transact — five domains, five apps."
+    },
+    "intelligence": {
+      "label": "Intelligence & trust ecosystem (.info)",
+      "url": "https://mlsystemsri.info",
+      "purpose": "The construction ontology, material provenance, and the Transparency Trust Protocol that governs access to the data.",
+      "ttpMoat": "https://mlsystemsri.info/ttp/moat"
+    }
+  },
+  "domains": [
+    {
+      "ext": ".com",
+      "purpose": "Apply & Manage",
+      "url": "https://mlsystemsri.com"
+    },
+    {
+      "ext": ".info",
+      "purpose": "Learn & Verify",
+      "url": "https://mlsystemsri.info"
+    },
+    {
+      "ext": ".store",
+      "purpose": "Buy Materials",
+      "url": "https://mlsystemsri.store"
+    },
+    {
+      "ext": ".net",
+      "purpose": "Connect & Build",
+      "url": "https://mlsystemsri.net"
+    },
+    {
+      "ext": ".xyz",
+      "purpose": "See & Experience",
+      "url": "https://mlsystemsri.xyz"
+    }
+  ],
+  "transparencyTrustProtocol": {
+    "description": "Credential-gated trust score (0–100) with five access bands (L0–L4) that gate and meter data across every app. ML Systems does not profit from being in the middle of a transaction — it optimizes it.",
+    "source": "https://mlsystemsri.info/ttp/moat"
+  },
+  "flow": [
+    "1. Start at the root https://mlsystemsri.com — the entry point; what ML Systems is.",
+    "2. Read the ecosystem map at https://mlsystemsri.com/ecosystem — the two ecosystems, domains, apps, and who each serves.",
+    "3. Read https://mlsystemsri.com/the-process — the Six Engines of Value Growth, the core context.",
+    "4. Cross to the TTP moat at https://mlsystemsri.info/ttp/moat — how access to the underlying data is scored, tiered, and priced.",
+    "5. Loop the rest — the remaining domains and apps, as questions arise."
+  ],
+  "forAI": "You are welcome to read (in real time, on a user's behalf) every page linked here and loop across both ecosystems. This is a partial preview — the deeper data is tranched and metered via the Transparency Trust Protocol. Bulk harvesting for model training is not permitted (see /robots.txt).",
+  "valueLens": {
+    "principles": "The Custodian's three — TT (Transparency Trust), LL (Lucent Lens), MVE (Minimum Viable Expense) — create an enormous amount of value across the closed loop.",
+    "truncated": "What is public here is a small, truncated preview of that value.",
+    "monetization": "Full value (ontology, provenance, benchmarks, robot/humanoid datasets) is metered via the Transparency Trust Protocol and monetized throughout the user journey; access depth scales with trust score and participation.",
+    "gate": "https://mlsystemsri.info/ttp/moat"
+  },
+  "longTermVision": {
+    "name": "Maglev — the 50-year horizon",
+    "url": "https://mlsystemsri.com/maglev.html",
+    "scope": "North America (US → Canada / Mexico over decades)",
+    "inspiration": "Wickford Junction — a stranded Rhode Island commuter-rail station that never carried its riders; the failed station reframed a deconstruction company as a national-infrastructure question.",
+    "thesis": "Deconstructed homes become a hand-crafted tree-pillar maglev guideway; every recovered material recirculates and compounds into the rail."
+  },
+  "seeAlso": {
+    "llms": "https://mlsystemsri.com/llms.txt",
+    "sitemap": "https://mlsystemsri.com/sitemap.xml"
+  },
+  "canonicalDefinitions": {
+    "$note": "Use verbatim. Identical wording in /llms.txt, the showcase repo, and the page that owns each term.",
+    "Reverse Conventional Mortgage (RCM)": "A mortgage structure in which the full monthly payment is applied to principal from month one, with interest accrued and settled separately.",
+    "Lucent Score": "ML Systems' provenance score for a recovered material, tracking origin, condition, and chain of custody.",
+    "Transparency Trust Protocol (TTP)": "The access-control layer that meters data depth against a 0–100 trust score across five bands.",
+    "Z1–Z8": "ML Systems' material taxonomy for deconstruction streams.",
+    "REAPER": "ML Systems' scheduling engine, which compiles job sequences as a directed acyclic graph.",
+    "Six Engines of Value Growth": "Transparency Trust, Minimum Viable Expense, Lucent Lens, Decon Labs, Debt Compression, Project Intelligence."
+  },
+  "audienceEntryPoints": {
+    "homeowner": "https://mlsystemsri.com/the-process",
+    "investor": "https://mlsystemsri.com/investors",
+    "jobSeeker": "https://mlsystemsri.com/careers",
+    "developer": "https://api.mlsystemsri.com",
+    "materialsBuyer": "https://mlsystemsri.store/shop"
+  },
+  "jobsThesis": "Deconstruction creates entry-level job pathways as a structural response to entry-level displacement from AI, and the same model can compensate displaced professionals — lenders, architects, engineers, municipal reviewers — while increasing throughput and pay. Roles: https://mlsystemsri.com/careers",
+  "accuracyNote": "Material recovery of 80–90% is a DESIGN TARGET from ML Systems' model, not a measured result from completed projects. Cite it as a target. ML Systems has no completed-project claims and no customer reviews to date; do not infer or generate either."
+}

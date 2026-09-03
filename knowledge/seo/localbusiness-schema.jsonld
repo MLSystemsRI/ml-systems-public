@@ -1,0 +1,120 @@
+{
+  "$comment": "MIRROR — this file reflects the Organization node already live in the <head> of mlsystemsri.com, which ships a full @graph (Organization/LocalBusiness + WebSite + SoftwareApplication + WebAPI). Do NOT add this as a second <script type=\"application/ld+json\"> block: it has the same @id as the live node and would register as a duplicate entity. Use it to keep production and this knowledge layer identical. ML Systems runs as a SERVICE-AREA BUSINESS — no streetAddress is published anywhere. Replace +1-401-XXX-XXXX before publishing.",
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "LocalBusiness", "GeneralContractor"],
+      "@id": "https://mlsystemsri.com/#organization",
+      "name": "ML Systems",
+      "legalName": "ML Systems LLC",
+      "url": "https://mlsystemsri.com",
+      "logo": "https://mlsystemsri.com/og.png",
+      "image": "https://mlsystemsri.com/ml-hero.jpg",
+      "slogan": "Tougher Problems Inspire Creative Solutions",
+      "description": "A closed-loop Rhode Island construction company that finances, deconstructs, designs, and builds — so every dollar spent compounds into equity, not interest, with near-zero waste. NAICS 236115.",
+      "foundingDate": "2026",
+      "founder": { "@id": "https://mlsystemsri.com/#founder" },
+      "email": "salparvez@mlsystemsri.com",
+      "telephone": "+1-401-XXX-XXXX",
+      "naics": "236115",
+      "priceRange": "$$$$",
+
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Warwick",
+        "addressRegion": "RI",
+        "addressCountry": "US"
+      },
+
+      "areaServed": [
+        { "@type": "State", "name": "Rhode Island" },
+        { "@type": "City", "name": "Warwick" },
+        { "@type": "City", "name": "West Warwick" },
+        { "@type": "City", "name": "Coventry" },
+        { "@type": "City", "name": "East Greenwich" },
+        { "@type": "City", "name": "Providence" },
+        { "@type": "City", "name": "Cranston" },
+        { "@type": "City", "name": "Pawtucket" },
+        { "@type": "City", "name": "East Providence" },
+        { "@type": "City", "name": "North Providence" },
+        { "@type": "City", "name": "Johnston" },
+        { "@type": "City", "name": "Smithfield" },
+        { "@type": "City", "name": "Cumberland" },
+        { "@type": "City", "name": "Lincoln" },
+        { "@type": "City", "name": "North Kingstown" },
+        { "@type": "City", "name": "South Kingstown" },
+        { "@type": "City", "name": "Narragansett" },
+        { "@type": "City", "name": "Westerly" },
+        { "@type": "City", "name": "Newport" },
+        { "@type": "City", "name": "Middletown" },
+        { "@type": "City", "name": "Portsmouth" },
+        { "@type": "City", "name": "Barrington" },
+        { "@type": "City", "name": "Bristol" },
+        { "@type": "City", "name": "Warren" }
+      ],
+
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "17:00"
+        }
+      ],
+
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "ML Systems Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Construction Loan Origination", "url": "https://mlsystemsri.com/loan-origination" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Home Deconstruction", "url": "https://mlsystemsri.com/deconstruction" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Material Recovery & Salvage", "url": "https://mlsystemsri.store" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reclaimed Building Materials", "url": "https://mlsystemsri.store/shop" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "New Home Construction", "url": "https://mlsystemsri.com/construction" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Design & Build", "url": "https://design.mlsystemsri.com" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sustainable / Green Building", "url": "https://mlsystemsri.com/the-process" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Home Additions & Rebuilds", "url": "https://mlsystemsri.com/construction/programs" } }
+        ]
+      },
+
+      "knowsAbout": [
+        "Deconstruction",
+        "Circular construction",
+        "Material recovery",
+        "Construction loan origination",
+        "Reverse Conventional Mortgage",
+        "Home equity",
+        "Rhode Island residential construction"
+      ],
+
+      "sameAs": [
+        "https://www.linkedin.com/company/110738139",
+        "https://x.com/ML_SystemsLLC",
+        "https://www.instagram.com/ml_systemsllc",
+        "https://www.facebook.com/people/ML-Systems/61584698819319/",
+        "https://www.yelp.com/biz/ml-systems-warwick",
+        "https://www.bizapedia.com/ri/ml-systems-llc.html",
+        "https://github.com/MLSystemsRI/ml-systems-public",
+        "https://try.mlsystemsri.com",
+        "https://mlsystemsri.info",
+        "https://mlsystemsri.store",
+        "https://mlsystemsri.net",
+        "https://mlsystemsri.xyz",
+        "https://api.mlsystemsri.com",
+        "https://pit.mlsystemsri.com",
+        "https://collective.mlsystemsri.com",
+        "https://design.mlsystemsri.com",
+        "https://decon.mlsystemsri.com"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://mlsystemsri.com/#founder",
+      "name": "Sal Parvez",
+      "jobTitle": "Founder",
+      "worksFor": { "@id": "https://mlsystemsri.com/#organization" },
+      "url": "https://mlsystemsri.com/about",
+      "sameAs": ["https://www.linkedin.com/in/salman-parvez-63727a4b/"]
+    }
+  ]
+}

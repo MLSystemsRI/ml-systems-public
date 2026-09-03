@@ -1,0 +1,42 @@
+{
+  "$comment": "Template for ONE role page, e.g. /careers/deconstruction-technician. Copy per role. Rules: JobPosting markup goes on individual role pages only, never on the /careers index — Google disallows it on listing pages. Set validThrough and honor it: expired postings left live draw a manual action, so past-date them, return 410, or strip the markup. The description value uses \\u003C escapes for every angle bracket — Google requires HTML in that field, and the escape is equivalent JSON that cannot terminate the surrounding <script> block early. Validate in Google's Rich Results Test before shipping, then watch the Job Posting report in Search Console.",
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  "title": "Deconstruction Technician",
+  "datePosted": "2026-09-02",
+  "validThrough": "2026-12-31T23:59:59-05:00",
+  "employmentType": "FULL_TIME",
+  "directApply": true,
+  "identifier": {
+    "@type": "PropertyValue",
+    "name": "ML Systems",
+    "value": "MLS-DECON-001"
+  },
+  "hiringOrganization": {
+    "@type": "Organization",
+    "name": "ML Systems",
+    "sameAs": "https://mlsystemsri.com",
+    "logo": "https://mlsystemsri.com/og.png"
+  },
+  "jobLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Warwick",
+      "addressRegion": "RI",
+      "postalCode": "02886",
+      "addressCountry": "US"
+    }
+  },
+  "baseSalary": {
+    "@type": "MonetaryAmount",
+    "currency": "USD",
+    "value": {
+      "@type": "QuantitativeValue",
+      "minValue": 22,
+      "maxValue": 30,
+      "unitText": "HOUR"
+    }
+  },
+  "description": "<p>ML Systems takes homes apart in reverse build order so their materials keep their value. Deconstruction Technicians do that work on site: selective dismantling, salvage handling, and sorting recovered material into tracked streams.</p><h3>Responsibilities</h3><ul><li>Selective dismantling of residential structures in reverse build sequence</li><li>Denailing, grading, and palletizing recovered lumber, fixtures, and finish materials</li><li>Sorting recovered material into its assigned stream and logging condition at the point of recovery</li><li>Operating hand and hydraulic tools safely in an active site environment</li><li>Staging graded material for transport to the resale channel</li></ul><h3>Qualifications</h3><ul><li>No prior construction experience required — we train</li><li>Able to lift 50 lbs repeatedly and work outdoors year-round in New England</li><li>Valid driver's license</li><li>OSHA 10 preferred; we pay for certification if you don't have it</li></ul><h3>Why this role exists</h3><p>Deconstruction is deliberately an entry point. The path runs technician to crew lead to site supervisor, with certification paid along the way.</p>"
+}

@@ -1,0 +1,327 @@
+{
+  "$comment": "Structured, machine-readable SEO/business profile for ML Systems LLC. Public marketing facts only — no proprietary financials, ontology, or gated data. Intended for AI assistants helping with local SEO, listings, and content. Companion: seo-brief.md (strategy) and localbusiness-schema.jsonld (drop-in structured data).",
+  "entity": {
+    "legalName": "ML Systems LLC",
+    "brandName": "ML Systems",
+    "founder": "Sal Parvez",
+    "industry": "Construction proptech",
+    "naics": "236115",
+    "entityType": "LLC",
+    "founded": "2026",
+    "tagline": "Tougher Problems Inspire Creative Solutions",
+    "elevatorPitch": "A closed-loop Rhode Island construction company that finances, deconstructs, designs, and builds — so every dollar spent compounds into equity, not interest, with near-zero waste."
+  },
+  "nap": {
+    "$note": "Name/Address/Phone must match CHARACTER-FOR-CHARACTER across every listing (Google Business Profile, Yelp, Facebook, BBB, Bizapedia). ML Systems runs as a SERVICE-AREA BUSINESS: the street address is used for GBP verification only and is NOT displayed anywhere. Do not publish streetAddress in schema, on the site, or in any citation. The Yelp listing must be claimed and converted to service-area so citations do not contradict each other.",
+    "name": "ML Systems",
+    "addressLocality": "Warwick",
+    "addressRegion": "RI",
+    "addressCountry": "US",
+    "telephone": "+1-401-XXX-XXXX",
+    "email": "salparvez@mlsystemsri.com",
+    "telephoneNote": "Google Voice number forwarding to the founder's cell. Replace the +1-401-XXX-XXXX placeholder in every file at once, then never change it.",
+    "verificationAddressNote": "On file with Google for verification only. Not for publication."
+  },
+  "googleBusinessProfile": {
+    "primaryCategory": "General Contractor",
+    "secondaryCategories": [
+      "Construction Company",
+      "Home Builder",
+      "Building Materials Store",
+      "Demolition Contractor"
+    ],
+    "serviceAreaBusiness": true,
+    "serviceAreaNote": "Can be run as a service-area business to avoid displaying a home address while still ranking locally.",
+    "status": "Created. Confirm verification state in the GBP dashboard.",
+    "showAddress": false,
+    "serviceAreaTowns": "All 23 towns in serviceArea.towns — enter individually, not 'Rhode Island'.",
+    "openItems": [
+      "Enter all 23 towns as the service area",
+      "Add all 8 services from `services` with links and 300-char descriptions",
+      "Extend the gbp750 description with the town-coverage sentence (see descriptionVariants.gbp750Suffix)",
+      "Seed 5 owner-posted Q&A",
+      "First photo batch: logo, breaker rig, sorted material streams, app screenshot, team",
+      "Products mirrored from mlsystemsri.store",
+      "Weekly Posts, 100-300 words, each linking a specific route",
+      "First 5 real reviews — highest-value item on this list"
+    ]
+  },
+  "onlineProfiles": {
+    "website": "https://mlsystemsri.com",
+    "linkedinCompany": "https://www.linkedin.com/company/110738139",
+    "linkedinFounder": "https://www.linkedin.com/in/salman-parvez-63727a4b/",
+    "x": "https://x.com/ML_SystemsLLC",
+    "instagram": "https://www.instagram.com/ml_systemsllc",
+    "liveWebApp": "https://try.mlsystemsri.com",
+    "store": "https://mlsystemsri.store",
+    "dataAndTtp": "https://mlsystemsri.info",
+    "api": "https://api.mlsystemsri.com",
+    "githubShowcase": "https://github.com/MLSystemsRI/ml-systems-public",
+    "yelp": "https://www.yelp.com/biz/ml-systems-warwick",
+    "facebook": "https://www.facebook.com/people/ML-Systems/61584698819319/",
+    "bizapedia": "https://www.bizapedia.com/ri/ml-systems-llc.html",
+    "androidApp": "Available on Google Play",
+    "iosApp": "Coming to the App Store",
+    "$facebookNote": "Canonical Facebook URL. The /profile.php?id= form links to the same page — use this form everywhere.",
+    "crunchbase": "TODO — claim the profile; it is the record most investor tooling ingests",
+    "wellfound": "TODO — serves both investor lookup and hiring",
+    "dealroom": "TODO"
+  },
+  "services": [
+    {
+      "name": "Construction Loan Origination",
+      "description": "A marketplace where lenders compete to fund the homeowner's build, reaching capital they couldn't alone."
+    },
+    {
+      "name": "Home Deconstruction",
+      "description": "Careful, crane-led disassembly that recovers materials instead of demolishing them."
+    },
+    {
+      "name": "Material Recovery & Salvage",
+      "description": "Reuse, resale, or recycle — each recovered material driven to its most valuable state."
+    },
+    {
+      "name": "Reclaimed Building Materials",
+      "description": "Salvaged lumber, kitchens, fixtures, doors, and windows sold at a discount."
+    },
+    {
+      "name": "New Home Construction",
+      "description": "Build or rebuild, expanding footprint and equity each cycle."
+    },
+    {
+      "name": "Design & Build",
+      "description": "Custom home design paired with construction, planned for deconstruction from day one."
+    },
+    {
+      "name": "Sustainable / Green Building",
+      "description": "Near-zero-waste construction that keeps materials out of the landfill."
+    },
+    {
+      "name": "Home Additions & Rebuilds",
+      "description": "Add square footage and levels to an existing home."
+    }
+  ],
+  "valueChain": [
+    {
+      "stage": "Loan Origination",
+      "summary": "Homeowner reaches the capital markets via a competitive lender marketplace."
+    },
+    {
+      "stage": "Deconstruction",
+      "summary": "Recover up to 80–90% of materials (target); reuse › resale › recycle."
+    },
+    {
+      "stage": "Construction",
+      "summary": "Rebuild larger on the same lot, reusing recovered materials."
+    },
+    {
+      "stage": "Equity Loop",
+      "summary": "Completed construction creates equity the homeowner can reinvest into the next cycle."
+    }
+  ],
+  "seoKeywords": {
+    "primary": [
+      "Rhode Island construction company",
+      "home deconstruction Rhode Island",
+      "construction loans Rhode Island",
+      "reclaimed building materials Rhode Island",
+      "general contractor Warwick RI"
+    ],
+    "secondary": [
+      "deconstruction vs demolition",
+      "salvaged building materials near me",
+      "sustainable home building RI",
+      "material recovery construction",
+      "build home equity Rhode Island",
+      "green construction Rhode Island",
+      "custom home builder Rhode Island",
+      "construction financing homeowner"
+    ],
+    "brand": [
+      "ML Systems",
+      "ML Systems RI",
+      "ML Systems LLC",
+      "mlsystemsri",
+      "Sal Parvez ML Systems"
+    ],
+    "longTail": [
+      "how to finance a home build in Rhode Island",
+      "companies that deconstruct houses in RI",
+      "where to buy reclaimed lumber Rhode Island",
+      "deconstruction service Warwick Rhode Island"
+    ]
+  },
+  "serviceArea": {
+    "state": "Rhode Island",
+    "note": "Programmatic value-chain landing pages exist per town at mlsystemsri.com/value-chain/<slug>.",
+    "towns": [
+      {
+        "name": "Warwick",
+        "county": "Kent County",
+        "slug": "warwick"
+      },
+      {
+        "name": "West Warwick",
+        "county": "Kent County",
+        "slug": "west-warwick"
+      },
+      {
+        "name": "Coventry",
+        "county": "Kent County",
+        "slug": "coventry"
+      },
+      {
+        "name": "East Greenwich",
+        "county": "Kent County",
+        "slug": "east-greenwich"
+      },
+      {
+        "name": "Providence",
+        "county": "Providence County",
+        "slug": "providence"
+      },
+      {
+        "name": "Cranston",
+        "county": "Providence County",
+        "slug": "cranston"
+      },
+      {
+        "name": "Pawtucket",
+        "county": "Providence County",
+        "slug": "pawtucket"
+      },
+      {
+        "name": "East Providence",
+        "county": "Providence County",
+        "slug": "east-providence"
+      },
+      {
+        "name": "North Providence",
+        "county": "Providence County",
+        "slug": "north-providence"
+      },
+      {
+        "name": "Johnston",
+        "county": "Providence County",
+        "slug": "johnston"
+      },
+      {
+        "name": "Smithfield",
+        "county": "Providence County",
+        "slug": "smithfield"
+      },
+      {
+        "name": "Cumberland",
+        "county": "Providence County",
+        "slug": "cumberland"
+      },
+      {
+        "name": "Lincoln",
+        "county": "Providence County",
+        "slug": "lincoln"
+      },
+      {
+        "name": "North Kingstown",
+        "county": "Washington County",
+        "slug": "north-kingstown"
+      },
+      {
+        "name": "South Kingstown",
+        "county": "Washington County",
+        "slug": "south-kingstown"
+      },
+      {
+        "name": "Narragansett",
+        "county": "Washington County",
+        "slug": "narragansett"
+      },
+      {
+        "name": "Westerly",
+        "county": "Washington County",
+        "slug": "westerly"
+      },
+      {
+        "name": "Newport",
+        "county": "Newport County",
+        "slug": "newport"
+      },
+      {
+        "name": "Middletown",
+        "county": "Newport County",
+        "slug": "middletown"
+      },
+      {
+        "name": "Portsmouth",
+        "county": "Newport County",
+        "slug": "portsmouth"
+      },
+      {
+        "name": "Barrington",
+        "county": "Bristol County",
+        "slug": "barrington"
+      },
+      {
+        "name": "Bristol",
+        "county": "Bristol County",
+        "slug": "bristol"
+      },
+      {
+        "name": "Warren",
+        "county": "Bristol County",
+        "slug": "warren"
+      }
+    ]
+  },
+  "descriptionVariants": {
+    "gbp750": "ML Systems is a Rhode Island construction company reinventing how homes get built. We guide homeowners through a complete value chain — financing, deconstruction, and construction — so every dollar compounds into equity instead of waste. Rather than demolition and landfill, our deconstruction process is designed to recover up to 80–90% of a home's materials, which we then reuse, resell, or recycle. Our loan-origination marketplace connects homeowners with competing lenders to access construction capital, and our reclaimed-materials store offers salvaged lumber, fixtures, doors, windows, and more at a discount. Serving Warwick and all of Rhode Island.",
+    "meta160": "Rhode Island construction company that finances, deconstructs & rebuilds homes with near-zero waste — so every dollar compounds into equity. Serving all of RI.",
+    "short": "Closed-loop RI construction: finance, deconstruct, design, build — equity, not waste.",
+    "gbp750Suffix": " We serve Warwick, Cranston, Providence, West Warwick, East Greenwich, Newport, Barrington, Westerly, and 15 more Rhode Island towns.",
+    "$gbp750Note": "gbp750 is 658 characters; appending gbp750Suffix brings it to 745, inside the 750 limit."
+  },
+  "careers": {
+    "indexUrl": "https://mlsystemsri.com/careers",
+    "$note": "Index page carries NO JobPosting markup — Google disallows it on listing pages. One route and one JobPosting node per role. See jobposting-template.jsonld.",
+    "thesis": "Deconstruction is deliberately an entry point — a structural response to entry-level job displacement from AI. The path runs technician to crew lead to site supervisor, with certification paid along the way.",
+    "pathwayRoles": [
+      {
+        "title": "Deconstruction Technician",
+        "slug": "deconstruction-technician",
+        "employmentType": "FULL_TIME",
+        "status": "pipeline"
+      },
+      {
+        "title": "Materials Sorter",
+        "slug": "materials-sorter",
+        "employmentType": "FULL_TIME",
+        "status": "pipeline"
+      },
+      {
+        "title": "Crane Operator Apprentice",
+        "slug": "crane-operator-apprentice",
+        "employmentType": "FULL_TIME",
+        "status": "pipeline"
+      }
+    ],
+    "honesty": "Mark pipeline roles as pipeline. Fabricated open requisitions are the same class of error as fabricated reviews, and expired postings left live draw a Google manual action."
+  },
+  "investorLookup": {
+    "page": "https://mlsystemsri.com/investors",
+    "stage": "Pre-launch, raising a seed round",
+    "$note": "An investor's first three moves are: search the company name, look for a Crunchbase/PitchBook record, check the founder's LinkedIn. Cover all three.",
+    "openItems": [
+      "Claim Crunchbase (free tier is enough — it feeds Google's knowledge panel)",
+      "Bind founder and company both ways on LinkedIn",
+      "Register on Wellfound and Dealroom",
+      "File the RI Secretary of State entity ID into schema as an identifier",
+      "Ungate the displacement thesis in crawlable HTML; keep the financial model behind the memo request",
+      "Own page one for the brand query — site, LinkedIn, Crunchbase, GitHub, GBP, Yelp, store"
+    ],
+    "brandRisk": "A similarly-named mlconstructionri.com ranks for construction-in-RI queries. The defense is owning the brand SERP, not outranking them on generic head terms."
+  },
+  "honestyGuardrails": [
+    "Material recovery of 80-90% is a design TARGET from the model, not a measured result. Phrase as 'designed to recover up to 80-90%'.",
+    "No completed-project claims and no fabricated reviews — both risk profile suspension.",
+    "Deeper construction data (full ontology, per-material provenance, benchmarks) is intentionally gated via TTP. Do not publish it to chase SEO."
+  ]
+}

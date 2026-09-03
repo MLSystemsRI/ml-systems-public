@@ -1,0 +1,51 @@
+# Append to https://mlsystemsri.com/robots.txt
+#
+# Rationale — ML Systems' posture is RETRIEVAL YES, TRAINING NO. The existing file
+# already implements that for OpenAI (OAI-SearchBot and ChatGPT-User allowed, GPTBot
+# disallowed). Two agents are missing from the allow-list:
+#
+#   Claude-SearchBot  Anthropic runs three crawlers. ClaudeBot collects training data
+#                     (correctly disallowed). Claude-User fetches a page mid-conversation
+#                     (allowed). Claude-SearchBot builds the index Claude cites from, and
+#                     is named nowhere in the current file. Anthropic's documentation
+#                     warns that blocking it may reduce a site's visibility and accuracy
+#                     in Claude's search results.
+#
+#   Applebot          Feeds Siri and Spotlight. Applebot-Extended (training) is already
+#                     disallowed; plain Applebot currently falls to the catch-all rule.
+#                     Naming it removes the ambiguity.
+#
+# Googlebot, Googlebot-Image and Bingbot are added explicitly for the same reason — they
+# work under `*` today, but a file this specific should not leave the primary indexers
+# to inference.
+#
+# NOTE on Google-Extended, which stays disallowed: that directive controls generative
+# model training and Gemini grounding. It does NOT remove pages from AI Overviews —
+# Googlebot governs those, and snippet directives (nosnippet / max-snippet) are the only
+# lever that suppresses them. Blocking Google-Extended is a deliberate tradeoff, not a
+# ranking mistake.
+
+User-Agent: Claude-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+
+User-Agent: Applebot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+
+User-Agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+
+User-Agent: Googlebot-Image
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+
+User-Agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
