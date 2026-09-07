@@ -13,7 +13,7 @@ import { InvestorPointer } from "@/components/investor-pointer";
 import { addToCart, useCartCount } from "@/lib/cart-store";
 import { parseIntent, scoutMatch, scoutReflect, type ParsedIntent } from "@/lib/scout-intent";
 import { useLocalHome } from "@/lib/home-store";
-import { WHITEHALL_HOME, WHITEHALL_HARVEST } from "@/lib/whitehall-home";
+import { FLAGSHIP_HOME, FLAGSHIP_HARVEST } from "@/lib/flagship-home";
 
 const SCOUT_SUGGESTIONS = [
   "Roofing for my 2,000 SF home",
@@ -216,7 +216,7 @@ export default function StoreScreen() {
   // ── The Home Catalogue — the LIVE value-chain homes connected to the
   // marketplace (store.homeCatalogue): every home with market content, tap →
   // its materials by zone, tap a material for provenance. Falls back to the
-  // bundled Whitehall harvest when the feed is empty/unreachable.
+  // bundled flagship harvest when the feed is empty/unreachable.
   const [openHomeId, setOpenHomeId] = useState<string | null>(null);
   const [openMaterial, setOpenMaterial] = useState<string | null>(null);
   const localHome = useLocalHome();
@@ -286,24 +286,24 @@ export default function StoreScreen() {
         };
       })
     : [
-        // Fallback — the bundled Whitehall flagship (offline / feed unreachable).
+        // Fallback — the bundled flagship home (offline / feed unreachable).
         {
-          key: "fallback-whitehall",
+          key: "fallback-flagship",
           projectId: homeProject?.id ?? null,
-          address: homeProject?.property?.addressLine1 ?? localHome?.address ?? WHITEHALL_HOME.address,
+          address: homeProject?.property?.addressLine1 ?? localHome?.address ?? FLAGSHIP_HOME.address,
           cityState: [
-            homeProject?.property?.city ?? localHome?.city ?? WHITEHALL_HOME.city,
-            homeProject?.property?.state ?? localHome?.state ?? WHITEHALL_HOME.state,
+            homeProject?.property?.city ?? localHome?.city ?? FLAGSHIP_HOME.city,
+            homeProject?.property?.state ?? localHome?.state ?? FLAGSHIP_HOME.state,
           ]
             .filter(Boolean)
             .join(", "),
           statusLabel: null,
           cycleNumber: null,
           isOwn: true,
-          materialsCount: WHITEHALL_HARVEST.length,
+          materialsCount: FLAGSHIP_HARVEST.length,
           activeListingCount: 0,
           canBulkDraft: false,
-          materials: WHITEHALL_HARVEST.map((h) => ({ ...h, source: "demo" as const })),
+          materials: FLAGSHIP_HARVEST.map((h) => ({ ...h, source: "demo" as const })),
         },
       ];
 
@@ -446,7 +446,7 @@ export default function StoreScreen() {
               <Text className="text-[#F9FAFB] text-[14px] font-extrabold" numberOfLines={1}>{home.address}</Text>
               <Text className="text-[#6B7280] text-[10.5px] mt-0.5">
                 {home.cityState}
-                {home.isOwn ? ` · ${WHITEHALL_HOME.propertyType} · built ${WHITEHALL_HOME.yearBuilt}` : ""}
+                {home.isOwn ? ` · ${FLAGSHIP_HOME.propertyType} · built ${FLAGSHIP_HOME.yearBuilt}` : ""}
               </Text>
               <Text style={{ color: TEAL }} className="text-[10.5px] mt-1">
                 {home.materials.length} material{home.materials.length === 1 ? "" : "s"} catalogued
@@ -562,7 +562,7 @@ export default function StoreScreen() {
             ))}
             {home.isOwn ? (
               <Text className="text-[#4B5563] text-[9.5px] leading-snug mt-1">
-                {WHITEHALL_HOME.homeownerLine} — everything must go before the rebuild. Each material carries an
+                {FLAGSHIP_HOME.homeownerLine} — everything must go before the rebuild. Each material carries an
                 ML Material ID and provenance chain; the full catalogue lives at mlsystemsri.store.
               </Text>
             ) : null}

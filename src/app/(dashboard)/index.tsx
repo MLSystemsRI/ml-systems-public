@@ -8,7 +8,7 @@ import { useDrawer } from "@/lib/drawer";
 import { MLMark } from "@/components/ml-mark";
 import { StatCard } from "@/components/stat-card";
 import { formatEquity } from "@/lib/format";
-import { useViewMode, toggleViewMode, webCustodianToggle, manualCustodianUnlock, MODE_META, useAdminUnlocked, useLeanHomeowner } from "@/lib/view-mode";
+import { useViewMode, toggleViewMode, MODE_META, useAdminUnlocked, useLeanHomeowner } from "@/lib/view-mode";
 import { isPreview } from "@/lib/preview";
 import { APPS } from "@/lib/ecosystem";
 import { MindGlyph } from "@/components/mind-icons";
@@ -49,7 +49,7 @@ export default function Hub() {
 
   const firstName = user?.firstName ?? (mode === "homeowner" ? "there" : "Custodian");
   // The lean SANDBOX walks a fresh install — the account's real server data (his
-  // Whitehall equity/project) stays out; the sandbox home surfaces via the homes card.
+  // own equity/project) stays out; the sandbox home surfaces via the homes card.
   const lean = useLeanHomeowner();
   const snapshot = lean ? null : equity.data?.snapshot ?? null;
   const project = lean ? null : equity.data?.project ?? null;
@@ -123,21 +123,11 @@ export default function Hub() {
             <Text className="text-[#6B7280] text-[11px]">Hi, {firstName}</Text>
           </View>
         </View>
-        {/* Public web build is Homeowner-locked — no visible lens toggle. In its
-            place sits an invisible long-press target (where the toggle used to be):
-            Sal holds ~0.8s to flip into Custodian off-wifi, hold again to return.
-            Session-only — a reload resets to homeowner. On native the toggle shows
-            ONLY for a confirmed admin — family testers see no lens switch at all. */}
+        {/* Public web build is Homeowner-locked — no lens toggle; a spacer keeps the
+            header layout. On native the toggle shows ONLY for a confirmed admin —
+            the operator-lens unlock is admin-gated (private). */}
         {Platform.OS === "web" ? (
-          <TouchableOpacity
-            onLongPress={webCustodianToggle}
-            delayLongPress={800}
-            activeOpacity={1}
-            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-            style={{ width: 44, height: 44 }}
-            accessibilityElementsHidden
-            importantForAccessibility="no-hide-descendants"
-          />
+          <View style={{ width: 44, height: 44 }} />
         ) : adminUnlocked ? (
           <TouchableOpacity
             onPress={toggleViewMode}
@@ -151,18 +141,9 @@ export default function Hub() {
             </Text>
           </TouchableOpacity>
         ) : (
-          // The hidden Custodian button — an invisible long-press target where the toggle
-          // would sit. Testers see nothing; Sal holds ~0.8s to flip into Custodian off-wifi
-          // (no sign-in needed). Once unlocked, the real toggle takes this slot.
-          <TouchableOpacity
-            onLongPress={manualCustodianUnlock}
-            delayLongPress={800}
-            activeOpacity={1}
-            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-            style={{ width: 44, height: 44 }}
-            accessibilityElementsHidden
-            importantForAccessibility="no-hide-descendants"
-          />
+          // Not an admin — no lens toggle; a spacer holds the slot. Once unlocked, the
+          // real toggle takes it.
+          <View style={{ width: 44, height: 44 }} />
         )}
       </View>
 

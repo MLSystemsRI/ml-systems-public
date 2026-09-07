@@ -18,6 +18,14 @@ src/
 - ❌ **No secrets.** Every key is read from `process.env` (`EXPO_PUBLIC_*`) with non-secret
   public fallbacks. Nothing in here is a credential.
 
+## The boundary is checked, not remembered
+
+Every refresh of this directory is a hand copy across a private→public line, so the line
+is enforced by a script rather than by memory: `npm run scrub-check` fails on any secret-
+shaped string, any file that must never be public, any import that would only resolve
+privately (other than the two above, which are private by design), and any `process.env`
+read that isn't `EXPO_PUBLIC_*`. It runs before every push.
+
 ## Why it won't `npm install && run`
 
 Because the modules above are private, this source will not build as-is. That's intentional:

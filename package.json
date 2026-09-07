@@ -5,6 +5,9 @@
   "description": "Public reference for the ML Systems platform — the deconstruction-to-construction equity loop, the Master Ledger, the Collective Ontology, Ontological Compression, and the Seven Minds. Rhode Island circular-construction software.",
   "homepage": "https://mlsystemsri.com",
   "license": "SEE LICENSE IN LICENSE",
+  "scripts": {
+    "scrub-check": "node scripts/scrub-check.mjs"
+  },
   "author": "ML Systems LLC",
   "keywords": [
     "ml-systems",

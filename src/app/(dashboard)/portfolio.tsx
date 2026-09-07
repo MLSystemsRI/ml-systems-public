@@ -65,7 +65,7 @@ export default function Portfolio() {
   // install — it starts zeroed, and his walkthrough home (the sandbox slice of
   // home-store/plan-store) drives this page exactly like a real user's would.
   // SERVER data (his real account: loans, equity, market, project ids) stays out,
-  // and nothing compiled here persists to the server — the Custodian's Whitehall
+  // and nothing compiled here persists to the server — the Custodian's own
   // ledger is never touched from this lens.
   const lean = useLeanHomeowner();
 
