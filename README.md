@@ -128,6 +128,25 @@ build. The proprietary logic it calls into is the private engine.
 - **Web:** https://mlsystemsri.com
 - **Tag line:** *Tougher Problems Inspire Creative Solutions*
 
+## Writing & updates
+
+Long-form technical writing on the platform — the Master Ledger, the Seven Minds,
+agent cost and coordination — is published on:
+
+- ✍️ **dev.to** — https://dev.to/salparvez (canonical for most posts)
+- 📰 **Hashnode** — https://mlsystems.hashnode.dev (*ML Systems Engineering*)
+- 📝 **Medium** — https://medium.com/@salparvez
+
+Recent posts:
+
+- [Claims, Not Facts: Building an Auditable Multi-Author Record for a House](https://dev.to/salparvez/claims-not-facts-building-an-auditable-multi-author-record-for-a-house-33d6) — the Master Ledger, domain-scoped authority, multiverification, lapsing signatures
+- [My AI agents don't talk to each other](https://dev.to/salparvez/my-ai-agents-dont-talk-to-each-other-166e) — the Seven Minds
+- [I stopped storing facts and started storing claims](https://dev.to/salparvez/i-stopped-storing-facts-and-started-storing-claims-17fd)
+- [Agent Costs Are Hard to Predict Because We Keep Building Them to Be Unpredictable](https://medium.com/@salparvez/agent-costs-are-hard-to-predict-because-we-keep-building-them-to-be-unpredictable-73b2efc497f2)
+- [The Advice Was "Build on Unique Data." Mine Was a House.](https://medium.com/@salparvez/the-advice-was-build-on-unique-data-mine-was-a-house-1d00d3e2500f)
+
+Company channels: [X](https://x.com/ML_SystemsLLC) · [LinkedIn](https://www.linkedin.com/company/ml-systems-llc) · [Instagram](https://www.instagram.com/ml_systemsllc) · [Product Hunt](https://www.producthunt.com/products/ml-systems)
+
 ## License
 
 © ML Systems LLC. All rights reserved. See [LICENSE](LICENSE). This repository is
