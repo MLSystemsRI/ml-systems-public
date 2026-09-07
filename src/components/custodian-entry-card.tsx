@@ -2,7 +2,9 @@ import { useState } from "react";
 import { View, Text, Pressable, TextInput, LayoutAnimation } from "react-native";
 import type { CustodianEntry, CustodianEntryState } from "@/lib/custodian-queue";
 import { ledgerLabel, ledgerValue } from "@/lib/ledger-label";
-import { judgeOption, specKindForCode, specOptionsFor, type SpecContext } from "@ml-systems/types";
+import { judgeOption, needsCustodian, specKindForCode, specOptionsFor, type SpecContext, type AgentRun, type LedgerSignOff } from "@ml-systems/types";
+import { CLAIMANT_META } from "@/components/ledger-row";
+import { PartyStrip } from "@/components/party-strip";
 
 /**
  * One ledger entry, laid out for review — what stands, who lost, and why.
@@ -15,15 +17,27 @@ import { judgeOption, specKindForCode, specOptionsFor, type SpecContext } from "
 
 const GOLD = "#F5D060";
 
-/** Who said it — the mind glyphs the ledger already uses. */
-const CLAIMANT: Record<string, { glyph: string; color: string; label: string }> = {
-  custodian: { glyph: "⚖", color: GOLD, label: "Custodian" },
-  homeowner: { glyph: "🏠", color: "#E5E7EB", label: "You/homeowner" },
-  vera: { glyph: "🦉", color: "#34D399", label: "VERA" },
-  cda: { glyph: "◇", color: "#60A5FA", label: "CDA" },
-  pi: { glyph: "🌱", color: "#22C55E", label: "PI" },
-  record: { glyph: "🗎", color: "#94A3B8", label: "Public record" },
+/** Who said it — ONE glyph vocabulary with the ledger rows (ledger-row's CLAIMANT_META); this
+ *  card had drifted to its own copy (🗎 vs 📋, a different homeowner colour). Labels are the
+ *  Custodian's — this is his console, so the minds are named. */
+const CLAIMANT_LABEL: Record<string, string> = {
+  custodian: "Custodian", homeowner: "Homeowner", vera: "VERA", cda: "CDA", pi: "PI", record: "Public record",
 };
+const CLAIMANT: Record<string, { glyph: string; color: string; label: string }> = Object.fromEntries(
+  Object.entries(CLAIMANT_META).map(([by, m]) => [by, { ...m, label: CLAIMANT_LABEL[by] ?? by }]),
+);
+
+/** The entry's review state → the sign-off shape the run-strip reads. `corrected` is his key (stamp OR override). */
+function signOffOf(e: CustodianEntry): LedgerSignOff | undefined {
+  if (!e.signedHash && !e.homeownerVerdict && !e.custodianVerdict) return undefined;
+  return {
+    ...(e.signedHash ? { signedHash: e.signedHash } : {}),
+    lapsed: e.state === "lapsed",
+    rejected: e.custodianVerdict === "rejected" || e.homeownerVerdict === "rejected",
+    homeownerApproved: e.homeownerVerdict === "approved" || e.homeownerVerdict === "corrected",
+    custodianApproved: e.custodianVerdict === "approved" || e.custodianVerdict === "corrected",
+  };
+}
 
 const STATE_META: Record<CustodianEntryState, { label: string; color: string; note: string }> = {
   quarantined: { label: "DISPUTED", color: "#EF4444", note: "Credible sources disagree — settle before this counts" },
@@ -59,9 +73,12 @@ export function CustodianEntryCard({
   busy,
   specCtx = {},
   onStamp,
+  runs,
 }: {
   entry: CustodianEntry;
   busy: boolean;
+  /** This home's run record — lights the 🦉🌱💬⚖ strip under the header. */
+  runs?: readonly AgentRun[] | undefined;
   /** This home's era + span, so the options lead with what it probably is and a pick
    *  that fights the record (slab on a home with a basement) can be flagged. */
   specCtx?: SpecContext;
@@ -115,6 +132,17 @@ export function CustodianEntryCard({
         <View className="px-3 pb-3">
           <Text className="text-[#4B5563] text-[8px] tracking-wider mb-1">{entry.code}</Text>
           <Text className="text-[#9CA3AF] text-[10px] leading-4 mb-2">{meta.note}</Text>
+
+          {/* Who has weighed in — the same five-seat strip the homeowner's ledger wears, so he
+              knows whether verification has even looked before he spends a stamp. */}
+          <View className="mb-2">
+            <PartyStrip
+              code={{ conformity: entry.conformity }}
+              signOff={signOffOf(entry)}
+              lens="custodian"
+              needsCustodian={runs ? needsCustodian({ quarantined: entry.state === "quarantined", conformityStatus: entry.conformityStatus === "unknown" ? undefined : entry.conformityStatus, liveHash: entry.hash, review: signOffOf(entry), runs }) : false}
+            />
+          </View>
 
           {/* Why it stands where it does — conformEntry's own sentence. */}
           <Text className="text-[#D1D5DB] text-[10.5px] leading-4 mb-2">{entry.why}</Text>
@@ -238,7 +266,9 @@ export function CustodianEntryCard({
                 style={{ backgroundColor: busy ? "#374151" : GOLD }}
               >
                 <Text className="text-[11px] font-bold" style={{ color: "#0A0A0A" }}>
-                  {correction.trim() ? "Correct + stamp" : "Approve"}
+                  {/* Stamp OR override: a correction is not a note — it becomes YOUR claim on the
+                      record and wins the entry (custodian-claims.ts). Say so on the button. */}
+                  {correction.trim() ? "Override — your value stands" : "Stamp"}
                 </Text>
               </Pressable>
               <Pressable

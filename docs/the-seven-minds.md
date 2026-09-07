@@ -1,9 +1,13 @@
 # The Seven Minds
 
 ML Systems runs on **seven AI minds** — specialized agents that each read, reason about, and
-stamp the [Master Ledger](master-ledger.md) — orchestrated alongside the **Custodian**, who is
+claim into the [Master Ledger](master-ledger.md) — orchestrated alongside the **Custodian**, who is
 the founder himself rendered as a **peer, not an apex**. No crown, no halo: the human sits
 *among* the minds, not above them.
+
+On the ledger itself, the parties collapse into [five seats](master-ledger.md#the-five-seats)
+(homeowner · record · verification · PI · Custodian). CDA holds no seat on purpose: it is the
+model the seats ground — the thing being checked, not a check. And only the Custodian stamps.
 
 Each mind owns a domain of authority in the [Collective Ontology](collective-ontology.md), so
 their contributions compose into one home record instead of colliding. Each also has a small

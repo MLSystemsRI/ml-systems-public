@@ -56,7 +56,7 @@ Read the deep dives:
 
 - 📍 **[The stage we're at](docs/the-stage-were-at.md)** — what's real today vs modeled vs aspirational
 - 🔗 **[The Value Chain](docs/value-chain.md)** — Loan Origination → Deconstruction → Construction
-- 📒 **[The Master Ledger](docs/master-ledger.md)** — one home, one auditable record, many authors
+- 📒 **[The Master Ledger](docs/master-ledger.md)** — one home, one auditable record, five seats; claims reconciled in the open, stamps that lapse when the content moves
 - 🧬 **[The Collective Ontology](docs/collective-ontology.md)** — how the system agrees on what a house *is*
 - 🗜️ **[Ontological Compression](docs/ontological-compression.md)** — turning a whole house into a genome
 - 🧠 **[The Seven Minds](docs/the-seven-minds.md)** — the agents that read, reason, and stamp the ledger

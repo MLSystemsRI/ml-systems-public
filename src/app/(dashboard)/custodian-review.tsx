@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { View, Text, ScrollView, Pressable, ActivityIndicator, LayoutAnimation } from "react-native";
+import { useLocalSearchParams } from "expo-router";
 import { AppHeader } from "@/components/app-header";
 import { CustodianEntryCard } from "@/components/custodian-entry-card";
 import { trpc } from "@/lib/trpc";
@@ -10,7 +11,7 @@ import {
   type CustodianOntologyRow,
   type CustodianReviewRow,
 } from "@/lib/custodian-queue";
-import type { VcCode } from "@ml-systems/types";
+import type { VcCode, AgentRun } from "@ml-systems/types";
 
 /**
  * The Custodian's oversight console — every value-chain home, every account.
@@ -44,12 +45,31 @@ export default function CustodianReviewScreen() {
     : [];
 
   // One home open at a time — its ledger is fetched only when he opens it, so the
-  // console doesn't pull every ontology on load.
-  const [openProperty, setOpenProperty] = useState<string | null>(null);
+  // console doesn't pull every ontology on load. The VC Ledger hub deep-links a home in
+  // (`?propertyId=`), so a tap on "N need you" lands on THAT home, open.
+  const params = useLocalSearchParams<{ propertyId?: string }>();
+  const [openProperty, setOpenProperty] = useState<string | null>(
+    typeof params.propertyId === "string" && params.propertyId ? params.propertyId : null,
+  );
   const ontQ = trpc.vc.ontologyFor.useQuery(
     { propertyId: openProperty ?? "" },
     { enabled: !!openProperty, retry: 0 },
   );
+  // The open home's run record — what actually RAN — for the strip on every entry card.
+  const runsQ = trpc.vc.runsForHomes.useQuery(
+    { propertyIds: [openProperty ?? ""] },
+    { enabled: !!openProperty, retry: 0 },
+  );
+  const openRuns: AgentRun[] = useMemo(() => {
+    type Row = { agent: string; task: string; code: string | null; outcome: string; reason: string | null; startedAt: string | Date; finishedAt: string | Date | null };
+    const by = runsQ.data?.byProperty as Record<string, Row[]> | undefined;
+    const rows = openProperty ? by?.[openProperty] : undefined;
+    return (rows ?? []).map((r) => ({
+      agent: r.agent, task: r.task, code: r.code, outcome: r.outcome, reason: r.reason,
+      startedAt: new Date(r.startedAt).toISOString(),
+      ...(r.finishedAt ? { finishedAt: new Date(r.finishedAt).toISOString() } : {}),
+    }));
+  }, [runsQ.data, openProperty]);
 
   const ontologies: CustodianOntologyRow[] = useMemo(() => {
     const rows = ontQ.data?.rows;
@@ -80,6 +100,8 @@ export default function CustodianReviewScreen() {
   const stamp = trpc.vc.stampEntry.useMutation({
     onSuccess: () => {
       void utils.vc.reviewQueue.invalidate();
+      void utils.vc.runsForHomes.invalidate();
+      void utils.vc.hubSummary.invalidate();
       if (openProperty) void utils.vc.ontologyFor.invalidate({ propertyId: openProperty });
     },
   });
@@ -185,6 +207,7 @@ export default function CustodianReviewScreen() {
                           entry={e}
                           busy={stamp.isPending}
                           specCtx={specCtx}
+                          runs={openRuns}
                           onStamp={(verdict, opts) =>
                             stamp.mutate({
                               propertyId: e.propertyId,

@@ -2,17 +2,22 @@ import { useCallback, useMemo, useState } from "react";
 import { View, Text, TextInput, Pressable, ScrollView, Image, TouchableOpacity } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { router, useLocalSearchParams } from "expo-router";
-import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
 import { useHomeLedger } from "@/lib/use-home-ledger";
 import { usePlan, getPlan, upsertPlan } from "@/lib/plan-store";
 import { normalizeAddress, type BuilderFacts } from "@/lib/jspace-facts";
 import { ledgerLabel, ledgerValue } from "@/lib/ledger-label";
 import { CLAIMANT_META, TIER_META, VERIFIER_LABEL, REVIEW_META } from "@/components/ledger-row";
+import { PartyStrip } from "@/components/party-strip";
 import { addEntryEvidence, removeEntryEvidence, useEntryEvidence } from "@/lib/entry-evidence-store";
 import { piCollectionChecks } from "@/lib/pi-checks";
+import { trpc } from "@/lib/trpc";
+import { useMode } from "@/lib/view-mode";
 import {
   LEDGER_TEMPLATE,
+  entryHash,
+  piTold,
+  type LedgerSignOff,
   specKindForCode,
   specOptionsFor,
   statedFieldForKind,
@@ -62,6 +67,30 @@ export default function EntryInputScreen() {
     [ledger.facts, code],
   );
 
+  // ── The run record on THIS entry — what ran, and PI's two marks (computed · told). ──
+  const { isCustodian } = useMode();
+  const utils = trpc.useUtils();
+  const recordRuns = trpc.vc.recordRuns.useMutation({ onSuccess: () => void utils.vc.runsFor.invalidate() });
+  const told = piTold(ledger.runs, code);
+  const signOff: LedgerSignOff | undefined = review
+    ? {
+        lapsed: review.state === "stale",
+        rejected: review.state === "rejected",
+        homeownerApproved: review.homeowner === "approved" || review.homeowner === "corrected",
+        custodianApproved: review.custodian === "approved" || review.custodian === "corrected",
+      }
+    : undefined;
+  const liveHash = review?.liveHash ?? (entry ? entry.baseHash ?? entryHash(entry) : "");
+  // "Got it" — the homeowner acknowledges PI's explanation of this entry. A real touch,
+  // recorded as a run (pi:told), not a render-side flag.
+  const markTold = () => {
+    if (!code || !address) return;
+    recordRuns.mutate({
+      ...(projectId ? { projectId } : { address }),
+      runs: [{ agent: "pi" as const, task: "pi:told", code, outcome: "landed" as const }],
+    });
+  };
+
   // ── The ask this entry carries, if any (spec chips + the open task's question). ──
   const kind = code ? specKindForCode(code) : null;
   const field = kind ? statedFieldForKind(kind) : null;
@@ -103,36 +132,8 @@ export default function EntryInputScreen() {
   );
 
   // ── Capture — photo / library / document, filed against THIS entry. ──
-  const takePhoto = useCallback(async () => {
-    setError("");
-    try {
-      const perm = await ImagePicker.requestCameraPermissionsAsync();
-      if (!perm.granted) {
-        setError("Camera permission needed — you can still use the photo library.");
-        return;
-      }
-      const res = await ImagePicker.launchCameraAsync({ quality: 0.5 });
-      if (res.canceled || !res.assets?.length) return;
-      const a = res.assets[0]!;
-      addEntryEvidence(address, code, { kind: "photo", uri: a.uri, name: a.fileName ?? "photo" });
-      setFiledAck(true);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Couldn't open the camera.");
-    }
-  }, [address, code]);
-
-  const pickPhoto = useCallback(async () => {
-    setError("");
-    try {
-      const res = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ImagePicker.MediaTypeOptions.Images, quality: 0.5 });
-      if (res.canceled || !res.assets?.length) return;
-      const a = res.assets[0]!;
-      addEntryEvidence(address, code, { kind: "photo", uri: a.uri, name: a.fileName ?? "photo" });
-      setFiledAck(true);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Couldn't open the photo library.");
-    }
-  }, [address, code]);
+  // Photo capture moved to the ONE spot at the top of the master ledger (Sal 9/6) —
+  // a photo is about the house and is READ into the record there, not filed as a URI here.
 
   const pickDoc = useCallback(async () => {
     setError("");
@@ -155,14 +156,7 @@ export default function EntryInputScreen() {
     setFiledAck(true);
   }, [address, code, note]);
 
-  // ── The board strip — every perspective on this number, Custodian dim until stamped. ──
-  const signedKeys = new Set<VcClaimant>();
-  if (review?.homeowner === "approved") signedKeys.add("homeowner");
-  if (review?.custodian === "approved") signedKeys.add("custodian");
-  const entities: { by: VcClaimant; signed: boolean }[] = [];
-  for (const by of [...(entry?.rating?.verifiers ?? []), ...signedKeys]) {
-    if (!entities.some((e) => e.by === by)) entities.push({ by, signed: signedKeys.has(by) });
-  }
+  // ── The board — the one party strip (party-strip.tsx), Custodian dim until stamped. ──
   const tier = entry?.rating ? TIER_META[entry.rating.tier] ?? null : null;
 
   // The slot's PROMISE — what this entry will record — for a slot nothing has claimed
@@ -192,21 +186,17 @@ export default function EntryInputScreen() {
           {entry ? (
             <>
               <View className="flex-row items-center gap-2">
-                <Text className="text-[#E5E7EB] text-[13px] font-semibold flex-1">{ledgerValue(entry) || "—"}</Text>
-                {tier ? <Text style={{ color: tier.color }} className="text-[7.5px] font-bold tracking-wider">{tier.label}</Text> : null}
-                {entities.map((e) => (
-                  <Text
-                    key={e.by}
-                    style={{
-                      color: CLAIMANT_META[e.by]?.color ?? "#6B7280",
-                      opacity: e.by === "custodian" ? (e.signed ? 1 : 0.3) : e.signed ? 1 : 0.5,
-                    }}
-                    className="text-[12px]"
-                  >
-                    {CLAIMANT_META[e.by]?.glyph ?? "•"}
-                  </Text>
-                ))}
+                <Text
+                  className="text-[13px] font-semibold flex-1"
+                  style={entry.example ? { color: GOLD, opacity: 0.7 } : { color: "#E5E7EB" }}
+                >
+                  {ledgerValue(entry) || "—"}
+                </Text>
+                {entry.example ? (
+                  <Text style={{ color: GOLD }} className="text-[7.5px] font-bold tracking-wider">⚖ CUSTODIAN'S EXAMPLE</Text>
+                ) : tier ? <Text style={{ color: tier.color }} className="text-[7.5px] font-bold tracking-wider">{tier.label}</Text> : null}
               </View>
+              <PartyStrip code={entry} signOff={signOff} lens={isCustodian ? "custodian" : "homeowner"} size={12} />
               {entry.rating?.why ? <Text className="text-[#9CA3AF] text-[10px] mt-1 leading-4">{entry.rating.why}</Text> : null}
               {/* PI's check — his cross-source verdict over the collected record. */}
               {piCheck ? (
@@ -214,6 +204,26 @@ export default function EntryInputScreen() {
                   🌱 PI check — {piCheck.note}
                 </Text>
               ) : null}
+              {/* PI walks the homeowner through what this entry MEANS for their value chain —
+                  the entry's own sentence — and "Got it" records that they were told (💬). */}
+              <View className="mt-2 pt-2 border-t" style={{ borderColor: "#1f2937" }}>
+                <Text style={{ color: "#22C55E" }} className="text-[8px] font-bold tracking-widest mb-0.5">🌱 PI · WHAT THIS MEANS FOR YOUR VALUE CHAIN</Text>
+                <Text className="text-[#D1D5DB] text-[10.5px] leading-4">{entry.meaning}</Text>
+                {told ? (
+                  <Text style={{ color: "#22C55E" }} className="text-[9px] mt-1">💬 You've been walked through this one.</Text>
+                ) : (
+                  <TouchableOpacity
+                    onPress={markTold}
+                    disabled={recordRuns.isPending || !address}
+                    className="mt-1.5 self-start rounded-lg px-3 py-1.5 border"
+                    style={{ borderColor: "#22C55E55", backgroundColor: "#22C55E12" }}
+                  >
+                    <Text style={{ color: "#22C55E" }} className="text-[10px] font-bold">
+                      {recordRuns.isPending ? "…" : "Got it — I understand this entry"}
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              </View>
               {/* Who claimed what — winner first, dissent honestly under it. */}
               {entry.conformity?.winner ? (
                 <View className="mt-2 pt-2 border-t" style={{ borderColor: "#1f2937" }}>
@@ -242,24 +252,20 @@ export default function EntryInputScreen() {
                     const m = REVIEW_META[review.state];
                     return <Text style={{ color: m.color, borderColor: `${m.color}55` }} className="text-[6.5px] font-bold tracking-wider border rounded px-1 py-0.5">{m.label}</Text>;
                   })()}
-                  <Text style={{ color: review.homeowner === "approved" ? "#34D399" : "#4B5563" }} className="text-[9px]">🏠 {review.homeowner === "approved" ? "signed" : "—"}</Text>
-                  <Text style={{ color: review.custodian === "approved" ? GOLD : "#4B5563" }} className="text-[9px]">⚖ {review.custodian === "approved" ? "stamped" : "—"}</Text>
-                  {/* PI on the board — lit when he holds a real claim on this entry (advisor, never a key). */}
-                  {(() => {
-                    const claimants = [
-                      ...(entry.rating?.verifiers ?? []),
-                      entry.conformity?.winner?.by,
-                      ...(entry.conformity?.dissent ?? []).map((d) => d.by),
-                    ];
-                    const piOn = claimants.includes("pi" as VcClaimant);
-                    return <Text style={{ color: piOn ? "#22C55E" : "#4B5563" }} className="text-[9px]">🌱 {piOn ? "PI reviewed" : "—"}</Text>;
-                  })()}
                 </View>
               ) : null}
             </>
           ) : (
             <>
               {slot ? <Text className="text-[#E5E7EB] text-[12px] font-semibold mb-1">{slot.meaning}</Text> : null}
+              {slot?.example ? (
+                <View className="flex-row items-center gap-2 mb-1">
+                  <Text style={{ color: GOLD, opacity: 0.7 }} className="text-[13px] font-semibold flex-1">
+                    {typeof slot.example.value === "number" ? slot.example.value.toLocaleString() : slot.example.value}
+                  </Text>
+                  <Text style={{ color: GOLD }} className="text-[7.5px] font-bold tracking-wider">⚖ CUSTODIAN'S EXAMPLE</Text>
+                </View>
+              ) : null}
               <Text className="text-[#6B7280] text-[11px]">
                 {needsHome
                   ? "This slot is open and waiting — it fills the moment your home is on file."
@@ -400,9 +406,9 @@ export default function EntryInputScreen() {
         <View className="rounded-xl border px-3 py-3 mb-3" style={{ borderColor: "#1f2937", backgroundColor: "#0b0f16" }}>
           <Text className="text-[#9CA3AF] text-[8px] font-bold tracking-widest mb-2">PUT IT ON FILE</Text>
           <View className="flex-row gap-1.5">
+            {/* Photos live at the TOP of the master ledger now — one spot, read into the
+                whole record (Sal 9/6). Documents still file against the entry. */}
             {([
-              ["📷", "Take photo", takePhoto],
-              ["🖼", "Photo library", pickPhoto],
               ["📄", "Document", pickDoc],
             ] as const).map(([glyph, label, fn]) => (
               <Pressable

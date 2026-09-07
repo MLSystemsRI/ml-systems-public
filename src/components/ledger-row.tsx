@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { View, Text, Pressable, LayoutAnimation } from "react-native";
-import { router } from "expo-router";
-import type { VcCode, VcSource, VcClaimant, VcConformityStatus } from "@ml-systems/types";
-import type { LedgerEntryReview, EntryReviewState } from "@/lib/ledger-view";
+import { entryHash, needsCustodian, type VcCode, type VcSource, type VcClaimant, type VcConformityStatus, type AgentRun } from "@ml-systems/types";
+import { reviewToSignOff, type LedgerEntryReview, type EntryReviewState } from "@/lib/ledger-view";
 import { ledgerLabel, ledgerValue } from "@/lib/ledger-label";
+import { PartyStrip } from "@/components/party-strip";
+import { EntryAnswer } from "@/components/entry-answer";
+import { useMode } from "@/lib/view-mode";
+
+export { reviewToSignOff };
 
 /**
  * ledger-row — one entry of the value-chain ledger, drawn with its confidence bar.
@@ -75,31 +79,35 @@ export const REVIEW_META: Record<EntryReviewState, { label: string; color: strin
   unsigned: { label: "UNSIGNED", color: "#6B7280" },
 };
 
-/** The claimants who weighed in, winner first — the review trail. */
-function reviewersOf(c: NonNullable<VcCode["conformity"]>): VcClaimant[] {
-  const seen: VcClaimant[] = [];
-  const push = (by?: VcClaimant) => { if (by && !seen.includes(by)) seen.push(by); };
-  push(c.winner?.by);
-  for (const d of c.dissent) push(d.by);
-  return seen;
-}
 
 export function LedgerRow({
   code,
   review,
   onReview,
   valueOverride,
-  inputHref,
+  address,
+  yearBuilt,
+  runs,
 }: {
   code: VcCode;
+  /**
+   * The home's run record (useHomeLedger.runs). Present → the ⚖ can carry its action cue
+   * (needsCustodian: the machines are exhausted and this entry still waits on him).
+   */
+  runs?: readonly AgentRun[] | undefined;
   /** Sign-off state from the server rows (ledgerView.reviewByCode). Omitted → read-only. */
   review?: LedgerEntryReview;
   /** Present → the row becomes reviewable (tap to open the claims + the two keys). */
   onReview?: (code: VcCode, verdict: "approved" | "corrected" | "rejected", liveHash: string) => void;
   /** Display-only value replacement (e.g. the Custodian's read scaled by stamped share). */
   valueOverride?: string;
-  /** Present → the expanded view offers "Add your input →" into the entry-input page. */
-  inputHref?: string;
+  /**
+   * The home's address → the expanded row carries the homeowner's typing input for THIS
+   * entry (Sal 9/6: no detour to another page). Absent → read-only.
+   */
+  address?: string | undefined;
+  /** Orders the spec chips for this home's era. */
+  yearBuilt?: number | undefined;
 }) {
   const src = SRC_META[code.provenance.src] ?? SRC_META.modeled;
   const measures = Object.entries(code.measures).slice(0, 4);
@@ -107,41 +115,51 @@ export function LedgerRow({
   const canReview = !!onReview && !!review;
   // A contested number must never wear a confident label — that is the failure the
   // conformity layer exists to prevent. It takes over the one chip the row has.
+  // The Custodian's EXAMPLE wears his glyph and says so — the one chip must never let a
+  // placeholder read as a modeled fact about THIS house.
   const chip = code.quarantined
     ? { label: "DISPUTED", color: "#EF4444" }
-    : { label: src.label, color: src.color };
+    : code.example
+      ? { label: "⚖ EXAMPLE", color: CLAIMANT_META.custodian.color }
+      : { label: src.label, color: src.color };
   // The standing + who earned it. `rating.verifiers` is already deduped by the
   // anti-echo rule, so a value re-stated by a second claimant does not inflate it.
-  const tier = code.rating ? TIER_META[code.rating.tier] ?? null : null;
-  const verifiers = (code.rating?.verifiers ?? []).length
-    ? code.rating!.verifiers.map((v) => VERIFIER_LABEL[v] ?? v).join(" + ")
-    : "";
-  // Every entity that stands behind this number — "all that apply". Independent
-  // agreement (the rating's verifiers) shows dimmed; a two-key sign-off shows at full
-  // strength, because a signed/stamped key is a stronger claim than a mere agreement.
-  // The homeowner 🏠 + Custodian ⚖ keys together are the review board.
-  const signedKeys = new Set<VcClaimant>();
-  if (review?.homeowner === "approved") signedKeys.add("homeowner");
-  if (review?.custodian === "approved") signedKeys.add("custodian");
-  const entities: { by: VcClaimant; signed: boolean }[] = [];
-  for (const by of [...(code.rating?.verifiers ?? []), ...signedKeys]) {
-    if (!entities.some((e) => e.by === by)) entities.push({ by, signed: signedKeys.has(by) });
-  }
+  const tier = code.example
+    ? { label: "CUSTODIAN'S EXAMPLE — REPLACE WITH YOURS", color: CLAIMANT_META.custodian.color }
+    : code.rating ? TIER_META[code.rating.tier] ?? null : null;
+  // WHO has weighed in — the one strip (party-strip.tsx). The rating's verifier list,
+  // the run record, the gather-passes, the conformity reviewers and the sign-off keys all
+  // drew these same five people; now they are drawn once, here, lit or dim.
+  // The Custodian's lens names the minds (his console); the homeowner's uses capability
+  // words — the agents stay backend (Sal 9/1).
+  const { isCustodian } = useMode();
+  const signOff = review ? reviewToSignOff(review) : undefined;
+  const liveHash = review?.liveHash ?? code.baseHash ?? entryHash(code);
+  // The one action cue on the ⚖: this entry is waiting on the Custodian specifically.
+  const needs = runs
+    ? needsCustodian({ quarantined: code.quarantined === true, conformityStatus: code.conformity?.status, liveHash, review: signOff, runs })
+    : false;
+  const lens = isCustodian ? "custodian" : "homeowner";
   return (
-    <Pressable
-      className="py-2 border-t"
-      style={{ borderColor: "#14171c" }}
-      onPress={() => {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-        setOpen((o) => !o);
-      }}
-    >
+    // The row is a View; only the GLANCE toggles it. A text input inside a row-wide
+    // Pressable would collapse the row on every tap into the box.
+    <View className="py-2 border-t" style={{ borderColor: "#14171c" }}>
+      <Pressable
+        onPress={() => {
+          LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+          setOpen((o) => !o);
+        }}
+      >
       {/* The glance: a noun, one value, one chip. The sentence and the cross-check live
           behind the tap. What each mind DOES with this entry is not shown — the ledger
           records the fact; the apps that read it show their own computed work. */}
       <View className="flex-row items-center gap-2">
         <Text className="text-[#9CA3AF] text-[10px]" numberOfLines={1}>{ledgerLabel(code)}</Text>
-        <Text className="text-[#E5E7EB] text-[11px] font-semibold flex-1 text-right" numberOfLines={1}>
+        <Text
+          className="text-[11px] font-semibold flex-1 text-right"
+          style={code.example ? { color: CLAIMANT_META.custodian.color, opacity: 0.6 } : { color: "#E5E7EB" }}
+          numberOfLines={1}
+        >
           {valueOverride ?? ledgerValue(code)}
         </Text>
         {code.confirmed ? <Text style={{ color: "#34D399" }} className="text-[9px]">✓</Text> : null}
@@ -154,38 +172,21 @@ export function LedgerRow({
         <Text style={{ color: chip.color }} className="text-[7.5px] font-bold tracking-wider">{chip.label}</Text>
       </View>
 
-      {/* WHO stands behind this number. The point of the master ledger: an entry three
-          independent sources agree on is a different thing from one the model guessed,
-          and the homeowner should not have to tap to tell them apart. */}
-      {tier || entities.length ? (
-        <View className="flex-row items-center gap-1.5 mt-1">
-          {tier ? <Text style={{ color: tier.color }} className="text-[7px] font-bold tracking-wider">{tier.label}</Text> : null}
-          {/* The verifier glyphs — every perspective that agrees, signed keys at full
-              strength. A homeowner sees the multiple perspectives without a tap.
-              The Custodian's ⚖ stays LOW until he has stamped THIS entry (Sal's
-              call) — his seat on the board is not his approval. */}
-          {entities.map((e) => (
-            <Text
-              key={e.by}
-              style={{
-                color: CLAIMANT_META[e.by]?.color ?? "#6B7280",
-                opacity: e.by === "custodian" ? (e.signed ? 1 : 0.3) : e.signed ? 1 : 0.5,
-              }}
-              className="text-[9px]"
-            >
-              {CLAIMANT_META[e.by]?.glyph ?? "•"}
-            </Text>
-          ))}
-          {verifiers ? (
-            <Text className="text-[#6B7280] text-[8.5px] flex-1" numberOfLines={1}>{verifiers}</Text>
-          ) : null}
-        </View>
-      ) : null}
+      {/* WHO has weighed in. The point of the master ledger: an entry four people have
+          touched is a different thing from one the model guessed, and the homeowner
+          should not have to tap to tell them apart. Lit = has input, dim = owed. */}
+      <View className="flex-row items-center gap-1.5 mt-1">
+        {tier ? <Text style={{ color: tier.color }} className="text-[7px] font-bold tracking-wider flex-1" numberOfLines={1}>{tier.label}</Text> : <View className="flex-1" />}
+        {!code.example ? <PartyStrip compact code={code} signOff={signOff} lens={lens} needsCustodian={needs} size={9} /> : null}
+      </View>
+      </Pressable>
 
       {/* ── Everything below opens on tap ─────────────────────────────────────────── */}
       {open ? (
         <>
       <Text className="text-[#9CA3AF] text-[10px] mt-2 leading-4">{code.meaning}</Text>
+      {/* Each party, with the word for how they came in, and who to ask next. */}
+      {!code.example ? <PartyStrip code={code} signOff={signOff} lens={lens} needsCustodian={needs} /> : null}
       <Text className="text-[#4B5563] text-[8px] tracking-wider mt-1">{code.code}</Text>
       {measures.length ? (
         <Text className="text-[#6B7280] text-[9px] mt-1" numberOfLines={1}>
@@ -201,9 +202,6 @@ export function LedgerRow({
               const st = STATUS_META[code.conformity.status];
               return <Text style={{ color: st.color, borderColor: `${st.color}55` }} className="text-[6.5px] font-bold tracking-wider border rounded px-1 py-0.5">{st.label}</Text>;
             })()}
-            {reviewersOf(code.conformity).map((by) => (
-              <Text key={by} style={{ color: CLAIMANT_META[by]?.color ?? "#6B7280" }} className="text-[9px]">{CLAIMANT_META[by]?.glyph ?? "•"}</Text>
-            ))}
             {code.quarantined ? <Text style={{ color: "#EF4444" }} className="text-[7px] font-bold">held for review</Text> : null}
           </View>
           {code.conformity.why ? (
@@ -212,18 +210,16 @@ export function LedgerRow({
         </View>
       ) : null}
 
-      {/* The door to the entry's own input page — the review-board card, the ask,
-          and photo / library / document / chat capture. "What we still need from
-          you" now lives HERE, on the entry it would settle. */}
-      {inputHref ? (
-        <Pressable
-          onPress={() => router.push(inputHref as never)}
-          className="mt-2 rounded-lg px-2.5 py-2 border flex-row items-center"
-          style={{ borderColor: "#60A5FA44", backgroundColor: "#60A5FA0D" }}
-        >
-          <Text className="text-[9.5px] flex-1" style={{ color: "#60A5FA" }}>Add your input — photo, document, or tell us</Text>
-          <Text style={{ color: "#60A5FA" }} className="text-[11px]">→</Text>
-        </Pressable>
+      {/* The homeowner's input, RIGHT HERE (Sal 9/6): chips for a member spec, a typing
+          box for everything — and the answer files on this entry as their claim. The
+          Custodian's example above it is the hint for what to say. */}
+      {address ? (
+        <View className="mt-1 rounded-lg px-2.5 py-2 border" style={{ borderColor: "#60A5FA33", backgroundColor: "#60A5FA0A" }}>
+          <Text className="text-[8px] font-bold tracking-widest" style={{ color: "#60A5FA" }}>
+            🏠 YOUR INPUT{code.example ? " — replaces the Custodian's example" : ""}
+          </Text>
+          <EntryAnswer address={address} code={code.code} yearBuilt={yearBuilt} placeholder={code.example ? `e.g. ${ledgerValue(code)}` : undefined} />
+        </View>
       ) : null}
 
       {/* The sign-off — where this entry stands on the file. A town record isn't a
@@ -238,8 +234,6 @@ export function LedgerRow({
               </Text>
             );
           })()}
-          <Text style={{ color: review.homeowner === "approved" ? "#34D399" : "#4B5563" }} className="text-[8px]">🏠 {review.homeowner === "approved" ? "signed" : "—"}</Text>
-          <Text style={{ color: review.custodian === "approved" ? "#F5D060" : "#4B5563" }} className="text-[8px]">⚖ {review.custodian === "approved" ? "stamped" : "—"}</Text>
         </View>
       ) : null}
 
@@ -282,6 +276,6 @@ export function LedgerRow({
       ) : null}
         </>
       ) : null}
-    </Pressable>
+    </View>
   );
 }

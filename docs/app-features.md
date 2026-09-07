@@ -26,8 +26,11 @@ The app is dark-themed, single home at a time, and organized around the [value c
 - **Add a Home** (`add-home`) — start from *just an address*. Estimated value is optional; the
   system geocodes, harvests the assessor record, and begins compiling.
 - **Value-Chain Explainer** (`value-chain-explainer`) — the in-app version of [this loop](value-chain.md).
-- **Master Ledger** (`value-chain-ledger`, `entry-input`) — the record-first ledger with
-  per-entry input, rating-verifier glyphs, and the reconciliation states.
+- **Master Ledger** (`value-chain-ledger`, `entry-input`) — the record-first ledger: a
+  five-seat party strip on every entry (🏠 📋 🦉 🌱 ⚖ — lit means *weighed in*, not agreed),
+  answers typed directly on the row (a claim beside the instrument's read, never an
+  overwrite), one photo spot for the whole house, PI's questions generated from the
+  record's own blanks, and the reconciliation states. See [The Master Ledger](master-ledger.md).
 - **Portfolio** (`portfolio`) / **VC Homes** (`vc-homes`) — the home(s) in the chain; saved,
   never deleted. The Custodian lens shows every home's review state.
 - **Equity** (`equity`) — live equity growth per cycle, driven by the 1.43× model.

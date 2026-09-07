@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView, LayoutAnimation } 
 import { router } from "expo-router";
 import { trpc } from "@/lib/trpc";
 import { AppHeader } from "@/components/app-header";
+import { PLAN_TIER_META, type HubHomeSummary } from "@ml-systems/types";
 
 /**
  * VC Homes — the Custodian's Value Chain Homes console (custodian tab, next to
@@ -34,7 +35,51 @@ type VcHome = {
   ownerEmail: string | null;
   /** Saved off the active console (reversible) — folded into the Saved section. */
   vcArchivedAt?: string | null;
+  propertyId?: string;
+  /** The plan-set entitlement this home holds (1 = Free). */
+  planTier?: number | null;
+  /** The hub's per-home summary (vc.hubSummary) — what needs him, what ran, what a stamp is worth. */
+  summary?: HubHomeSummary | null;
 };
+
+const RUN_WORD: Record<string, string> = { never: "not yet", skipped: "couldn't", failed: "failed", empty: "nothing", landed: "ran" };
+
+/**
+ * The hub line under each home — the extraction glyphs from the RUN RECORD (did VERA's
+ * search run · did PI compute · how many entries the homeowner was told · how many he
+ * stamped or overrode), then what needs him and what his stamp is worth.
+ */
+function HubLine({ s }: { s?: HubHomeSummary | null }) {
+  if (!s) return <Text className="text-[#4B5563] text-[9.5px] mt-1.5">no ledger compiled yet — nothing to verify</Text>;
+  const on = (st: string) => (st === "landed" ? 1 : st === "never" ? 0.25 : 0.55);
+  return (
+    <View className="mt-1.5">
+      <View className="flex-row items-center gap-2.5 flex-wrap">
+        <Text style={{ color: "#34D399", opacity: on(s.vera) }} className="text-[10px]">🦉 <Text className="text-[8px]">{RUN_WORD[s.vera] ?? s.vera}</Text></Text>
+        <Text style={{ color: "#22C55E", opacity: on(s.pi) }} className="text-[10px]">🌱 <Text className="text-[8px]">{RUN_WORD[s.pi] ?? s.pi}</Text></Text>
+        <Text style={{ color: "#22C55E", opacity: s.told ? 1 : 0.25 }} className="text-[10px]">💬 <Text className="text-[8px]">{s.told} told</Text></Text>
+        <Text style={{ color: GOLD, opacity: s.counts.stamped ? 1 : 0.35 }} className="text-[10px]">
+          ⚖ <Text className="text-[8px]">{s.counts.stamped} stamped{s.overrides ? ` · ${s.overrides} overrode` : ""}</Text>
+        </Text>
+      </View>
+      <View className="flex-row items-center gap-1.5 mt-1 flex-wrap">
+        {s.needsYou ? (
+          <Text style={{ color: AMBER }} className="text-[9.5px] font-bold">{s.needsYou} need you</Text>
+        ) : (
+          <Text style={{ color: GREEN }} className="text-[9.5px]">nothing needs you</Text>
+        )}
+        {s.counts.quarantined ? <Text style={{ color: "#EF4444" }} className="text-[9px]">· {s.counts.quarantined} disputed</Text> : null}
+        {s.counts.lapsed ? <Text style={{ color: AMBER }} className="text-[9px]">· {s.counts.lapsed} lapsed</Text> : null}
+        <Text className="text-[#6B7280] text-[9px]">· {PLAN_TIER_META[s.planTier].name} tier</Text>
+        {s.revenue.sheetsOnSale ? (
+          <Text style={{ color: GOLD }} className="text-[9px]">
+            · your stamp puts {s.revenue.sheetsOnSale} sheets on sale{s.revenue.cheapestPriceLabel ? ` from ${s.revenue.cheapestPriceLabel}` : ""}
+          </Text>
+        ) : null}
+      </View>
+    </View>
+  );
+}
 
 type ReqStatus = "requested" | "triaged" | "in_progress" | "done" | "declined";
 type ProjectReq = {
@@ -74,20 +119,32 @@ export default function VCHomesScreen() {
   const utils = trpc.useUtils();
   const listQ = trpc.vc.list.useQuery(undefined, { retry: 0 });
   const allHomes: VcHome[] = Array.isArray(listQ.data?.homes) ? (listQ.data.homes as VcHome[]) : [];
+  // THE HUB read (Sal's call: this tab is the verification workflow). Every active home
+  // summarized ONCE on the server — what needs him, what has run, what a stamp is worth —
+  // sorted heaviest first. `vc.list` stays for the Saved section and as the fallback while
+  // the hub loads.
+  const hubQ = trpc.vc.hubSummary.useQuery(undefined, { retry: 0 });
+  const hubHomes = Array.isArray(hubQ.data?.homes) ? (hubQ.data.homes as VcHome[]) : null;
   // One home up at a time while the template stabilizes (Sal 9/1): saved homes fold
   // into their own section below — kept, never deleted, restored in one tap.
-  const homes = allHomes.filter((h) => !h.vcArchivedAt);
+  const homes = hubHomes ?? allHomes.filter((h) => !h.vcArchivedAt);
   const saved = allHomes.filter((h) => !!h.vcArchivedAt);
+  const needsYouTotal = homes.reduce((n, h) => n + (h.summary?.needsYou ?? 0), 0);
   const [savedOpen, setSavedOpen] = useState(false);
+  const refreshHub = () => {
+    void utils.vc.list.invalidate();
+    void utils.vc.hubSummary.invalidate();
+  };
   const setVerification = trpc.vc.setVerification.useMutation({
     onSuccess: () => {
-      void utils.vc.list.invalidate();
+      refreshHub();
       void utils.store.homeCatalogue.invalidate();
     },
   });
-  const setArchived = trpc.vc.setArchived.useMutation({
-    onSuccess: () => void utils.vc.list.invalidate(),
-  });
+  const setArchived = trpc.vc.setArchived.useMutation({ onSuccess: refreshHub });
+  // The entitlement — granted here on receipt of payment (the day-one revenue path); the
+  // studio's tier gate reads this column through the phone's plan-set params.
+  const setPlanTier = trpc.vc.setPlanTier.useMutation({ onSuccess: refreshHub });
 
   // Homeowner project requests — the Custodian advances or declines them.
   const reqQ = trpc.projectRequests.list.useQuery(undefined, { retry: 0 });
@@ -154,6 +211,11 @@ export default function VCHomesScreen() {
               <Text className="text-[#9CA3AF] text-[9px] uppercase tracking-wider">{s.label}</Text>
             </View>
           ))}
+          {/* What only a human can move — the sweep's worklist, across every home. */}
+          <View className="flex-1 rounded-xl px-3 py-2 border" style={{ borderColor: `${GOLD}44`, backgroundColor: `${GOLD}0D` }}>
+            <Text style={{ color: GOLD }} className="text-[16px] font-black">{needsYouTotal}</Text>
+            <Text className="text-[#9CA3AF] text-[9px] uppercase tracking-wider">Need you</Text>
+          </View>
         </View>
 
         {/* Project requests — what homeowners have asked to get done. The Custodian
@@ -249,6 +311,7 @@ export default function VCHomesScreen() {
                           {h.ownerLegalName ?? h.ownerName ?? h.ownerEmail ?? "owner unknown"}
                           {h.ownerKind ? ` · ${h.ownerKind === "llc" ? "LLC" : "individual"}` : ""}
                         </Text>
+                        {hubHomes ? <HubLine s={h.summary} /> : null}
                       </TouchableOpacity>
 
                       {on ? (
@@ -275,7 +338,7 @@ export default function VCHomesScreen() {
                           <TextInput
                             value={legalName}
                             onChangeText={setLegalName}
-                            placeholder={ownerKind === "llc" ? "Legal entity name (e.g. Example Home LLC)" : "Owner's full legal name"}
+                            placeholder={ownerKind === "llc" ? "Legal entity name (e.g. 12 Maple St LLC)" : "Owner's full legal name"}
                             placeholderTextColor="#6B7280"
                             className="bg-[#1A1A1A] border border-[#262626] rounded-lg px-3 py-2.5 text-[12px] text-[#F9FAFB] mb-2.5"
                           />
@@ -324,6 +387,42 @@ export default function VCHomesScreen() {
                               🐕 MURPHY's construction entry is open — milestones live in his console.
                             </Text>
                           ) : null}
+
+                          {/* The second key, for THIS home — lands on it open in the review queue. */}
+                          <TouchableOpacity
+                            onPress={() => router.push(`/custodian-review${h.propertyId ? `?propertyId=${h.propertyId}` : ""}` as never)}
+                            activeOpacity={0.7}
+                            className="mt-3 rounded-lg px-3 py-2 border flex-row items-center"
+                            style={{ borderColor: `${GOLD}44`, backgroundColor: `${GOLD}0D` }}
+                          >
+                            <Text style={{ color: GOLD }} className="text-[10.5px] flex-1">
+                              ⚖ Review {h.summary?.needsYou ? `the ${h.summary.needsYou} that need you` : "the ledger, entry by entry"} →
+                            </Text>
+                          </TouchableOpacity>
+
+                          {/* The entitlement — grant the tier when the homeowner pays. The day-one
+                              revenue path: the studio's gate finally hears a tier, through this column. */}
+                          <Text className="text-[#9CA3AF] text-[9px] uppercase tracking-wider mt-3 mb-1.5">Plan-set tier</Text>
+                          <View className="flex-row gap-2">
+                            {([1, 2, 3] as const).map((t) => {
+                              const cur = (h.planTier ?? 1) === t;
+                              return (
+                                <TouchableOpacity
+                                  key={t}
+                                  disabled={cur || setPlanTier.isPending}
+                                  onPress={() => setPlanTier.mutate({ projectId: h.projectId, tier: t })}
+                                  className="flex-1 rounded-lg py-2 items-center border"
+                                  style={{ borderColor: cur ? GOLD : "#374151", backgroundColor: cur ? `${GOLD}18` : "transparent" }}
+                                >
+                                  <Text style={{ color: cur ? GOLD : "#9CA3AF" }} className="text-[10.5px] font-bold">{PLAN_TIER_META[t].name}</Text>
+                                  <Text className="text-[#6B7280] text-[8px]">{PLAN_TIER_META[t].priceLabel}</Text>
+                                </TouchableOpacity>
+                              );
+                            })}
+                          </View>
+                          <Text className="text-[#4B5563] text-[8.5px] mt-1 leading-3">
+                            Only Free → DIY → Complete move sheets; tiers 4–5 differ by BC verification, not by the gate.
+                          </Text>
 
                           <TouchableOpacity
                             onPress={() => router.push(`/portfolio?name=${encodeURIComponent(h.address ?? "")}&projectId=${h.projectId}` as never)}
