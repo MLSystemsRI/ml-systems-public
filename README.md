@@ -145,7 +145,7 @@ Recent posts:
 - [Agent Costs Are Hard to Predict Because We Keep Building Them to Be Unpredictable](https://medium.com/@salparvez/agent-costs-are-hard-to-predict-because-we-keep-building-them-to-be-unpredictable-73b2efc497f2)
 - [The Advice Was "Build on Unique Data." Mine Was a House.](https://medium.com/@salparvez/the-advice-was-build-on-unique-data-mine-was-a-house-1d00d3e2500f)
 
-Company channels: [X](https://x.com/ML_SystemsLLC) · [LinkedIn](https://www.linkedin.com/company/ml-systems-llc) · [Instagram](https://www.instagram.com/ml_systemsllc) · [Product Hunt](https://www.producthunt.com/products/ml-systems)
+Company channels: [X](https://x.com/ML_SystemsLLC) · [LinkedIn](https://www.linkedin.com/company/ml-systems-llc) · [Instagram](https://www.instagram.com/ml_systemsllc) · [Product Hunt](https://www.producthunt.com/products/ml-systems) · [Facebook](https://www.facebook.com/profile.php?id=61584698819319)
 
 ## License
 
