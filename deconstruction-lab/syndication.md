@@ -26,11 +26,20 @@ pieces for the other channels that stand on their own and link back for the full
 |---|---|---|---|
 | **`/insights`** | `mlsystemsri.com/insights` | **Canonical.** The full piece lives here. | Search, homeowners, RI market |
 | **`blog.mlsystemsri.com`** | not built yet | Planned owned home for longer-form work | — |
-| **DEV** | `dev.to/salparvez` | Implementation detail, systems thinking | Developers |
-| **Hashnode** | publication: *ML Systems Engineering* | Same register as DEV; has an Original URL field | Developers |
-| **Medium** | `medium.com/@salparvez` | The builder's explanation — narrative, less technical | General / founder-follow |
-| **LinkedIn** | company page + founder | Short-form, one idea, link out | Industry, partners, investors |
-| **X** | `@ML_SystemsLLC` | Thread or single post | Broad |
+| **DEV** | [dev.to/salparvez](https://dev.to/salparvez) | Implementation detail, systems thinking | Developers |
+| **Hashnode** | [mlsystems.hashnode.dev](https://mlsystems.hashnode.dev) — *ML Systems Engineering* | Same register as DEV; has an Original URL field | Developers |
+| **Medium** | [medium.com/@salparvez](https://medium.com/@salparvez) | The builder's explanation — narrative, less technical | General / founder-follow |
+| **LinkedIn** | [company](https://www.linkedin.com/company/ml-systems-llc) + founder | Short-form, one idea, link out | Industry, partners, investors |
+| **X** | [@ML_SystemsLLC](https://x.com/ML_SystemsLLC) | Thread or single post | Broad |
+| **Instagram · Facebook · Product Hunt** | see [README](../README.md#writing--updates) | Reach, not depth | Broad |
+
+> **Two canonicals, on purpose.** The repo README calls DEV *"canonical for most posts"* — that
+> holds for the platform/engineering writing (the Master Ledger, the Seven Minds, agent cost),
+> which is written for developers and lives natively on DEV. Deconstruction writing is different:
+> it targets Rhode Island homeowners and search intent around demolition and material recovery, so
+> its canonical is `/insights`, where the `Article` schema, the town pages and the rest of the
+> local-SEO surface already sit. Decide canonical by **audience**, not by habit — and never let the
+> same piece claim two.
 
 **Canonical stays `/insights` for now.** `blog.mlsystemsri.com` is a real option later; until it
 exists and has its own indexing history, moving the canonical there costs more than it gains.
@@ -98,6 +107,16 @@ Spacing the platform posts out by a few days is better than firing them all at o
 - [ ] Nothing from the do-not-publish list in [`source-brief.md`](source-brief.md) crept into a
       shorter version to make it punchier
 - [ ] Profile bios and links current on each platform before posting
+
+## Shipped
+
+| Piece | Canonical | Syndicated |
+|---|---|---|
+| [Taking a Roof Apart in Sections](articles/roof-in-sections.md) | [/insights](https://mlsystemsri.com/insights/taking-a-roof-apart-in-sections) — live | pending: DEV · Hashnode · Medium · LinkedIn · X |
+
+Existing platform posts (see [README](../README.md#writing--updates)) already cover the Master
+Ledger, the Seven Minds and agent cost. The DEV/Hashnode variants of the roof piece should link
+to those rather than re-explain the ontology from scratch.
 
 ## Open items
 
