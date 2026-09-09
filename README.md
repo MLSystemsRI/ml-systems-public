@@ -56,6 +56,7 @@ Read the deep dives:
 
 - 📍 **[The stage we're at](docs/the-stage-were-at.md)** — what's real today vs modeled vs aspirational
 - 🔗 **[The Value Chain](docs/value-chain.md)** — Loan Origination → Deconstruction → Construction
+- 🪚 **[The Deconstruction Lab](deconstruction-lab/)** — how a house comes apart: the phase sequence, the layer stack, and the material streams it feeds
 - 📒 **[The Master Ledger](docs/master-ledger.md)** — one home, one auditable record, five seats; claims reconciled in the open, stamps that lapse when the content moves
 - 🧬 **[The Collective Ontology](docs/collective-ontology.md)** — how the system agrees on what a house *is*
 - 🗜️ **[Ontological Compression](docs/ontological-compression.md)** — turning a whole house into a genome
@@ -117,6 +118,10 @@ build. The proprietary logic it calls into is the private engine.
 | Add a home | Store | Neighbors | The Minds |
 |---|---|---|---|
 | ![Add home](screenshots/05-add-home.png) | ![Store](screenshots/06-store.png) | ![Neighbors](screenshots/07-neighbors.png) | ![Minds](screenshots/10-minds.png) |
+
+| Decon Lab | Collective chat |
+|---|---|
+| ![Decon Lab](screenshots/09-decon-lab.png) | ![Chat](screenshots/08-chat.png) |
 
 ---
 

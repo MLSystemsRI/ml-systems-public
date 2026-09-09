@@ -11,6 +11,11 @@ google-services*.json
 *.jks
 AuthKey_*.p8
 
+# Local scrub list — terms that can't be named in a public file (R&D device names, unfiled
+# patent subject matter, feedstock specs, TTP scoring factors). scrub-check loads it if
+# present; publishing it would be the disclosure it exists to prevent.
+.scrub-private-terms.json
+
 # Build output
 dist/
 build/
