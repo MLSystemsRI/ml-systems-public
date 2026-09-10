@@ -20,7 +20,7 @@
 
 1. **Loan Origination** — a marketplace where lenders compete to fund the homeowner's build.
 2. **Deconstruction** — recover up to 80–90% of a home's materials (target); reuse › resale › recycle.
-3. **Construction** — rebuild larger on the same lot, reusing recovered materials.
+3. **Construction** — rebuild on the same lot from the recovered materials — the loop closes on site, and the home comes back larger.
 4. **Equity loop** — completed construction creates equity to reinvest into the next cycle.
 
 ## Digital footprint
