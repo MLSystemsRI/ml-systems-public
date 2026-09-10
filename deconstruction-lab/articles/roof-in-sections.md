@@ -141,20 +141,10 @@ happens at ground level with a clear footprint around it.
 With the section inverted, the stack comes apart from the inside out — innermost layer first,
 outermost layer last:
 
-**1. Rafters.** The innermost layer, now on top and fully accessible. The fasteners at the sheathing connection get cut
-rather than pulled, and the rafters lift away clean and dry. Recovered rafters are the highest-value
-material in the assembly — especially in older housing stock, where full-dimension old-growth
-framing is simply not something you can buy new.
-
-**2. Sheathing.** Freed from the rafters, the panels separate from the underlayment beneath. This
-is the layer most sensitive to technique: plywood tolerates more than OSB, and both split if the
-fasteners are fought instead of removed.
-
-**3. Underlayment.** Synthetic underlayment peels cleanly and is reusable when it comes up intact.
-Self-adhered ice-and-water shield does not — it is bonded to the sheathing by design, and it comes
-off as waste.
-
-**4. Shingles.** The outermost layer, and the last one reached. Already at the bottom, against the
+1. **Rafters.** The innermost layer, now on top and fully accessible. The fasteners at the sheathing connection get cut rather than pulled, and the rafters lift away clean and dry. Recovered rafters are the highest-value material in the assembly — especially in older housing stock, where full-dimension old-growth framing is simply not something you can buy new.
+2. **Sheathing.** Freed from the rafters, the panels separate from the underlayment beneath. This is the layer most sensitive to technique: plywood tolerates more than OSB, and both split if the fasteners are fought instead of removed.
+3. **Underlayment.** Synthetic underlayment peels cleanly and is reusable when it comes up intact. Self-adhered ice-and-water shield does not — it is bonded to the sheathing by design, and it comes off as waste.
+4. **Shingles.** The outermost layer, and the last one reached. Already at the bottom, against the
 ground, with nothing fastened through them any more — every fastener that held them was removed
 from above, in turn, on the way down. They release downward and stay together instead of shattering
 into the fragments a shovel produces.

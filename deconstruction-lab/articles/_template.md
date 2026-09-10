@@ -61,8 +61,21 @@ Reality labels — *MEASURED*, *MODELED*, *ASPIRATIONAL* — on every forward-lo
 canonical definitions, and the twelve do-not-publish categories. This template does not repeat them.
 
 **Markdown subset.** The site's prose renderer supports only: `##` and `###` headings, `-` bullets,
-`1.` numbered lists, `|` tables, `**bold**`, `` `code` ``, and `[links](url)`. No images, no
-blockquotes, no nested lists, no HTML. Anything else renders as literal text.
+`1.` numbered lists, `|` tables, `**bold**`, `` `code` ``, and `[links](url)`. **No italics, no
+images, no blockquotes, no nested lists, no HTML** — anything else ships as literal text on a live
+page. Single `*emphasis*` renders as visible asterisks; `>` renders as a literal `>`; `---` renders
+as a literal `---`.
+
+**Three rules that are easy to get wrong, each of which has already shipped a broken page:**
+
+1. **One paragraph per line.** The renderer emits a `<p>` for every non-empty line, so a
+   hard-wrapped paragraph becomes one paragraph per line. Write each paragraph as a single long
+   line.
+2. **List markers must start the line.** Detection is `/^\d+\.\s/` and `- ` on the raw line, so
+   `**1. Rafters.**` never matches and falls through to a paragraph with a literal "1." in it.
+   Write `1. **Rafters.** …`.
+3. **List items must be on consecutive lines.** A blank line closes the list, so separated items
+   each become their own `<ol>` restarting at 1.
 
 **Publishing to `/insights`** means appending one object to the site's insights source in the
 private monorepo:
