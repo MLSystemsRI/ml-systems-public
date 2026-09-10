@@ -112,7 +112,7 @@
     },
     {
       "stage": "Construction",
-      "summary": "Rebuild larger on the same lot, reusing recovered materials."
+      "summary": "Rebuild on the same lot from the recovered materials — the loop closes on site, and the home comes back larger."
     },
     {
       "stage": "Equity Loop",

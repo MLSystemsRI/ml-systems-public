@@ -5,7 +5,8 @@
 > ML Systems is a Rhode Island construction company (NAICS 236115) building the
 > software layer for a circular building economy: homeowners reach capital markets,
 > houses are **deconstructed** instead of demolished, and the recovered materials
-> **rebuild** into a larger home — compounding equity, cycle after cycle.
+> go **back into the same home** — a circular loop that compounds equity, cycle after cycle,
+> and leaves the home larger each time.
 
 This repository is the **public reference** for the ML Systems platform: the mobile
 app's UI layer plus the conceptual documentation for the ideas that make the system
@@ -36,9 +37,9 @@ App bundle id: `com.mlsystems.app` · Built with Expo / React Native.
 Most homes in Rhode Island's housing stock sit on ~1960s foundations that are the real
 limiting factor. ML Systems starts a homeowner at **Loan Origination** (a reverse-auction
 "Loan Pit" where lenders compete to fund them), **deconstructs** the existing structure to
-recover 80–90% of its materials, and **rebuilds** a larger home (+10% footprint, +1 story per
-cycle) using those recovered materials. The rebuild creates real, physical equity — not market
-appreciation — and the homeowner can *choose* to keep building. That choice is the flywheel.
+recover 80–90% of its materials, and **rebuilds** the home from those recovered materials (+10% footprint,
++1 story per cycle). The materials stay in the loop; the rebuild creates real, physical equity —
+not market appreciation — and the homeowner can *choose* to keep building. That choice is the flywheel.
 Every house that moves through the loop becomes ground-truth data: a fully specified
 construction sequence that is, itself, the most valuable product ML Systems makes.
 
