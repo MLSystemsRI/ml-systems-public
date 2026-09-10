@@ -390,7 +390,7 @@ export default function StoreScreen() {
       {/* Hero — MIA's woven mirror over the marketplace */}
       <View className="rounded-2xl p-4 mb-5 mt-1 overflow-hidden" style={{ backgroundColor: `${TEAL}12`, borderWidth: 1, borderColor: `${TEAL}33` }}>
         <Text className="text-[16px] font-extrabold mb-1">
-          <Text style={{ color: TEAL }}>Resell.</Text> <Text className="text-[#06B6D4]">Reuse.</Text> <Text className="text-[#10B981]">Recycle.</Text>
+          <Text style={{ color: TEAL }}>Reuse.</Text> <Text className="text-[#06B6D4]">Resale.</Text> <Text className="text-[#10B981]">Recycle.</Text>
         </Text>
         <Text className="text-[#9CA3AF] text-[12px] leading-snug">
           We systematically take buildings apart and bring every material to its most valuable recoverable

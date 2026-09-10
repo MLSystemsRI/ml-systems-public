@@ -86,6 +86,8 @@ Sections get sized so each one stays well inside the lift plan, and the first on
 end where there is a free edge to work from. Hips, dormers and steep pitches all complicate the
 plan and all take longer than a straightforward gable.
 
+![A roof section lifted clear of the house on a spreader bar and slings — cut at the rafters, so the edge rafters carry the load.](roof-in-sections-01-section-lift.png)
+
 ## The flip is the whole trick
 
 Here is the part that makes the method work.
@@ -106,6 +108,8 @@ can have the last part of the roll finished by hand once the crane has set it.
 The landing zone is prepared before any of this — a cleared, level footprint with ground protection
 laid down, so the shingle face comes to rest on a cushion instead of bare grade. The point of the
 whole maneuver is to preserve layers; landing the assembly on rubble would undo it in one move.
+
+![The section set down inverted at grade — rafters up, shingles down — on supports beside the house it came off.](roof-in-sections-04-inverted-on-sawhorses.png)
 
 Now look at what the flip actually did. The rafter face is the **inside** of the assembly — the
 face that looked into the attic, the side nobody could reach while the roof was a roof. Turning the
@@ -138,6 +142,8 @@ happens at ground level with a clear footprint around it.
 
 ## Layer by layer
 
+![The four layers of the stack, exploded in build order: rafters, then sheathing, then underlayment, then shingles. The work runs the other way — from the inside out.](roof-in-sections-02-layers-exploded.png)
+
 With the section inverted, the stack comes apart from the inside out — innermost layer first,
 outermost layer last:
 
@@ -165,6 +171,8 @@ Either way you trade one recovered material for the other.
 The alternative is not to pull at all. **Cut the fastener** — flush, between the rafter and the
 sheet — and the two layers separate without either one absorbing the load. The stub stays put and
 gets driven flush later. It costs a couple of minutes per sheet.
+
+![A blade run flat between the rafter and the sheathing, cutting the ring-shank nail where it crosses the joint — both pieces come away whole.](roof-in-sections-03-ring-shank-cut.png)
 
 That trade is worth naming, because it is the clearest possible illustration of how ML Systems
 makes decisions. Spending a small, deliberate cost to protect a much larger recoverable value is

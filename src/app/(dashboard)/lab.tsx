@@ -147,7 +147,7 @@ export default function DeconLabScreen() {
         {Header}
         <View className="px-4 mt-4 gap-3">
           <Text className="text-[#9CA3AF] text-[13px] leading-5">
-            Decon Lab's material recovery (80–90%, 51% resale/reuse) is a core margin driver — recovered
+            Decon Lab's material recovery (80–90%, reuse › resale › recycle; 51% resale a soft goal) is a core margin driver — recovered
             materials cut build cost on every cycle.
           </Text>
           <InvestorPointer line="Material recovery underwrites the ML Systems margin." />

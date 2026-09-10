@@ -78,7 +78,7 @@
     },
     {
       "name": "Material Recovery & Salvage",
-      "description": "Reuse, resale, or recycle — each recovered material driven to its most valuable state."
+      "description": "Reuse › resale › recycle — each recovered material routed to its most valuable recoverable state."
     },
     {
       "name": "Reclaimed Building Materials",
@@ -273,7 +273,7 @@
     ]
   },
   "descriptionVariants": {
-    "gbp750": "ML Systems is a Rhode Island construction company reinventing how homes get built. We guide homeowners through a complete value chain — financing, deconstruction, and construction — so every dollar compounds into equity instead of waste. Rather than demolition and landfill, our deconstruction process is designed to recover up to 80–90% of a home's materials, which we then reuse, resell, or recycle. Our loan-origination marketplace connects homeowners with competing lenders to access construction capital, and our reclaimed-materials store offers salvaged lumber, fixtures, doors, windows, and more at a discount. Serving Warwick and all of Rhode Island.",
+    "gbp750": "ML Systems is a Rhode Island construction company reinventing how homes get built. We guide homeowners through a complete value chain — financing, deconstruction, and construction — so every dollar compounds into equity instead of waste. Rather than demolition and landfill, our deconstruction process is designed to recover up to 80–90% of a home's materials, which we then route to reuse first, resale second, and recycling last. Our loan-origination marketplace connects homeowners with competing lenders to access construction capital, and our reclaimed-materials store offers salvaged lumber, fixtures, doors, windows, and more at a discount. Serving Warwick and all of Rhode Island.",
     "meta160": "Rhode Island construction company that finances, deconstructs & rebuilds homes with near-zero waste — so every dollar compounds into equity. Serving all of RI.",
     "short": "Closed-loop RI construction: finance, deconstruct, design, build — equity, not waste.",
     "gbp750Suffix": " We serve Warwick, Cranston, Providence, West Warwick, East Greenwich, Newport, Barrington, Westerly, and 15 more Rhode Island towns.",

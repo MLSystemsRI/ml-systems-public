@@ -61,9 +61,15 @@ Reality labels — *MEASURED*, *MODELED*, *ASPIRATIONAL* — on every forward-lo
 canonical definitions, and the twelve do-not-publish categories. This template does not repeat them.
 
 **Markdown subset.** The site's prose renderer supports only: `##` and `###` headings, `-` bullets,
-`1.` numbered lists, `|` tables, `**bold**`, `` `code` ``, and `[links](url)`. **No italics, no
-images, no blockquotes, no nested lists, no HTML** — anything else ships as literal text on a live
-page. Single `*emphasis*` renders as visible asterisks; `>` renders as a literal `>`; `---` renders
+`1.` numbered lists, `|` tables, `![alt](src)` images, `**bold**`, `` `code` ``, and `[links](url)`.
+**No italics, no blockquotes, no nested lists, no HTML** — anything else ships as literal text on a
+live page.
+
+**Images.** `![alt](src)` alone on its own line, blank lines either side. The alt text is rendered
+as the visible caption, so write it as a sentence that is true on its own. For the site, put the
+optimized file under `apps/web/public/insights/` and reference it as `/insights/<name>.webp`; the
+GitHub copy of the same article references the `.png` beside it in `articles/`. Set the post's
+`image:` field to a JPEG for the social card — LinkedIn's scraper is unreliable with webp. Single `*emphasis*` renders as visible asterisks; `>` renders as a literal `>`; `---` renders
 as a literal `---`.
 
 **Three rules that are easy to get wrong, each of which has already shipped a broken page:**
@@ -88,6 +94,7 @@ private monorepo:
   keywords:    ["…", "…"],          // 6–12, from the source brief
   category:    "deconstruction",
   publishedAt: "YYYY-MM-DD",
+  image:       "/insights/<slug>-og.jpg",   // optional; OG/Twitter card + Article JSON-LD
   content:     `…`,                  // the body above, backtick-quoted
 }
 ```
