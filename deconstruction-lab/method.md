@@ -97,15 +97,22 @@ problem, and they are an active research area rather than a settled one.
 ## RRR — Reuse › Resale › Recycle
 
 Full resale of everything is not possible, so the goal is not a single recovery number. The goal is
-to route each material to its **most valuable recoverable state**, and the ordering is strict:
+to route each material to its **most valuable recoverable state**, and the ordering is strict.
 
-- **Reuse** — the material goes back into a build as the thing it already is.
-- **Resale** — it goes to another builder through the secondary market.
-- **Recycle** — it is broken down to feedstock.
+Which makes deconstruction a **material logistics** problem as much as a demolition one. Taking the
+building apart is what lets the material survive; where each piece goes next is what makes it worth
+anything. Everything is graded at the point of recovery and routed to one of three destinations:
+
+| | Destination | What it means |
+|---|---|---|
+| **Reuse** | Held on site | The material goes back into the rebuild as the thing it already is — the house supplies its own replacement stock. |
+| **Resale** | Builder's Open House | What the rebuild cannot absorb goes to another builder through the secondary market — the deconstruction lot staged as a materials yard while the crew is still working. |
+| **Recycle** | Processing | What nothing else will take is broken down to feedstock, using purpose-built tooling. |
 
 A recovered rafter that becomes a rafter beats one sold as lumber, which beats one ground for
-fiber. The system is designed to recover up to 80–90% of a home's materials — *MODELED*, a target
-— but RRR is what determines whether that recovery is worth anything.
+fiber. The call is made per piece, and it is made at the moment of recovery — a decision deferred
+is usually a grade lost. The system is designed to recover up to 80–90% of a home's materials —
+*MODELED*, a target — but RRR is what determines whether that recovery is worth anything.
 
 ## The Z1–Z8 material streams
 
