@@ -60,6 +60,7 @@ Read the deep dives:
 - 🪚 **[The Deconstruction Lab](deconstruction-lab/)** — how a house comes apart: the phase sequence, the layer stack, and the material streams it feeds
 - 📒 **[The Master Ledger](docs/master-ledger.md)** — one home, one auditable record, five seats; claims reconciled in the open, stamps that lapse when the content moves
 - 🧬 **[The Collective Ontology](docs/collective-ontology.md)** — how the system agrees on what a house *is*
+- 🔡 **[The Seven Families](docs/the-seven-families.md)** — the seven code families, who may claim in each, and why four were thin; data and diagram in [`ontology/`](ontology/)
 - 🗜️ **[Ontological Compression](docs/ontological-compression.md)** — turning a whole house into a genome
 - 🧠 **[The Seven Minds](docs/the-seven-minds.md)** — the agents that read, reason, and stamp the ledger
 - 🕸️ **[Neural-Net Architecture](docs/neural-net-architecture.md)** — the three-net ontology framework
@@ -93,6 +94,7 @@ design principle, not a disclaimer.
 |---|---|---|
 | **Mobile UI** | ✅ `src/app` (screens), `src/components` | — |
 | **Concepts & docs** | ✅ `docs/` | — |
+| **Ontology families & ledger workflow** | ✅ `ontology/` (generated public tranche) | ✅ working copy + engine |
 | **Backend API (tRPC)** | ❌ | ✅ |
 | **Database schema & data** | ❌ | ✅ |
 | **Ontology / ledger / compression engines** | ❌ (described in docs) | ✅ `@ml-systems/types` |

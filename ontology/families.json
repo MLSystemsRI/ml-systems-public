@@ -1,0 +1,1500 @@
+{
+  "$comment": "ML Systems Collective Ontology — the seven code families. Public tranche generated from the private working copy by ontology/build-html.py --public; do not hand-edit. status=shipped slots exist in the engine today; status=proposed slots are design and NOT yet in code. No ML Systems deconstruction has been performed yet — anything that depends on a job having run is ASPIRATIONAL.",
+  "version": "0.1.0",
+  "updated": "2026-09-11",
+  "grammar": {
+    "form": "SECTION:task",
+    "section": "UPPERCASE 3-letter phase — one of the seven families",
+    "task": "lowercase [a-z0-9-], ≤14 chars, hyphens allowed",
+    "rule": "Extend codes, not storage. A new fact is a new code in the ontology jsonb, never a new table.",
+    "phaseDerivation": "phase = code.split(':')[0] — the prefix IS the phase; an unknown prefix falls through to LUP"
+  },
+  "evidenceLadder": {
+    "$comment": "VcSource → confidence bar. sensed sits below measured on purpose: an instrument that snapped to the neighbour is worse than the homeowner's own tape.",
+    "measured": 90,
+    "sensed": 85,
+    "stated": 80,
+    "record": 70,
+    "modeled": 60
+  },
+  "claimants": {
+    "$comment": "Who may put their name on a claim. Seats (five) light the party strip and can ground an entry. Claimants-without-seats can claim but never ground — their output is the thing being checked (the CDA rule, extended to every V2 mind).",
+    "seats": [
+      "homeowner",
+      "record",
+      "vera",
+      "pi",
+      "custodian"
+    ],
+    "shippedNonSeat": [
+      "cda"
+    ],
+    "proposedNonSeat": [
+      "reaper",
+      "pit-lord",
+      "murphy",
+      "mia"
+    ],
+    "rule": "Only the Custodian stamps. VERA gates. Every mind claims. Nobody overwrites."
+  },
+  "domains": {
+    "$comment": "What KIND of fact an entry is decides who outranks whom on it. The Custodian leads every domain — his stamp is the review. Four ship today; `intent` is proposed because FIN/LUP carry facts only the homeowner can know (their budget, their decision) and today those fall through to `derived`, where VERA outranks the homeowner on their own money.",
+    "shipped": {
+      "interior": {
+        "meaning": "what the homeowner can see and touch inside",
+        "authority": [
+          "custodian",
+          "homeowner",
+          "vera",
+          "cda",
+          "record",
+          "pi"
+        ]
+      },
+      "legal-record": {
+        "meaning": "recorded legal facts — stories, year, recorded SF",
+        "authority": [
+          "custodian",
+          "record",
+          "vera",
+          "homeowner",
+          "cda",
+          "pi"
+        ]
+      },
+      "exterior-geo": {
+        "meaning": "exterior geometry measured by instrument",
+        "authority": [
+          "custodian",
+          "vera",
+          "homeowner",
+          "cda",
+          "record",
+          "pi"
+        ]
+      },
+      "derived": {
+        "meaning": "computed from other facts; nobody observes it",
+        "authority": [
+          "custodian",
+          "vera",
+          "cda",
+          "homeowner",
+          "record",
+          "pi"
+        ]
+      }
+    },
+    "proposed": {
+      "intent": {
+        "meaning": "a choice or a constraint only the homeowner can set — budget, decision, timeline",
+        "authority": [
+          "custodian",
+          "homeowner",
+          "pi",
+          "vera",
+          "cda",
+          "record"
+        ]
+      },
+      "market": {
+        "meaning": "a price or a velocity observed in a market — comps, bids, absorption",
+        "authority": [
+          "custodian",
+          "record",
+          "mia",
+          "pit-lord",
+          "vera",
+          "homeowner",
+          "pi"
+        ]
+      }
+    },
+    "routingToday": "domainForCode(): /roof|height|perimeter|outline|footprint/ → exterior-geo; BLD:* → interior; DES:* → legal-record; everything else → derived",
+    "routingProposed": "FIN:budget, FIN:timeline, LUP:decision → intent · FIN:pit-bid, MKT:* → market · DEC:contamination → legal-record · all other FIN/DEC/LUP → derived"
+  },
+  "families": [
+    {
+      "code": "FIN",
+      "name": "Finance",
+      "app": "Loan Pit",
+      "projectOrder": 0,
+      "prerequisites": [],
+      "owningMinds": [
+        "pit-lord"
+      ],
+      "supporting": [
+        "pi",
+        "custodian"
+      ],
+      "color": "#EF4444",
+      "question": "What can this homeowner afford, and what will lenders compete to fund?",
+      "shipped": [
+        {
+          "code": "FIN:bridge",
+          "meaning": "The decon bridge — principal, rate, term that carries the homeowner from teardown to construction draw",
+          "domain": "derived",
+          "capture": "record",
+          "claimants": [
+            "pit-lord",
+            "record"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "pit-lord",
+            "murphy"
+          ],
+          "ask": "Is there a bridge loan on this project — how much, at what rate, for how long?"
+        }
+      ],
+      "proposed": [
+        {
+          "code": "FIN:budget",
+          "meaning": "The homeowner's own ceiling for this cycle — the number the whole plan set must fit under",
+          "domain": "intent",
+          "capture": "chip",
+          "claimants": [
+            "homeowner"
+          ],
+          "verifier": "pi",
+          "consumers": [
+            "pit-lord",
+            "cda",
+            "murphy"
+          ],
+          "ask": "What is the most you want to spend on this cycle, all in?"
+        },
+        {
+          "code": "FIN:timeline",
+          "meaning": "When the homeowner needs to be back in — the constraint that sets the draw schedule and the decon window",
+          "domain": "intent",
+          "capture": "chip",
+          "claimants": [
+            "homeowner"
+          ],
+          "verifier": "pi",
+          "consumers": [
+            "murphy",
+            "reaper",
+            "pit-lord"
+          ],
+          "ask": "When do you need to be living in the finished home?"
+        },
+        {
+          "code": "FIN:capital-stack",
+          "meaning": "Where the money comes from, in order — cash, bridge, construction loan, subsidy — and how much of each",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "pit-lord"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "pit-lord",
+            "custodian"
+          ],
+          "ask": null
+        },
+        {
+          "code": "FIN:pit-bid",
+          "meaning": "The best standing lender bid in the Pit — rate, term, LTV, lender tier — as of the last compile",
+          "domain": "market",
+          "capture": "record",
+          "claimants": [
+            "pit-lord",
+            "record"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "homeowner",
+            "pit-lord"
+          ],
+          "ask": null,
+          "label": "MODELED",
+          "note": "The Pit's reverse auction is MODELED; a bid here is a lender's stated offer, never a commitment, until counsel confirms the lending workflow."
+        },
+        {
+          "code": "FIN:ltv",
+          "meaning": "Loan-to-value against the ledger's own equity basis (LUP:equity), not a lender's appraisal",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "pit-lord",
+            "pi"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "pit-lord"
+          ],
+          "ask": null
+        },
+        {
+          "code": "FIN:subsidy",
+          "meaning": "Programs this home and homeowner qualify for — FHLBB AHP/EBP, RIHousing DPA, LISC bridge — and what each is worth",
+          "domain": "legal-record",
+          "capture": "record",
+          "claimants": [
+            "pit-lord",
+            "record"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "pit-lord",
+            "homeowner"
+          ],
+          "ask": "Have you applied for any housing assistance or down-payment program before?"
+        },
+        {
+          "code": "FIN:cost-to-complete",
+          "meaning": "Modeled all-in construction cost, rolled up from BLD:bom and the plan stack — the number FIN:budget is tested against",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "murphy",
+            "cda"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "pit-lord",
+            "homeowner",
+            "custodian"
+          ],
+          "ask": null,
+          "label": "MODELED"
+        },
+        {
+          "code": "FIN:draw-schedule",
+          "meaning": "Construction draws tied to BLD milestones — what gets released when, and against which VER stamp",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "pit-lord",
+            "murphy"
+          ],
+          "verifier": "custodian",
+          "consumers": [
+            "murphy",
+            "pit-lord"
+          ],
+          "ask": null
+        }
+      ]
+    },
+    {
+      "code": "DEC",
+      "name": "Deconstruction",
+      "app": "Decon Lab",
+      "projectOrder": 1,
+      "prerequisites": [
+        "FIN"
+      ],
+      "owningMinds": [
+        "reaper"
+      ],
+      "supporting": [
+        "vera",
+        "mia"
+      ],
+      "color": "#F97316",
+      "question": "What is already here, and in what order does it come apart so every layer survives?",
+      "$note": "Code stays DEC (persisted in every stored ontology; renaming is a migration). Prose name is Deconstruction.",
+      "shipped": [
+        {
+          "code": "DEC:walls-exterior",
+          "meaning": "Exterior wall assemblies as stacks — stud, sheathing, barrier, cladding — with LF",
+          "domain": "interior",
+          "capture": "derived",
+          "claimants": [
+            "reaper",
+            "cda"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "reaper",
+            "mia"
+          ],
+          "ask": null
+        },
+        {
+          "code": "DEC:walls-interior",
+          "meaning": "Interior partitions as stacks with LF — split out of the envelope on 9/7",
+          "domain": "interior",
+          "capture": "derived",
+          "claimants": [
+            "reaper",
+            "cda"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "reaper",
+            "mia"
+          ],
+          "ask": null
+        },
+        {
+          "code": "DEC:envelope",
+          "meaning": "The whole enclosure as one recoverable assembly — SF, layers, fastener class",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "reaper"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "reaper"
+          ],
+          "ask": null
+        },
+        {
+          "code": "DEC:lift",
+          "meaning": "The crane plan — sections, weights, pick order — that gets the roof and walls down to grade",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "reaper"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "reaper",
+            "murphy"
+          ],
+          "ask": null,
+          "label": "ASPIRATIONAL"
+        }
+      ],
+      "proposed": [
+        {
+          "code": "DEC:contamination",
+          "meaning": "Lead / asbestos / mold screen — clean, positive, or untested. Positive routes to licensed abatement; untested is treated as positive. The intake gate.",
+          "domain": "legal-record",
+          "capture": "record",
+          "claimants": [
+            "record",
+            "vera",
+            "homeowner"
+          ],
+          "verifier": "custodian",
+          "consumers": [
+            "reaper",
+            "mia",
+            "pit-lord"
+          ],
+          "ask": "Was this home built before 1978, and has it ever been tested for lead or asbestos?"
+        },
+        {
+          "code": "DEC:sequence",
+          "meaning": "This home's top-down phase plan — PRE → ROOF → WALLS → FLOORS → FOUNDATION → POST — with what makes each phase special here (dormers, chimney, slab vs. crawl)",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "reaper"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "murphy",
+            "pit-lord",
+            "homeowner"
+          ],
+          "ask": null
+        },
+        {
+          "code": "DEC:assembly-stack",
+          "meaning": "Each assembly's layer order, innermost first — the order it will be freed. Roof: rafters › sheathing › underlayment › shingles",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "reaper",
+            "cda"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "reaper",
+            "murphy"
+          ],
+          "ask": null
+        },
+        {
+          "code": "DEC:fasteners",
+          "meaning": "Fastener classes present — ring-shank, adhesive, engineered connector — the thing that actually decides recovered grade",
+          "domain": "interior",
+          "capture": "chip",
+          "claimants": [
+            "homeowner",
+            "vera",
+            "reaper"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "reaper"
+          ],
+          "ask": "Do you know whether the sheathing was nailed or glued — was this built or re-roofed after 1990?"
+        },
+        {
+          "code": "DEC:recovery",
+          "meaning": "Recovery estimate by Z-stream — Z2 lumber LF, Z4 sheathing sheets, Z8 roofing tons — designed to recover up to 80–90% of the home",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "reaper"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "mia",
+            "pit-lord",
+            "cda"
+          ],
+          "ask": null,
+          "label": "MODELED"
+        },
+        {
+          "code": "DEC:rrr-routing",
+          "meaning": "Per stream: reuse › resale › recycle split — how much goes back into this home, how much to Builder's Open House, how much to feedstock",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "reaper",
+            "mia"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "mia",
+            "cda",
+            "murphy"
+          ],
+          "ask": null,
+          "label": "MODELED"
+        },
+        {
+          "code": "DEC:diversion",
+          "meaning": "Tons diverted and CO₂e avoided — the home recovery report, measured at the scale, filed to DEM",
+          "domain": "derived",
+          "capture": "measure",
+          "claimants": [
+            "reaper"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "custodian",
+            "homeowner",
+            "record"
+          ],
+          "ask": null,
+          "label": "ASPIRATIONAL",
+          "note": "Measured only after a job runs. No ML Systems deconstruction has been performed yet."
+        }
+      ]
+    },
+    {
+      "code": "DES",
+      "name": "Design",
+      "app": "Design Studio / CDA",
+      "projectOrder": 2,
+      "prerequisites": [
+        "DEC"
+      ],
+      "owningMinds": [
+        "cda"
+      ],
+      "supporting": [
+        "vera",
+        "pi"
+      ],
+      "color": "#60A5FA",
+      "question": "What is the best thing we can build on what is here?",
+      "shipped": [
+        {
+          "code": "DES:footprint",
+          "meaning": "Footprint W × D and gross SF — pinned identity slot",
+          "domain": "exterior-geo",
+          "capture": "measure",
+          "claimants": [
+            "record",
+            "vera",
+            "homeowner"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "reaper"
+          ],
+          "ask": "How wide and how deep is the house at the foundation?",
+          "pinned": true
+        },
+        {
+          "code": "DES:heights",
+          "meaning": "Floor-to-floor and ridge heights — blocked as MODELED until sensed or taped",
+          "domain": "exterior-geo",
+          "capture": "measure",
+          "claimants": [
+            "vera",
+            "homeowner"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda"
+          ],
+          "ask": "Floor to ceiling on the first floor — about eight feet, or more?",
+          "pinned": true
+        },
+        {
+          "code": "DES:roof-form",
+          "meaning": "Gable / hip / gambrel and pitch",
+          "domain": "exterior-geo",
+          "capture": "chip",
+          "claimants": [
+            "vera",
+            "homeowner",
+            "record"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "reaper"
+          ],
+          "ask": "What shape is the roof — a simple gable, a hip, something else?",
+          "pinned": true
+        },
+        {
+          "code": "DES:roof-ridges",
+          "meaning": "Ridge lines and their lengths",
+          "domain": "exterior-geo",
+          "capture": "derived",
+          "claimants": [
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "reaper"
+          ],
+          "ask": null,
+          "pinned": true
+        },
+        {
+          "code": "DES:massing",
+          "meaning": "Levels and gross SF — where the assessor, the homeowner and the street most often disagree",
+          "domain": "legal-record",
+          "capture": "chip",
+          "claimants": [
+            "record",
+            "homeowner",
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "pit-lord"
+          ],
+          "ask": "How many full stories, not counting a finished attic or basement?"
+        },
+        {
+          "code": "DES:tiling",
+          "meaning": "The room tiling — the editable floor-plan sketch that feeds code compliance",
+          "domain": "interior",
+          "capture": "measure",
+          "claimants": [
+            "homeowner",
+            "cda"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda"
+          ],
+          "ask": null
+        },
+        {
+          "code": "DES:perimeter",
+          "meaning": "Perimeter LF from the outline",
+          "domain": "exterior-geo",
+          "capture": "derived",
+          "claimants": [
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "reaper"
+          ],
+          "ask": null
+        },
+        {
+          "code": "DES:roof-planes",
+          "meaning": "Count and orientation of roof planes",
+          "domain": "exterior-geo",
+          "capture": "derived",
+          "claimants": [
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "reaper"
+          ],
+          "ask": null
+        },
+        {
+          "code": "DES:roof-area",
+          "meaning": "Roof surface SF",
+          "domain": "exterior-geo",
+          "capture": "derived",
+          "claimants": [
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "reaper",
+            "mia"
+          ],
+          "ask": null
+        },
+        {
+          "code": "DES:facade",
+          "meaning": "Street facade read — what the house presents",
+          "domain": "exterior-geo",
+          "capture": "derived",
+          "claimants": [
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda"
+          ],
+          "ask": null
+        },
+        {
+          "code": "DES:windows",
+          "meaning": "Window count and types",
+          "domain": "interior",
+          "capture": "chip",
+          "claimants": [
+            "homeowner",
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "reaper",
+            "mia"
+          ],
+          "ask": "How many windows, roughly, all the way around?"
+        },
+        {
+          "code": "DES:doors",
+          "meaning": "Exterior door count",
+          "domain": "interior",
+          "capture": "chip",
+          "claimants": [
+            "homeowner",
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "reaper",
+            "mia"
+          ],
+          "ask": "How many outside doors — front, back, sliders, garage bays?"
+        },
+        {
+          "code": "DES:roofline",
+          "meaning": "Eave and ridge lines as seen from the street",
+          "domain": "exterior-geo",
+          "capture": "derived",
+          "claimants": [
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda"
+          ],
+          "ask": null
+        },
+        {
+          "code": "DES:street-stories",
+          "meaning": "Stories counted on the street facade — VERA's independent read against the card",
+          "domain": "exterior-geo",
+          "capture": "derived",
+          "claimants": [
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda"
+          ],
+          "ask": null
+        },
+        {
+          "code": "DES:visible-additions",
+          "meaning": "Additions visible from outside that the card may not carry",
+          "domain": "exterior-geo",
+          "capture": "derived",
+          "claimants": [
+            "vera",
+            "homeowner"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "record"
+          ],
+          "ask": "Has anything been added on — a room, a porch, a dormer?"
+        },
+        {
+          "code": "DES:facade-siding",
+          "meaning": "Cladding material on the facade",
+          "domain": "exterior-geo",
+          "capture": "chip",
+          "claimants": [
+            "vera",
+            "homeowner"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "reaper",
+            "mia"
+          ],
+          "ask": "What is the siding — vinyl, wood clapboard, shingle, brick?"
+        },
+        {
+          "code": "DES:envelope-exterior",
+          "meaning": "The exterior envelope as designed — the thing DEC:envelope takes apart",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "cda"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "reaper"
+          ],
+          "ask": null
+        },
+        {
+          "code": "DES:baths",
+          "meaning": "Bathroom count — full and half",
+          "domain": "interior",
+          "capture": "chip",
+          "claimants": [
+            "homeowner",
+            "record"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "reaper"
+          ],
+          "ask": "How many bathrooms — full and half?"
+        }
+      ],
+      "proposed": []
+    },
+    {
+      "code": "BLD",
+      "name": "Build",
+      "app": "Construction / MURPHY",
+      "projectOrder": 3,
+      "prerequisites": [
+        "DES"
+      ],
+      "owningMinds": [
+        "murphy"
+      ],
+      "supporting": [
+        "cda",
+        "vera"
+      ],
+      "color": "#84CC16",
+      "question": "What is the critical path to completion?",
+      "shipped": [
+        {
+          "code": "BLD:roof",
+          "meaning": "Roof structure — rafters or trusses, spacing, span",
+          "domain": "interior",
+          "capture": "derived",
+          "claimants": [
+            "cda",
+            "reaper"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "murphy",
+            "reaper"
+          ],
+          "ask": null
+        },
+        {
+          "code": "BLD:roof-cover",
+          "meaning": "Roof covering — shingle type, age if known",
+          "domain": "interior",
+          "capture": "chip",
+          "claimants": [
+            "homeowner",
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "reaper",
+            "mia"
+          ],
+          "ask": "When was the roof last done, and with what?"
+        },
+        {
+          "code": "BLD:heating",
+          "meaning": "Heating system type and fuel",
+          "domain": "interior",
+          "capture": "chip",
+          "claimants": [
+            "homeowner",
+            "record"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "murphy",
+            "reaper"
+          ],
+          "ask": "How is the house heated — gas, oil, electric, heat pump?"
+        },
+        {
+          "code": "BLD:fireplaces",
+          "meaning": "Fireplace and chimney count",
+          "domain": "interior",
+          "capture": "chip",
+          "claimants": [
+            "homeowner",
+            "record"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "reaper",
+            "cda"
+          ],
+          "ask": "Any fireplaces or a masonry chimney?"
+        },
+        {
+          "code": "BLD:load-path",
+          "meaning": "The computed load path — ridge to footing",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "cda"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "murphy",
+            "reaper"
+          ],
+          "ask": null
+        },
+        {
+          "code": "BLD:footing",
+          "meaning": "Footing and foundation type",
+          "domain": "interior",
+          "capture": "chip",
+          "claimants": [
+            "homeowner",
+            "record",
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "murphy",
+            "reaper"
+          ],
+          "ask": "Is there a full basement, a crawl space, or a slab?"
+        },
+        {
+          "code": "BLD:bom",
+          "meaning": "The bill of materials for the rebuild — what the plan stack consumes",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "cda",
+            "murphy"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "murphy",
+            "pit-lord",
+            "mia"
+          ],
+          "ask": null
+        },
+        {
+          "code": "BLD:<assembly>",
+          "meaning": "Dynamic per-assembly rebuild codes from the reverse takeoff — appear beyond the template when they compile",
+          "domain": "interior",
+          "capture": "derived",
+          "claimants": [
+            "reaper",
+            "cda"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "murphy"
+          ],
+          "ask": null,
+          "dynamic": true
+        }
+      ],
+      "proposed": [
+        {
+          "code": "BLD:milestones",
+          "meaning": "The build's milestone list with target dates — the spine FIN:draw-schedule releases against",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "murphy"
+          ],
+          "verifier": "custodian",
+          "consumers": [
+            "pit-lord",
+            "homeowner"
+          ],
+          "ask": null
+        },
+        {
+          "code": "BLD:as-built",
+          "meaning": "What was actually built vs. the plan set — MURPHY's claim, VERA's check, the Custodian's stamp; the input to LUP",
+          "domain": "derived",
+          "capture": "measure",
+          "claimants": [
+            "murphy"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "pi",
+            "pit-lord",
+            "record"
+          ],
+          "ask": null,
+          "label": "ASPIRATIONAL"
+        }
+      ]
+    },
+    {
+      "code": "MKT",
+      "name": "Market",
+      "app": "Builder's Open House / MIA",
+      "projectOrder": 4,
+      "prerequisites": [
+        "DEC"
+      ],
+      "owningMinds": [
+        "mia"
+      ],
+      "supporting": [
+        "reaper",
+        "pit-lord"
+      ],
+      "color": "#14B8A6",
+      "question": "What does the market say — about this home, and about what comes out of it?",
+      "$note": "MIA reflects, never decides. Every MKT claim is an observation. If MIA starts deciding she becomes PI.",
+      "shipped": [
+        {
+          "code": "MKT:harvest",
+          "meaning": "The recovered-material harvest available to the market from this home",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "mia",
+            "reaper"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "mia"
+          ],
+          "ask": null,
+          "label": "MODELED"
+        }
+      ],
+      "proposed": [
+        {
+          "code": "MKT:comps",
+          "meaning": "Recent comparable sales within the locality — the mirror LUP:valuation-curve is checked against",
+          "domain": "market",
+          "capture": "record",
+          "claimants": [
+            "mia",
+            "record"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "pi",
+            "pit-lord",
+            "homeowner"
+          ],
+          "ask": null
+        },
+        {
+          "code": "MKT:material-value",
+          "meaning": "Builder's Open House value of the DEC:recovery streams at the 49%-of-retail rule, by Z-zone",
+          "domain": "market",
+          "capture": "derived",
+          "claimants": [
+            "mia"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "pit-lord",
+            "reaper",
+            "homeowner"
+          ],
+          "ask": null,
+          "label": "MODELED"
+        },
+        {
+          "code": "MKT:demand",
+          "meaning": "Local demand signal for reclaimed categories — what contractors are asking for this season",
+          "domain": "market",
+          "capture": "derived",
+          "claimants": [
+            "mia"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "reaper",
+            "mia"
+          ],
+          "ask": null,
+          "label": "MODELED"
+        },
+        {
+          "code": "MKT:absorption",
+          "meaning": "Days-to-sell and price realized per stream once material lists — velocity as truth",
+          "domain": "market",
+          "capture": "measure",
+          "claimants": [
+            "mia"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "reaper",
+            "pit-lord"
+          ],
+          "ask": null,
+          "label": "ASPIRATIONAL"
+        }
+      ]
+    },
+    {
+      "code": "VER",
+      "name": "Verify",
+      "app": "VERA / Custodian",
+      "projectOrder": 5,
+      "prerequisites": [
+        "BLD"
+      ],
+      "owningMinds": [
+        "vera"
+      ],
+      "supporting": [
+        "custodian",
+        "pi"
+      ],
+      "color": "#34D399",
+      "question": "What is true about this house, and how sure are we?",
+      "shipped": [
+        {
+          "code": "VER:fidelity",
+          "meaning": "How faithfully the compiled ledger matches the sources it cites",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "vera"
+          ],
+          "verifier": "custodian",
+          "consumers": [
+            "custodian",
+            "pi"
+          ],
+          "ask": null
+        },
+        {
+          "code": "VER:overlook",
+          "meaning": "The Custodian's read of the whole ledger — the Lucent score, scaled by his stamped share",
+          "domain": "derived",
+          "capture": "custodian",
+          "claimants": [
+            "custodian",
+            "pi"
+          ],
+          "verifier": "custodian",
+          "consumers": [
+            "homeowner",
+            "pit-lord"
+          ],
+          "ask": null
+        },
+        {
+          "code": "VER:code-compliance",
+          "meaning": "Room-geometry code check — egress, ceiling height, light and vent",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "cda",
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "murphy"
+          ],
+          "ask": null
+        },
+        {
+          "code": "VER:site-context",
+          "meaning": "What surrounds the lot — the neighbours, the street, the setting",
+          "domain": "exterior-geo",
+          "capture": "derived",
+          "claimants": [
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "mia"
+          ],
+          "ask": null
+        },
+        {
+          "code": "VER:site-datum",
+          "meaning": "Ground elevation datum — what scales DES:heights",
+          "domain": "exterior-geo",
+          "capture": "derived",
+          "claimants": [
+            "vera"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda"
+          ],
+          "ask": null
+        },
+        {
+          "code": "VER:site-building-match",
+          "meaning": "Did the instrument read THIS building — or the one 60 ft away",
+          "domain": "exterior-geo",
+          "capture": "derived",
+          "claimants": [
+            "vera"
+          ],
+          "verifier": "custodian",
+          "consumers": [
+            "pi"
+          ],
+          "ask": null
+        },
+        {
+          "code": "VER:site-features",
+          "meaning": "Driveway, trees, outbuildings, slope — what the crane and the crew will meet",
+          "domain": "exterior-geo",
+          "capture": "derived",
+          "claimants": [
+            "vera",
+            "homeowner"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "reaper",
+            "murphy"
+          ],
+          "ask": "Anything on the lot a crane would have to work around — big trees, a shed, a slope?"
+        },
+        {
+          "code": "VER:site-soil",
+          "meaning": "Soil class from RIGIS",
+          "domain": "legal-record",
+          "capture": "record",
+          "claimants": [
+            "record"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "murphy"
+          ],
+          "ask": null
+        },
+        {
+          "code": "VER:site-sewer",
+          "meaning": "Sewer vs. septic",
+          "domain": "legal-record",
+          "capture": "record",
+          "claimants": [
+            "record",
+            "homeowner"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "murphy"
+          ],
+          "ask": "Is the house on town sewer or a septic system?"
+        },
+        {
+          "code": "VER:land-use",
+          "meaning": "Zoning and land-use class from the record",
+          "domain": "legal-record",
+          "capture": "record",
+          "claimants": [
+            "record"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "pit-lord"
+          ],
+          "ask": null
+        }
+      ],
+      "proposed": [
+        {
+          "code": "VER:plan-review",
+          "meaning": "The PE/RA gate on the plan set — pass, correct, or fail — before MURPHY may build",
+          "domain": "derived",
+          "capture": "record",
+          "claimants": [
+            "vera"
+          ],
+          "verifier": "custodian",
+          "consumers": [
+            "cda",
+            "murphy",
+            "pit-lord"
+          ],
+          "ask": null
+        },
+        {
+          "code": "VER:permit",
+          "meaning": "Building permit status and inspections passed — the town's own stamps, read into the record",
+          "domain": "legal-record",
+          "capture": "record",
+          "claimants": [
+            "record",
+            "murphy"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "pit-lord",
+            "homeowner",
+            "custodian"
+          ],
+          "ask": null
+        }
+      ]
+    },
+    {
+      "code": "LUP",
+      "name": "Equity Loop",
+      "app": "The loop — PI · PIT LORD · REAPER",
+      "projectOrder": 6,
+      "prerequisites": [
+        "VER"
+      ],
+      "owningMinds": [
+        "pi",
+        "pit-lord",
+        "reaper"
+      ],
+      "supporting": [
+        "mia",
+        "custodian"
+      ],
+      "color": "#FFE500",
+      "question": "What did this cycle create — and does the homeowner want to go again, here or on another home?",
+      "$note": "LUP is 'loop', not an acronym. It is the only family whose edge points backward — LUP → FIN closes the cycle. It is also the fallback phase for any unknown prefix.",
+      "shipped": [
+        {
+          "code": "LUP:last-sale",
+          "meaning": "Last recorded sale — date and price",
+          "domain": "legal-record",
+          "capture": "record",
+          "claimants": [
+            "record"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "pi",
+            "pit-lord"
+          ],
+          "ask": null
+        },
+        {
+          "code": "LUP:valuation-curve",
+          "meaning": "The assessment history as a curve",
+          "domain": "legal-record",
+          "capture": "record",
+          "claimants": [
+            "record"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "pi",
+            "pit-lord",
+            "mia"
+          ],
+          "ask": null
+        },
+        {
+          "code": "LUP:replacement-cost",
+          "meaning": "Replacement cost from the card",
+          "domain": "legal-record",
+          "capture": "record",
+          "claimants": [
+            "record"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "pi",
+            "pit-lord"
+          ],
+          "ask": null
+        },
+        {
+          "code": "LUP:equity",
+          "meaning": "The equity basis — assessed value the loop compounds on. No homeowner claim: it is merged FROM the record on purpose",
+          "domain": "legal-record",
+          "capture": "record",
+          "claimants": [
+            "record",
+            "pi"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "pit-lord",
+            "homeowner"
+          ],
+          "ask": null
+        }
+      ],
+      "proposed": [
+        {
+          "code": "LUP:cycle",
+          "meaning": "Which pass through the loop this ledger is — cycle 1 is a new foundation; later cycles expand the same home",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "pi"
+          ],
+          "verifier": "custodian",
+          "consumers": [
+            "pit-lord",
+            "cda",
+            "reaper"
+          ],
+          "ask": null
+        },
+        {
+          "code": "LUP:post-build-value",
+          "meaning": "Modeled value after this cycle — the calibrated 1.43× multiplier applied to the pre-cycle basis, +10% footprint, +1 story",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "pi"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "pit-lord",
+            "homeowner"
+          ],
+          "ask": null,
+          "label": "MODELED"
+        },
+        {
+          "code": "LUP:equity-delta",
+          "meaning": "Equity created this cycle — post-build value less principal outstanding. Physical improvement, not market timing",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "pi",
+            "pit-lord"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "homeowner",
+            "pit-lord"
+          ],
+          "ask": null,
+          "label": "MODELED"
+        },
+        {
+          "code": "LUP:carryover",
+          "meaning": "Recovered material banked for the next cycle — what the house already owns toward its own next build",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "reaper",
+            "mia"
+          ],
+          "verifier": "vera",
+          "consumers": [
+            "cda",
+            "pit-lord"
+          ],
+          "ask": null,
+          "label": "ASPIRATIONAL"
+        },
+        {
+          "code": "LUP:qualification",
+          "meaning": "Does the equity created qualify the homeowner for the next Pit round — and at what tier",
+          "domain": "derived",
+          "capture": "derived",
+          "claimants": [
+            "pit-lord"
+          ],
+          "verifier": "custodian",
+          "consumers": [
+            "homeowner",
+            "pi"
+          ],
+          "ask": null
+        },
+        {
+          "code": "LUP:decision",
+          "meaning": "The homeowner's call — expand this home again, open another value-chain home, or hold. The flywheel moment. Client-driven, never assumed.",
+          "domain": "intent",
+          "capture": "chip",
+          "claimants": [
+            "homeowner"
+          ],
+          "verifier": "pi",
+          "consumers": [
+            "pi",
+            "pit-lord",
+            "reaper",
+            "custodian"
+          ],
+          "ask": "Now that this cycle is done — build on this home again, start another, or hold here for now?"
+        }
+      ]
+    }
+  ],
+  "topology": {
+    "$comment": "Edge list over the seven phases. LUP → FIN is the loop.",
+    "FIN": [
+      "DEC"
+    ],
+    "DEC": [
+      "DES",
+      "BLD"
+    ],
+    "DES": [
+      "BLD"
+    ],
+    "BLD": [
+      "VER",
+      "LUP"
+    ],
+    "MKT": [
+      "FIN",
+      "DEC"
+    ],
+    "VER": [
+      "BLD",
+      "LUP"
+    ],
+    "LUP": [
+      "FIN"
+    ]
+  }
+}

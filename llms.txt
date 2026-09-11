@@ -4,8 +4,8 @@
 > for a circular building economy. Its value chain is Loan Origination → Deconstruction →
 > Construction, closed into an equity loop by the homeowner choosing to keep building. This
 > repository is the public reference for the mobile app's UI and for the concepts that make the
-> system distinctive — concepts documented nowhere else (not on mlsystemsri.com, .net, .info,
-> .store, or .xyz).
+> system distinctive — concepts documented on none of ML Systems' other surfaces (not on mlsystemsri.com,
+> .net, .info, .store, or .xyz) — this repository is where they live.
 
 This file is a curated map for language models. Read the docs below in order for full context.
 All claims in the docs carry reality labels: MEASURED (exists today), MODELED (calibrated
@@ -20,6 +20,7 @@ projection), ASPIRATIONAL (a goal, not encoded in system logic).
 
 - [The Deconstruction Method](deconstruction-lab/method.md): how a house is taken apart — the six-phase sequence (PRE → ROOF → WALLS → FLOORS → FOUNDATION → POST), run top-down as the reverse of construction; the layer stack as the unit of value; fasteners as the determinant of grade; RRR routing (reuse › resale › recycle); the Z1–Z8 material streams; grade A–D/salvage, contamination gating, and the ML Material ID provenance format. Method only — no ML Systems deconstruction has been performed yet.
 - [The Master Ledger](docs/master-ledger.md): one home, one auditable record, many authors; a five-seat party strip per entry (homeowner · record · verification · PI · Custodian — lit means weighed in, not agreed); entries sorted by breadth of input; answers typed on the row become claims, never overwrites; claims reconciled by domain-scoped authority; two-key verification with content-bound lapsing signatures and stamp-or-override.
+- [The Seven Families](docs/the-seven-families.md): the ontology's seven code families (FIN·DEC·DES·BLD·MKT·VER·LUP — one per value-chain phase, LUP the loop that closes it); the `SECTION:task` grammar; who may author a claim in each family; the proposal that the V2 minds become claimants without seats; four authority domains shipped, two proposed. Machine-readable slot list in ontology/families.json (shipped vs proposed).
 - [The Collective Ontology](docs/collective-ontology.md): the shared grammar that lets every mind describe the same house without collision; grows by extending codes (DES/BLD/VER), not storage; endgame is ontology licensing for robotics.
 - [Ontological Compression](docs/ontological-compression.md): reducing everything known about a home into a compact canonical HomeGenome; includes the derivation of the 1.43× construction value multiplier.
 - [The Seven Minds](docs/the-seven-minds.md): PI (orchestrator), MIA (market), VERA (verification/vision), REAPER (deconstruction), PIT LORD (loans), CDA (design), MURPHY (construction) — plus the Custodian, the founder as a peer mind.

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Master Ledger · Workflow — ML Systems Collective Ontology</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --space:#050507; --deep:#030303; --card:rgba(255,255,255,.03); --border:rgba(255,255,255,.08);
+  --text:#F9FAFB; --muted:#6B7280; --dim:#9CA3AF; --faint:#4B5563;
+  --gold:#FFE500; --green:#22C55E; --teal:#14B8A6; --emerald:#34D399;
+  --decon:#F97316; --red:#EF4444; --blue:#60A5FA; --lime:#84CC16;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--deep);color:var(--text);font-family:var(--sans)}
+body{position:relative;min-height:100vh}
+.space{position:fixed;inset:0;background:var(--deep);pointer-events:none;z-index:0}
+.stars{position:absolute;inset:0;background-image:
+ radial-gradient(1px 1px at 12% 8%,rgba(255,255,255,.6),transparent),
+ radial-gradient(1px 1px at 28% 22%,rgba(255,255,255,.35),transparent),
+ radial-gradient(1.5px 1.5px at 44% 12%,rgba(255,255,255,.5),transparent),
+ radial-gradient(1px 1px at 61% 31%,rgba(255,255,255,.4),transparent),
+ radial-gradient(1px 1px at 73% 9%,rgba(255,255,255,.55),transparent),
+ radial-gradient(1.5px 1.5px at 86% 26%,rgba(255,255,255,.45),transparent),
+ radial-gradient(1px 1px at 19% 58%,rgba(255,255,255,.3),transparent),
+ radial-gradient(1px 1px at 52% 66%,rgba(255,255,255,.4),transparent),
+ radial-gradient(1px 1px at 81% 61%,rgba(255,255,255,.35),transparent),
+ radial-gradient(1.5px 1.5px at 37% 84%,rgba(255,255,255,.4),transparent),
+ radial-gradient(1px 1px at 68% 88%,rgba(255,255,255,.5),transparent);
+ background-repeat:no-repeat}
+.aurora{position:absolute;left:0;right:0;bottom:0;height:220px;background:
+ radial-gradient(ellipse 42% 100% at 18% 100%,rgba(29,161,242,.22),transparent 70%),
+ radial-gradient(ellipse 46% 100% at 50% 100%,rgba(255,229,0,.18),transparent 70%),
+ radial-gradient(ellipse 42% 100% at 82% 100%,rgba(20,184,166,.2),transparent 70%);filter:blur(22px)}
+.inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:28px 22px 48px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.kicker{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+h1{margin:6px 0 4px;font-family:var(--mono);font-weight:800;font-size:clamp(20px,3vw,30px);letter-spacing:-.01em}
+h1 b{color:var(--gold);font-weight:800}
+.sub{color:var(--dim);font-size:13.5px;max-width:720px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px 16px;font-family:var(--mono);font-size:9.5px;color:var(--dim);letter-spacing:.06em}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{display:inline-block;width:28px;height:0;border-top:2px solid var(--dim)}
+.legend i.gate{border-top:3px solid var(--emerald)}
+.legend i.stamp{border-top:3px double var(--gold)}
+.legend i.ret{border-top:2px dashed var(--dim)}
+.legend i.obs{border-top:1.5px dotted var(--dim)}
+.sec-label{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:28px 0 10px}
+.glass{border:1px solid var(--border);background:var(--card);border-radius:14px;padding:14px}
+.flow{overflow-x:auto;padding:6px 0 2px}
+.flow svg{display:block;margin:0 auto;min-width:900px;width:100%;max-width:1240px}
+.node rect{fill:rgba(255,255,255,.03);stroke-width:1.2}
+.nl{font-family:var(--mono);font-weight:700;font-size:13px;fill:#fff}
+.ns{font-family:var(--mono);font-size:9px;fill:#9CA3AF;letter-spacing:.06em}
+.nt{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;fill-opacity:.7}
+.edge{fill:none;stroke-width:2;marker-end:url(#ah)}
+.edge-gate{fill:none;stroke-width:3.2;marker-end:url(#ah)}
+.edge-stamp{fill:none;stroke-width:5;marker-end:url(#ah-gold)}
+.edge-stamp-in{fill:none;stroke:#050507;stroke-width:1.6}
+.edge-return{fill:none;stroke-width:1.6;stroke-dasharray:6 4;marker-end:url(#ah-dim)}
+.edge-observe{fill:none;stroke-width:1.2;stroke-dasharray:2.5 3.5;opacity:.45}
+.elabel{font-family:var(--mono);font-size:8.5px;fill:#9CA3AF;letter-spacing:.04em}
+@keyframes flow-pulse{0%,100%{stroke-opacity:1}50%{stroke-opacity:.45}}
+.edge,.edge-gate{animation:flow-pulse 3.2s ease-in-out infinite}
+.edge:nth-of-type(2n){animation-delay:.6s}
+.ledger rect.body{fill:rgba(255,229,0,.03);stroke:rgba(255,229,0,.35);stroke-width:1.4}
+.lt{font-family:var(--mono);font-weight:800;font-size:15px;fill:var(--gold);letter-spacing:.02em}
+.li{font-family:var(--mono);font-size:9.5px;fill:#9CA3AF}
+.seat{font-size:18px}
+.st{font-family:var(--mono);font-size:8.5px;fill:#6B7280;letter-spacing:.06em}
+@keyframes breathe{0%,100%{opacity:.35}50%{opacity:.7}}
+.cust .halo{fill:none;stroke:rgba(255,229,0,.5);animation:breathe 4.4s ease-in-out infinite}
+.cust .shell{fill:none;stroke:rgba(255,229,0,.55);stroke-width:1.4}
+@media (prefers-reduced-motion:reduce){.edge,.edge-gate,.cust .halo{animation:none}}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.fam{min-width:0;border:1px solid var(--border);background:var(--card);border-radius:14px;overflow:hidden}
+.two>.glass{min-width:0;overflow-wrap:anywhere}
+.fam summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:14px 16px}
+.fam summary::-webkit-details-marker{display:none}
+.fam summary .code{font-family:var(--mono);font-weight:800;font-size:16px;letter-spacing:.04em}
+.fam summary .name{font-size:14px;color:var(--text)}
+.fam summary .who{font-family:var(--mono);font-size:9.5px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+.fam summary .q{flex-basis:100%;color:var(--dim);font-size:12.5px;font-style:italic}
+.pill{display:inline-block;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.08em;border-radius:999px;padding:2px 7px;border:1px solid;text-transform:uppercase}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;flex:none}
+.fam .body{padding:0 16px 16px;border-top:1px solid var(--border)}
+.note{color:var(--dim);font-size:12.5px;margin:12px 0 6px;line-height:1.5}
+table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+th{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);text-align:left;padding:8px 8px 6px;border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:9px 8px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:top;color:var(--dim);line-height:1.45}
+td.c{font-family:var(--mono);font-weight:600;color:var(--text);white-space:nowrap;font-size:11.5px}
+td.m{color:#C9CCD3;min-width:240px}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font-family:var(--mono);font-size:8.5px;border:1px solid var(--border);border-radius:6px;padding:1px 6px;color:var(--dim);white-space:nowrap}
+.chip.v{border-color:rgba(52,211,153,.4);color:#86EFAC}
+.ask{color:#8B8F98;font-size:11.5px;font-style:italic;margin-top:4px}
+.tbl-wrap{overflow-x:auto}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.kv{font-family:var(--mono);font-size:11px;color:var(--dim);line-height:1.7}
+.kv b{color:var(--text);font-weight:600}
+footer{margin-top:34px;padding:16px;border-top:1px solid var(--border);text-align:center}
+footer .fa{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+footer .fa b{color:var(--gold);font-weight:700}
+footer .src{font-family:var(--mono);font-size:8.5px;color:#2b2f36;letter-spacing:.06em;margin-top:6px;word-break:break-all}
+</style>
+</head>
+<body>
+<div class="space"><div class="stars"></div><div class="aurora"></div></div>
+<div class="inner">
+
+<header>
+  <div>
+    <div class="kicker">ML Systems · Collective Ontology · v0.1.0</div>
+    <h1>The Master Ledger <b>·</b> Workflow</h1>
+    <p class="sub">Seats on the left, claimants on the right, the ledger between them. Every mind claims. Five seats ground. VERA gates. Only the Custodian stamps. Below the diagram, all seven code families — what ships today and what this pass proposes.</p>
+  </div>
+  <div class="legend">
+    <span><i></i>claim</span>
+    <span><i class="gate"></i>gate (VERA)</span>
+    <span><i class="stamp"></i>stamp · two keys</span>
+    <span><i class="ret"></i>return / loop</span>
+    <span><i class="obs"></i>observe · mirror</span>
+  </div>
+</header>
+
+<div class="sec-label">The workflow</div>
+<div class="glass flow">
+<svg viewBox="0 0 1240 780" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Master Ledger workflow: homeowner, record, VERA, PI, MIA and the Custodian on the left; the Master Ledger in the centre; PIT LORD, REAPER, CDA and MURPHY on the right; the blueprint gate below.">
+<defs>
+  <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="currentColor" opacity=".8"/></marker>
+  <marker id="ah-dim" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="currentColor" opacity=".4"/></marker>
+  <marker id="ah-gold" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#FFE500" opacity=".9"/></marker>
+  <radialGradient id="cglow"><stop offset="0%" stop-color="#FFE500" stop-opacity=".45"/><stop offset="45%" stop-color="#FFE500" stop-opacity=".12"/><stop offset="75%" stop-color="#FFE500" stop-opacity="0"/></radialGradient>
+  <radialGradient id="ccore" cx="50%" cy="40%"><stop offset="0%" stop-color="#FFFDE7"/><stop offset="55%" stop-color="#FFE500"/><stop offset="100%" stop-color="#E0A800"/></radialGradient>
+</defs>
+
+<rect x="24" y="36" width="330" height="440" rx="16" fill="rgba(52,211,153,.025)" stroke="rgba(52,211,153,.14)" stroke-width="1.2"/>
+<text x="40" y="58" class="nt" fill="#34D399">SEATS · T1 INTELLIGENCE + THE PARTIES</text>
+<rect x="24" y="500" width="330" height="200" rx="16" fill="rgba(255,229,0,.025)" stroke="rgba(255,229,0,.16)" stroke-width="1.2"/>
+<text x="40" y="522" class="nt" fill="#FFE500">T0 · GOVERNANCE · 2-LAYER CUSTODIAN</text>
+<rect x="886" y="36" width="330" height="520" rx="16" fill="rgba(255,255,255,.015)" stroke="rgba(255,255,255,.08)" stroke-width="1.2"/>
+<text x="902" y="58" class="nt" fill="#9CA3AF">CLAIMANTS WITHOUT SEATS · V2 DOMAIN</text>
+
+<g class="node"><rect x="60" y="80" width="260" height="54" rx="12" stroke="#60A5FA"/><text x="80" y="104" class="nl">🏠 Homeowner</text><text x="80" y="122" class="ns">party · stated · measured · key 1</text></g>
+<g class="node"><rect x="60" y="150" width="260" height="54" rx="12" stroke="#93C5FD"/><text x="80" y="174" class="nl">📋 Record</text><text x="80" y="192" class="ns">party · assessor · FEMA · RIGIS · read at source</text></g>
+<g class="node"><rect x="60" y="232" width="260" height="54" rx="12" stroke="#34D399"/><text x="80" y="256" class="nl">🦉 VERA</text><text x="80" y="274" class="ns">T1 · verification · sensed · the 10-of-10 gate</text></g>
+<g class="node"><rect x="60" y="302" width="260" height="54" rx="12" stroke="#22C55E"/><text x="80" y="326" class="nl">🌱 PI</text><text x="80" y="344" class="ns">T1 · orchestrator · asks the blanks · Lucent Lens</text></g>
+<g class="node"><rect x="60" y="372" width="260" height="54" rx="12" stroke="#14B8A6"/><text x="80" y="396" class="nl">🪞 MIA</text><text x="80" y="414" class="ns">T1 · market mirror · reflects, never decides · MKT</text></g>
+
+<g class="cust">
+  <circle cx="120" cy="612" r="78" fill="url(#cglow)"/>
+  <circle class="halo" cx="120" cy="612" r="58"/>
+  <rect class="shell" x="87" y="579" width="66" height="66" rx="3" transform="rotate(45 120 612)"/>
+  <rect x="105" y="597" width="30" height="30" rx="3" transform="rotate(45 120 612)" fill="url(#ccore)"/>
+  <text x="196" y="596" class="nl">⚖ Custodian</text>
+  <text x="196" y="614" class="ns">◇ fiduciary shell · validate · block · audit</text>
+  <text x="196" y="629" class="ns">◆ operational core · deploy · report</text>
+  <text x="196" y="647" class="ns">holds TT · TTP · key 2</text>
+</g>
+
+<g class="ledger">
+  <rect class="body" x="440" y="76" width="360" height="404" rx="18"/>
+  <text x="620" y="110" text-anchor="middle" class="lt">THE MASTER LEDGER</text>
+  <text x="620" y="130" text-anchor="middle" class="li">one home · one record · one jsonb per cycle</text>
+  <text x="620" y="164" text-anchor="middle" class="li">SECTION:task · claims[] · domain · bar · conformity</text>
+  <text x="620" y="182" text-anchor="middle" class="li">winner · dissent · agreeing · concurring · why</text>
+  <text x="620" y="200" text-anchor="middle" class="li">entryHash · baseHash · two keys</text>
+  <text x="464" y="240" class="st">THE FIVE SEATS — lit means input, not agreement</text>
+  <text x="474" y="272" class="seat">🏠</text><text x="536" y="272" class="seat">📋</text><text x="598" y="272" class="seat">🦉</text><text x="660" y="272" class="seat">🌱</text><text x="722" y="272" class="seat">⚖</text>
+  <text x="464" y="312" class="st">CONFORMITY</text>
+  <text x="464" y="330" class="li">confirmed · reconciled · single-source · conflict · unverified</text>
+  <text x="464" y="358" class="st">FILE STATE</text>
+  <text x="464" y="376" class="li">quarantined › lapsed › unverified › awaiting-stamp › unstamped › stamped</text>
+  <text x="464" y="404" class="st">AUTHORITY BY DOMAIN — the Custodian leads all</text>
+  <text x="464" y="422" class="li">interior · legal-record · exterior-geo · derived</text>
+  <text x="464" y="440" class="li" fill="#6B7280">proposed: intent · market</text>
+  <text x="620" y="466" text-anchor="middle" class="st">a contested number is never presented as fact</text>
+</g>
+
+<g class="node"><rect x="440" y="560" width="360" height="92" rx="14" stroke="#60A5FA"/>
+  <text x="620" y="588" text-anchor="middle" class="nl">blueprintReadiness → plan set</text>
+  <text x="620" y="608" text-anchor="middle" class="ns">75 evidence checks · 6 disciplines · allow / watch / block</text>
+  <text x="620" y="624" text-anchor="middle" class="ns">requiredEntries → PI's asks · ledgerPackets → geometry</text>
+  <text x="620" y="640" text-anchor="middle" class="ns">the homeowner's first MVP — a set of construction blueprints</text>
+</g>
+
+<g class="node"><rect x="920" y="84" width="264" height="62" rx="12" stroke="#EF4444"/><text x="940" y="108" class="nl">🐉 PIT LORD</text><text x="940" y="126" class="ns">FIN · Loan Pit · what can they afford</text><text x="940" y="139" class="ns" fill="#6B7280">claims · no seat · modeled</text></g>
+<g class="node"><rect x="920" y="184" width="264" height="62" rx="12" stroke="#F97316"/><text x="940" y="208" class="nl">🦇 REAPER</text><text x="940" y="226" class="ns">DEC · Decon Lab · what is already here</text><text x="940" y="239" class="ns" fill="#6B7280">claims · no seat · modeled</text></g>
+<g class="node"><rect x="920" y="284" width="264" height="62" rx="12" stroke="#60A5FA"/><text x="940" y="308" class="nl">💎 CDA</text><text x="940" y="326" class="ns">DES · BLD · the plan set</text><text x="940" y="339" class="ns" fill="#6B7280">checked, not a check — no seat by design</text></g>
+<g class="node"><rect x="920" y="384" width="264" height="62" rx="12" stroke="#84CC16"/><text x="940" y="408" class="nl">🐿 MURPHY</text><text x="940" y="426" class="ns">BLD · construction · the critical path</text><text x="940" y="439" class="ns" fill="#6B7280">claims · no seat · modeled</text></g>
+<text x="1052" y="500" text-anchor="middle" class="ns" fill="#6B7280">adjacent minds hand off directly ↓</text>
+<text x="1052" y="516" text-anchor="middle" class="ns" fill="#6B7280">PI observes · does not mediate</text>
+
+<line class="edge-return" x1="1160" y1="146" x2="1160" y2="184" stroke="#6B7280" style="color:#6B7280"/>
+<line class="edge-return" x1="1160" y1="246" x2="1160" y2="284" stroke="#6B7280" style="color:#6B7280"/>
+<line class="edge-return" x1="1160" y1="346" x2="1160" y2="384" stroke="#6B7280" style="color:#6B7280"/>
+
+<path class="edge" d="M320 107 C 380 107, 400 150, 440 160" stroke="#60A5FA" style="color:#60A5FA"/>
+<text x="352" y="100" class="elabel">claim</text>
+<path class="edge" d="M320 177 C 380 177, 400 190, 440 196" stroke="#93C5FD" style="color:#93C5FD"/>
+<text x="352" y="171" class="elabel">record</text>
+<path class="edge-gate" d="M320 259 C 380 259, 400 262, 440 266" stroke="#34D399" style="color:#34D399"/>
+<text x="352" y="252" class="elabel" fill="#34D399">gate</text>
+<path class="edge" d="M320 329 C 380 329, 400 320, 440 318" stroke="#22C55E" style="color:#22C55E"/>
+<text x="352" y="321" class="elabel">check · ask</text>
+<path class="edge-observe" d="M320 399 C 380 399, 400 380, 440 372" stroke="#14B8A6" style="color:#14B8A6"/>
+<text x="352" y="391" class="elabel">mirror · MKT</text>
+
+<path class="edge-stamp" d="M262 560 C 330 520, 380 470, 440 452" stroke="#FFE500" style="color:#FFE500"/>
+<path class="edge-stamp-in" d="M262 560 C 330 520, 380 470, 440 452"/>
+<text x="318" y="538" class="elabel" fill="#FFE500">stamp · override · key 2</text>
+
+<path class="edge-return" d="M70 134 C 30 300, 30 460, 82 566" stroke="#F5D060" style="color:#F5D060"/>
+<text x="16" y="360" class="elabel" fill="#F5D060" transform="rotate(-90 16 360)">two keys · content-bound · lapse on edit</text>
+
+<path class="edge" d="M920 115 C 860 115, 840 150, 800 164" stroke="#EF4444" style="color:#EF4444"/>
+<text x="846" y="128" class="elabel" text-anchor="end">claim · FIN</text>
+<path class="edge" d="M920 215 C 860 215, 840 235, 800 246" stroke="#F97316" style="color:#F97316"/>
+<text x="846" y="226" class="elabel" text-anchor="end">claim · DEC</text>
+<path class="edge" d="M920 315 C 860 315, 840 322, 800 328" stroke="#60A5FA" style="color:#60A5FA"/>
+<text x="846" y="308" class="elabel" text-anchor="end">claim · DES · BLD</text>
+<path class="edge" d="M920 415 C 860 415, 840 400, 800 392" stroke="#84CC16" style="color:#84CC16"/>
+<text x="846" y="428" class="elabel" text-anchor="end">claim · BLD</text>
+
+<path class="edge-observe" d="M320 315 C 600 20, 800 20, 1052 84" stroke="#22C55E" style="color:#22C55E"/>
+<text x="690" y="44" class="elabel" text-anchor="middle" fill="#22C55E">PI observes handoffs · routes the non-adjacent</text>
+
+<path class="edge" d="M620 480 L 620 560" stroke="#E5E7EB" style="color:#E5E7EB"/>
+<text x="632" y="524" class="elabel">grounded entries only</text>
+<path class="edge-return" d="M800 600 C 880 600, 900 500, 1052 346" stroke="#60A5FA" style="color:#60A5FA"/>
+<text x="870" y="580" class="elabel" fill="#60A5FA">plan set · tier-gated</text>
+
+<path class="edge-return" d="M440 630 C 300 700, 120 740, 60 700 C 20 660, 30 200, 60 92" stroke="#FFE500" style="color:#FFE500"/>
+<text x="250" y="716" class="elabel" fill="#FFE500">LUP · post-build value → equity-delta → qualification → LUP:decision → FIN:budget, cycle n+1</text>
+</svg>
+</div>
+
+<div class="sec-label">The seven families</div>
+<div id="families" class="grid"></div>
+
+<div class="sec-label">Domains · claimants · topology</div>
+<div class="two">
+  <div class="glass"><div class="kicker">Authority by domain</div><div id="domains" class="kv"></div></div>
+  <div class="glass"><div class="kicker">Claimants</div><div id="claimants" class="kv"></div>
+    <div class="kicker" style="margin-top:14px">Topology</div><div id="topology" class="kv"></div></div>
+</div>
+
+
+<footer>
+  <div class="fa">Built by the <b>Custodian</b> under <b>LL</b> · <b>TT</b> · <b>MVE</b></div>
+  <div class="src">data embedded from ontology/families.json · slots marked PROPOSED are design, not shipped code · no ML Systems deconstruction has been performed yet · github.com/MLSystemsRI/ml-systems-public</div>
+</footer>
+</div>
+
+<script>
+const DATA = {"$comment": "ML Systems Collective Ontology — the seven code families. Public tranche generated from the private working copy by ontology/build-html.py --public; do not hand-edit. status=shipped slots exist in the engine today; status=proposed slots are design and NOT yet in code. No ML Systems deconstruction has been performed yet — anything that depends on a job having run is ASPIRATIONAL.", "version": "0.1.0", "updated": "2026-09-11", "grammar": {"form": "SECTION:task", "section": "UPPERCASE 3-letter phase — one of the seven families", "task": "lowercase [a-z0-9-], ≤14 chars, hyphens allowed", "rule": "Extend codes, not storage. A new fact is a new code in the ontology jsonb, never a new table.", "phaseDerivation": "phase = code.split(':')[0] — the prefix IS the phase; an unknown prefix falls through to LUP"}, "evidenceLadder": {"$comment": "VcSource → confidence bar. sensed sits below measured on purpose: an instrument that snapped to the neighbour is worse than the homeowner's own tape.", "measured": 90, "sensed": 85, "stated": 80, "record": 70, "modeled": 60}, "claimants": {"$comment": "Who may put their name on a claim. Seats (five) light the party strip and can ground an entry. Claimants-without-seats can claim but never ground — their output is the thing being checked (the CDA rule, extended to every V2 mind).", "seats": ["homeowner", "record", "vera", "pi", "custodian"], "shippedNonSeat": ["cda"], "proposedNonSeat": ["reaper", "pit-lord", "murphy", "mia"], "rule": "Only the Custodian stamps. VERA gates. Every mind claims. Nobody overwrites."}, "domains": {"$comment": "What KIND of fact an entry is decides who outranks whom on it. The Custodian leads every domain — his stamp is the review. Four ship today; `intent` is proposed because FIN/LUP carry facts only the homeowner can know (their budget, their decision) and today those fall through to `derived`, where VERA outranks the homeowner on their own money.", "shipped": {"interior": {"meaning": "what the homeowner can see and touch inside", "authority": ["custodian", "homeowner", "vera", "cda", "record", "pi"]}, "legal-record": {"meaning": "recorded legal facts — stories, year, recorded SF", "authority": ["custodian", "record", "vera", "homeowner", "cda", "pi"]}, "exterior-geo": {"meaning": "exterior geometry measured by instrument", "authority": ["custodian", "vera", "homeowner", "cda", "record", "pi"]}, "derived": {"meaning": "computed from other facts; nobody observes it", "authority": ["custodian", "vera", "cda", "homeowner", "record", "pi"]}}, "proposed": {"intent": {"meaning": "a choice or a constraint only the homeowner can set — budget, decision, timeline", "authority": ["custodian", "homeowner", "pi", "vera", "cda", "record"]}, "market": {"meaning": "a price or a velocity observed in a market — comps, bids, absorption", "authority": ["custodian", "record", "mia", "pit-lord", "vera", "homeowner", "pi"]}}, "routingToday": "domainForCode(): /roof|height|perimeter|outline|footprint/ → exterior-geo; BLD:* → interior; DES:* → legal-record; everything else → derived", "routingProposed": "FIN:budget, FIN:timeline, LUP:decision → intent · FIN:pit-bid, MKT:* → market · DEC:contamination → legal-record · all other FIN/DEC/LUP → derived"}, "families": [{"code": "FIN", "name": "Finance", "app": "Loan Pit", "projectOrder": 0, "prerequisites": [], "owningMinds": ["pit-lord"], "supporting": ["pi", "custodian"], "color": "#EF4444", "question": "What can this homeowner afford, and what will lenders compete to fund?", "shipped": [{"code": "FIN:bridge", "meaning": "The decon bridge — principal, rate, term that carries the homeowner from teardown to construction draw", "domain": "derived", "capture": "record", "claimants": ["pit-lord", "record"], "verifier": "vera", "consumers": ["pit-lord", "murphy"], "ask": "Is there a bridge loan on this project — how much, at what rate, for how long?"}], "proposed": [{"code": "FIN:budget", "meaning": "The homeowner's own ceiling for this cycle — the number the whole plan set must fit under", "domain": "intent", "capture": "chip", "claimants": ["homeowner"], "verifier": "pi", "consumers": ["pit-lord", "cda", "murphy"], "ask": "What is the most you want to spend on this cycle, all in?"}, {"code": "FIN:timeline", "meaning": "When the homeowner needs to be back in — the constraint that sets the draw schedule and the decon window", "domain": "intent", "capture": "chip", "claimants": ["homeowner"], "verifier": "pi", "consumers": ["murphy", "reaper", "pit-lord"], "ask": "When do you need to be living in the finished home?"}, {"code": "FIN:capital-stack", "meaning": "Where the money comes from, in order — cash, bridge, construction loan, subsidy — and how much of each", "domain": "derived", "capture": "derived", "claimants": ["pit-lord"], "verifier": "vera", "consumers": ["pit-lord", "custodian"], "ask": null}, {"code": "FIN:pit-bid", "meaning": "The best standing lender bid in the Pit — rate, term, LTV, lender tier — as of the last compile", "domain": "market", "capture": "record", "claimants": ["pit-lord", "record"], "verifier": "vera", "consumers": ["homeowner", "pit-lord"], "ask": null, "label": "MODELED", "note": "The Pit's reverse auction is MODELED; a bid here is a lender's stated offer, never a commitment, until counsel confirms the lending workflow."}, {"code": "FIN:ltv", "meaning": "Loan-to-value against the ledger's own equity basis (LUP:equity), not a lender's appraisal", "domain": "derived", "capture": "derived", "claimants": ["pit-lord", "pi"], "verifier": "vera", "consumers": ["pit-lord"], "ask": null}, {"code": "FIN:subsidy", "meaning": "Programs this home and homeowner qualify for — FHLBB AHP/EBP, RIHousing DPA, LISC bridge — and what each is worth", "domain": "legal-record", "capture": "record", "claimants": ["pit-lord", "record"], "verifier": "vera", "consumers": ["pit-lord", "homeowner"], "ask": "Have you applied for any housing assistance or down-payment program before?"}, {"code": "FIN:cost-to-complete", "meaning": "Modeled all-in construction cost, rolled up from BLD:bom and the plan stack — the number FIN:budget is tested against", "domain": "derived", "capture": "derived", "claimants": ["murphy", "cda"], "verifier": "vera", "consumers": ["pit-lord", "homeowner", "custodian"], "ask": null, "label": "MODELED"}, {"code": "FIN:draw-schedule", "meaning": "Construction draws tied to BLD milestones — what gets released when, and against which VER stamp", "domain": "derived", "capture": "derived", "claimants": ["pit-lord", "murphy"], "verifier": "custodian", "consumers": ["murphy", "pit-lord"], "ask": null}]}, {"code": "DEC", "name": "Deconstruction", "app": "Decon Lab", "projectOrder": 1, "prerequisites": ["FIN"], "owningMinds": ["reaper"], "supporting": ["vera", "mia"], "color": "#F97316", "question": "What is already here, and in what order does it come apart so every layer survives?", "$note": "Code stays DEC (persisted in every stored ontology; renaming is a migration). Prose name is Deconstruction.", "shipped": [{"code": "DEC:walls-exterior", "meaning": "Exterior wall assemblies as stacks — stud, sheathing, barrier, cladding — with LF", "domain": "interior", "capture": "derived", "claimants": ["reaper", "cda"], "verifier": "vera", "consumers": ["reaper", "mia"], "ask": null}, {"code": "DEC:walls-interior", "meaning": "Interior partitions as stacks with LF — split out of the envelope on 9/7", "domain": "interior", "capture": "derived", "claimants": ["reaper", "cda"], "verifier": "vera", "consumers": ["reaper", "mia"], "ask": null}, {"code": "DEC:envelope", "meaning": "The whole enclosure as one recoverable assembly — SF, layers, fastener class", "domain": "derived", "capture": "derived", "claimants": ["reaper"], "verifier": "vera", "consumers": ["reaper"], "ask": null}, {"code": "DEC:lift", "meaning": "The crane plan — sections, weights, pick order — that gets the roof and walls down to grade", "domain": "derived", "capture": "derived", "claimants": ["reaper"], "verifier": "vera", "consumers": ["reaper", "murphy"], "ask": null, "label": "ASPIRATIONAL"}], "proposed": [{"code": "DEC:contamination", "meaning": "Lead / asbestos / mold screen — clean, positive, or untested. Positive routes to licensed abatement; untested is treated as positive. The intake gate.", "domain": "legal-record", "capture": "record", "claimants": ["record", "vera", "homeowner"], "verifier": "custodian", "consumers": ["reaper", "mia", "pit-lord"], "ask": "Was this home built before 1978, and has it ever been tested for lead or asbestos?"}, {"code": "DEC:sequence", "meaning": "This home's top-down phase plan — PRE → ROOF → WALLS → FLOORS → FOUNDATION → POST — with what makes each phase special here (dormers, chimney, slab vs. crawl)", "domain": "derived", "capture": "derived", "claimants": ["reaper"], "verifier": "vera", "consumers": ["murphy", "pit-lord", "homeowner"], "ask": null}, {"code": "DEC:assembly-stack", "meaning": "Each assembly's layer order, innermost first — the order it will be freed. Roof: rafters › sheathing › underlayment › shingles", "domain": "derived", "capture": "derived", "claimants": ["reaper", "cda"], "verifier": "vera", "consumers": ["reaper", "murphy"], "ask": null}, {"code": "DEC:fasteners", "meaning": "Fastener classes present — ring-shank, adhesive, engineered connector — the thing that actually decides recovered grade", "domain": "interior", "capture": "chip", "claimants": ["homeowner", "vera", "reaper"], "verifier": "vera", "consumers": ["reaper"], "ask": "Do you know whether the sheathing was nailed or glued — was this built or re-roofed after 1990?"}, {"code": "DEC:recovery", "meaning": "Recovery estimate by Z-stream — Z2 lumber LF, Z4 sheathing sheets, Z8 roofing tons — designed to recover up to 80–90% of the home", "domain": "derived", "capture": "derived", "claimants": ["reaper"], "verifier": "vera", "consumers": ["mia", "pit-lord", "cda"], "ask": null, "label": "MODELED"}, {"code": "DEC:rrr-routing", "meaning": "Per stream: reuse › resale › recycle split — how much goes back into this home, how much to Builder's Open House, how much to feedstock", "domain": "derived", "capture": "derived", "claimants": ["reaper", "mia"], "verifier": "vera", "consumers": ["mia", "cda", "murphy"], "ask": null, "label": "MODELED"}, {"code": "DEC:diversion", "meaning": "Tons diverted and CO₂e avoided — the home recovery report, measured at the scale, filed to DEM", "domain": "derived", "capture": "measure", "claimants": ["reaper"], "verifier": "vera", "consumers": ["custodian", "homeowner", "record"], "ask": null, "label": "ASPIRATIONAL", "note": "Measured only after a job runs. No ML Systems deconstruction has been performed yet."}]}, {"code": "DES", "name": "Design", "app": "Design Studio / CDA", "projectOrder": 2, "prerequisites": ["DEC"], "owningMinds": ["cda"], "supporting": ["vera", "pi"], "color": "#60A5FA", "question": "What is the best thing we can build on what is here?", "shipped": [{"code": "DES:footprint", "meaning": "Footprint W × D and gross SF — pinned identity slot", "domain": "exterior-geo", "capture": "measure", "claimants": ["record", "vera", "homeowner"], "verifier": "vera", "consumers": ["cda", "reaper"], "ask": "How wide and how deep is the house at the foundation?", "pinned": true}, {"code": "DES:heights", "meaning": "Floor-to-floor and ridge heights — blocked as MODELED until sensed or taped", "domain": "exterior-geo", "capture": "measure", "claimants": ["vera", "homeowner"], "verifier": "vera", "consumers": ["cda"], "ask": "Floor to ceiling on the first floor — about eight feet, or more?", "pinned": true}, {"code": "DES:roof-form", "meaning": "Gable / hip / gambrel and pitch", "domain": "exterior-geo", "capture": "chip", "claimants": ["vera", "homeowner", "record"], "verifier": "vera", "consumers": ["cda", "reaper"], "ask": "What shape is the roof — a simple gable, a hip, something else?", "pinned": true}, {"code": "DES:roof-ridges", "meaning": "Ridge lines and their lengths", "domain": "exterior-geo", "capture": "derived", "claimants": ["vera"], "verifier": "vera", "consumers": ["cda", "reaper"], "ask": null, "pinned": true}, {"code": "DES:massing", "meaning": "Levels and gross SF — where the assessor, the homeowner and the street most often disagree", "domain": "legal-record", "capture": "chip", "claimants": ["record", "homeowner", "vera"], "verifier": "vera", "consumers": ["cda", "pit-lord"], "ask": "How many full stories, not counting a finished attic or basement?"}, {"code": "DES:tiling", "meaning": "The room tiling — the editable floor-plan sketch that feeds code compliance", "domain": "interior", "capture": "measure", "claimants": ["homeowner", "cda"], "verifier": "vera", "consumers": ["cda"], "ask": null}, {"code": "DES:perimeter", "meaning": "Perimeter LF from the outline", "domain": "exterior-geo", "capture": "derived", "claimants": ["vera"], "verifier": "vera", "consumers": ["cda", "reaper"], "ask": null}, {"code": "DES:roof-planes", "meaning": "Count and orientation of roof planes", "domain": "exterior-geo", "capture": "derived", "claimants": ["vera"], "verifier": "vera", "consumers": ["cda", "reaper"], "ask": null}, {"code": "DES:roof-area", "meaning": "Roof surface SF", "domain": "exterior-geo", "capture": "derived", "claimants": ["vera"], "verifier": "vera", "consumers": ["reaper", "mia"], "ask": null}, {"code": "DES:facade", "meaning": "Street facade read — what the house presents", "domain": "exterior-geo", "capture": "derived", "claimants": ["vera"], "verifier": "vera", "consumers": ["cda"], "ask": null}, {"code": "DES:windows", "meaning": "Window count and types", "domain": "interior", "capture": "chip", "claimants": ["homeowner", "vera"], "verifier": "vera", "consumers": ["cda", "reaper", "mia"], "ask": "How many windows, roughly, all the way around?"}, {"code": "DES:doors", "meaning": "Exterior door count", "domain": "interior", "capture": "chip", "claimants": ["homeowner", "vera"], "verifier": "vera", "consumers": ["cda", "reaper", "mia"], "ask": "How many outside doors — front, back, sliders, garage bays?"}, {"code": "DES:roofline", "meaning": "Eave and ridge lines as seen from the street", "domain": "exterior-geo", "capture": "derived", "claimants": ["vera"], "verifier": "vera", "consumers": ["cda"], "ask": null}, {"code": "DES:street-stories", "meaning": "Stories counted on the street facade — VERA's independent read against the card", "domain": "exterior-geo", "capture": "derived", "claimants": ["vera"], "verifier": "vera", "consumers": ["cda"], "ask": null}, {"code": "DES:visible-additions", "meaning": "Additions visible from outside that the card may not carry", "domain": "exterior-geo", "capture": "derived", "claimants": ["vera", "homeowner"], "verifier": "vera", "consumers": ["cda", "record"], "ask": "Has anything been added on — a room, a porch, a dormer?"}, {"code": "DES:facade-siding", "meaning": "Cladding material on the facade", "domain": "exterior-geo", "capture": "chip", "claimants": ["vera", "homeowner"], "verifier": "vera", "consumers": ["reaper", "mia"], "ask": "What is the siding — vinyl, wood clapboard, shingle, brick?"}, {"code": "DES:envelope-exterior", "meaning": "The exterior envelope as designed — the thing DEC:envelope takes apart", "domain": "derived", "capture": "derived", "claimants": ["cda"], "verifier": "vera", "consumers": ["reaper"], "ask": null}, {"code": "DES:baths", "meaning": "Bathroom count — full and half", "domain": "interior", "capture": "chip", "claimants": ["homeowner", "record"], "verifier": "vera", "consumers": ["cda", "reaper"], "ask": "How many bathrooms — full and half?"}], "proposed": []}, {"code": "BLD", "name": "Build", "app": "Construction / MURPHY", "projectOrder": 3, "prerequisites": ["DES"], "owningMinds": ["murphy"], "supporting": ["cda", "vera"], "color": "#84CC16", "question": "What is the critical path to completion?", "shipped": [{"code": "BLD:roof", "meaning": "Roof structure — rafters or trusses, spacing, span", "domain": "interior", "capture": "derived", "claimants": ["cda", "reaper"], "verifier": "vera", "consumers": ["murphy", "reaper"], "ask": null}, {"code": "BLD:roof-cover", "meaning": "Roof covering — shingle type, age if known", "domain": "interior", "capture": "chip", "claimants": ["homeowner", "vera"], "verifier": "vera", "consumers": ["reaper", "mia"], "ask": "When was the roof last done, and with what?"}, {"code": "BLD:heating", "meaning": "Heating system type and fuel", "domain": "interior", "capture": "chip", "claimants": ["homeowner", "record"], "verifier": "vera", "consumers": ["murphy", "reaper"], "ask": "How is the house heated — gas, oil, electric, heat pump?"}, {"code": "BLD:fireplaces", "meaning": "Fireplace and chimney count", "domain": "interior", "capture": "chip", "claimants": ["homeowner", "record"], "verifier": "vera", "consumers": ["reaper", "cda"], "ask": "Any fireplaces or a masonry chimney?"}, {"code": "BLD:load-path", "meaning": "The computed load path — ridge to footing", "domain": "derived", "capture": "derived", "claimants": ["cda"], "verifier": "vera", "consumers": ["murphy", "reaper"], "ask": null}, {"code": "BLD:footing", "meaning": "Footing and foundation type", "domain": "interior", "capture": "chip", "claimants": ["homeowner", "record", "vera"], "verifier": "vera", "consumers": ["murphy", "reaper"], "ask": "Is there a full basement, a crawl space, or a slab?"}, {"code": "BLD:bom", "meaning": "The bill of materials for the rebuild — what the plan stack consumes", "domain": "derived", "capture": "derived", "claimants": ["cda", "murphy"], "verifier": "vera", "consumers": ["murphy", "pit-lord", "mia"], "ask": null}, {"code": "BLD:<assembly>", "meaning": "Dynamic per-assembly rebuild codes from the reverse takeoff — appear beyond the template when they compile", "domain": "interior", "capture": "derived", "claimants": ["reaper", "cda"], "verifier": "vera", "consumers": ["murphy"], "ask": null, "dynamic": true}], "proposed": [{"code": "BLD:milestones", "meaning": "The build's milestone list with target dates — the spine FIN:draw-schedule releases against", "domain": "derived", "capture": "derived", "claimants": ["murphy"], "verifier": "custodian", "consumers": ["pit-lord", "homeowner"], "ask": null}, {"code": "BLD:as-built", "meaning": "What was actually built vs. the plan set — MURPHY's claim, VERA's check, the Custodian's stamp; the input to LUP", "domain": "derived", "capture": "measure", "claimants": ["murphy"], "verifier": "vera", "consumers": ["pi", "pit-lord", "record"], "ask": null, "label": "ASPIRATIONAL"}]}, {"code": "MKT", "name": "Market", "app": "Builder's Open House / MIA", "projectOrder": 4, "prerequisites": ["DEC"], "owningMinds": ["mia"], "supporting": ["reaper", "pit-lord"], "color": "#14B8A6", "question": "What does the market say — about this home, and about what comes out of it?", "$note": "MIA reflects, never decides. Every MKT claim is an observation. If MIA starts deciding she becomes PI.", "shipped": [{"code": "MKT:harvest", "meaning": "The recovered-material harvest available to the market from this home", "domain": "derived", "capture": "derived", "claimants": ["mia", "reaper"], "verifier": "vera", "consumers": ["mia"], "ask": null, "label": "MODELED"}], "proposed": [{"code": "MKT:comps", "meaning": "Recent comparable sales within the locality — the mirror LUP:valuation-curve is checked against", "domain": "market", "capture": "record", "claimants": ["mia", "record"], "verifier": "vera", "consumers": ["pi", "pit-lord", "homeowner"], "ask": null}, {"code": "MKT:material-value", "meaning": "Builder's Open House value of the DEC:recovery streams at the 49%-of-retail rule, by Z-zone", "domain": "market", "capture": "derived", "claimants": ["mia"], "verifier": "vera", "consumers": ["pit-lord", "reaper", "homeowner"], "ask": null, "label": "MODELED"}, {"code": "MKT:demand", "meaning": "Local demand signal for reclaimed categories — what contractors are asking for this season", "domain": "market", "capture": "derived", "claimants": ["mia"], "verifier": "vera", "consumers": ["reaper", "mia"], "ask": null, "label": "MODELED"}, {"code": "MKT:absorption", "meaning": "Days-to-sell and price realized per stream once material lists — velocity as truth", "domain": "market", "capture": "measure", "claimants": ["mia"], "verifier": "vera", "consumers": ["reaper", "pit-lord"], "ask": null, "label": "ASPIRATIONAL"}]}, {"code": "VER", "name": "Verify", "app": "VERA / Custodian", "projectOrder": 5, "prerequisites": ["BLD"], "owningMinds": ["vera"], "supporting": ["custodian", "pi"], "color": "#34D399", "question": "What is true about this house, and how sure are we?", "shipped": [{"code": "VER:fidelity", "meaning": "How faithfully the compiled ledger matches the sources it cites", "domain": "derived", "capture": "derived", "claimants": ["vera"], "verifier": "custodian", "consumers": ["custodian", "pi"], "ask": null}, {"code": "VER:overlook", "meaning": "The Custodian's read of the whole ledger — the Lucent score, scaled by his stamped share", "domain": "derived", "capture": "custodian", "claimants": ["custodian", "pi"], "verifier": "custodian", "consumers": ["homeowner", "pit-lord"], "ask": null}, {"code": "VER:code-compliance", "meaning": "Room-geometry code check — egress, ceiling height, light and vent", "domain": "derived", "capture": "derived", "claimants": ["cda", "vera"], "verifier": "vera", "consumers": ["cda", "murphy"], "ask": null}, {"code": "VER:site-context", "meaning": "What surrounds the lot — the neighbours, the street, the setting", "domain": "exterior-geo", "capture": "derived", "claimants": ["vera"], "verifier": "vera", "consumers": ["cda", "mia"], "ask": null}, {"code": "VER:site-datum", "meaning": "Ground elevation datum — what scales DES:heights", "domain": "exterior-geo", "capture": "derived", "claimants": ["vera"], "verifier": "vera", "consumers": ["cda"], "ask": null}, {"code": "VER:site-building-match", "meaning": "Did the instrument read THIS building — or the one 60 ft away", "domain": "exterior-geo", "capture": "derived", "claimants": ["vera"], "verifier": "custodian", "consumers": ["pi"], "ask": null}, {"code": "VER:site-features", "meaning": "Driveway, trees, outbuildings, slope — what the crane and the crew will meet", "domain": "exterior-geo", "capture": "derived", "claimants": ["vera", "homeowner"], "verifier": "vera", "consumers": ["reaper", "murphy"], "ask": "Anything on the lot a crane would have to work around — big trees, a shed, a slope?"}, {"code": "VER:site-soil", "meaning": "Soil class from RIGIS", "domain": "legal-record", "capture": "record", "claimants": ["record"], "verifier": "vera", "consumers": ["cda", "murphy"], "ask": null}, {"code": "VER:site-sewer", "meaning": "Sewer vs. septic", "domain": "legal-record", "capture": "record", "claimants": ["record", "homeowner"], "verifier": "vera", "consumers": ["cda", "murphy"], "ask": "Is the house on town sewer or a septic system?"}, {"code": "VER:land-use", "meaning": "Zoning and land-use class from the record", "domain": "legal-record", "capture": "record", "claimants": ["record"], "verifier": "vera", "consumers": ["cda", "pit-lord"], "ask": null}], "proposed": [{"code": "VER:plan-review", "meaning": "The PE/RA gate on the plan set — pass, correct, or fail — before MURPHY may build", "domain": "derived", "capture": "record", "claimants": ["vera"], "verifier": "custodian", "consumers": ["cda", "murphy", "pit-lord"], "ask": null}, {"code": "VER:permit", "meaning": "Building permit status and inspections passed — the town's own stamps, read into the record", "domain": "legal-record", "capture": "record", "claimants": ["record", "murphy"], "verifier": "vera", "consumers": ["pit-lord", "homeowner", "custodian"], "ask": null}]}, {"code": "LUP", "name": "Equity Loop", "app": "The loop — PI · PIT LORD · REAPER", "projectOrder": 6, "prerequisites": ["VER"], "owningMinds": ["pi", "pit-lord", "reaper"], "supporting": ["mia", "custodian"], "color": "#FFE500", "question": "What did this cycle create — and does the homeowner want to go again, here or on another home?", "$note": "LUP is 'loop', not an acronym. It is the only family whose edge points backward — LUP → FIN closes the cycle. It is also the fallback phase for any unknown prefix.", "shipped": [{"code": "LUP:last-sale", "meaning": "Last recorded sale — date and price", "domain": "legal-record", "capture": "record", "claimants": ["record"], "verifier": "vera", "consumers": ["pi", "pit-lord"], "ask": null}, {"code": "LUP:valuation-curve", "meaning": "The assessment history as a curve", "domain": "legal-record", "capture": "record", "claimants": ["record"], "verifier": "vera", "consumers": ["pi", "pit-lord", "mia"], "ask": null}, {"code": "LUP:replacement-cost", "meaning": "Replacement cost from the card", "domain": "legal-record", "capture": "record", "claimants": ["record"], "verifier": "vera", "consumers": ["pi", "pit-lord"], "ask": null}, {"code": "LUP:equity", "meaning": "The equity basis — assessed value the loop compounds on. No homeowner claim: it is merged FROM the record on purpose", "domain": "legal-record", "capture": "record", "claimants": ["record", "pi"], "verifier": "vera", "consumers": ["pit-lord", "homeowner"], "ask": null}], "proposed": [{"code": "LUP:cycle", "meaning": "Which pass through the loop this ledger is — cycle 1 is a new foundation; later cycles expand the same home", "domain": "derived", "capture": "derived", "claimants": ["pi"], "verifier": "custodian", "consumers": ["pit-lord", "cda", "reaper"], "ask": null}, {"code": "LUP:post-build-value", "meaning": "Modeled value after this cycle — the calibrated 1.43× multiplier applied to the pre-cycle basis, +10% footprint, +1 story", "domain": "derived", "capture": "derived", "claimants": ["pi"], "verifier": "vera", "consumers": ["pit-lord", "homeowner"], "ask": null, "label": "MODELED"}, {"code": "LUP:equity-delta", "meaning": "Equity created this cycle — post-build value less principal outstanding. Physical improvement, not market timing", "domain": "derived", "capture": "derived", "claimants": ["pi", "pit-lord"], "verifier": "vera", "consumers": ["homeowner", "pit-lord"], "ask": null, "label": "MODELED"}, {"code": "LUP:carryover", "meaning": "Recovered material banked for the next cycle — what the house already owns toward its own next build", "domain": "derived", "capture": "derived", "claimants": ["reaper", "mia"], "verifier": "vera", "consumers": ["cda", "pit-lord"], "ask": null, "label": "ASPIRATIONAL"}, {"code": "LUP:qualification", "meaning": "Does the equity created qualify the homeowner for the next Pit round — and at what tier", "domain": "derived", "capture": "derived", "claimants": ["pit-lord"], "verifier": "custodian", "consumers": ["homeowner", "pi"], "ask": null}, {"code": "LUP:decision", "meaning": "The homeowner's call — expand this home again, open another value-chain home, or hold. The flywheel moment. Client-driven, never assumed.", "domain": "intent", "capture": "chip", "claimants": ["homeowner"], "verifier": "pi", "consumers": ["pi", "pit-lord", "reaper", "custodian"], "ask": "Now that this cycle is done — build on this home again, start another, or hold here for now?"}]}], "topology": {"$comment": "Edge list over the seven phases. LUP → FIN is the loop.", "FIN": ["DEC"], "DEC": ["DES", "BLD"], "DES": ["BLD"], "BLD": ["VER", "LUP"], "MKT": ["FIN", "DEC"], "VER": ["BLD", "LUP"], "LUP": ["FIN"]}};
+const MIND = {homeowner:"🏠",record:"📋",vera:"🦉",pi:"🌱",custodian:"⚖",cda:"💎",reaper:"🦇","pit-lord":"🐉",murphy:"🐿",mia:"🪞"};
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const chips = (arr, cls="") => `<div class="chips">${(arr||[]).map(a=>`<span class="chip ${cls}">${MIND[a]||""} ${esc(a)}</span>`).join("")}</div>`;
+const pill = (t, color) => `<span class="pill" style="color:${color};border-color:${color}66;background:${color}1A">${esc(t)}</span>`;
+const LABEL = {MODELED:"#F59E0B", ASPIRATIONAL:"#8B5CF6", MEASURED:"#22C55E"};
+
+function row(s, status, color){
+  const st = status==="shipped" ? pill("shipped", "#22C55E") : pill("proposed", color);
+  const lb = s.label ? " "+pill(s.label, LABEL[s.label]||"#9CA3AF") : "";
+  const extra = (s.pinned?" "+pill("pinned","#FFE500"):"") + (s.dynamic?" "+pill("dynamic","#9CA3AF"):"");
+  return `<tr>
+    <td class="c">${esc(s.code)}<br>${st}${lb}${extra}</td>
+    <td class="m">${esc(s.meaning)}${s.note?`<div class="ask">${esc(s.note)}</div>`:""}${s.ask?`<div class="ask">🌱 “${esc(s.ask)}”</div>`:""}</td>
+    <td><span class="chip">${esc(s.domain)}</span><br><span class="chip" style="margin-top:4px">${esc(s.capture)}</span></td>
+    <td>${chips(s.claimants)}</td>
+    <td>${chips([s.verifier],"v")}</td>
+    <td>${chips(s.consumers)}</td>
+  </tr>`;
+}
+
+const wrap = document.getElementById("families");
+for (const f of DATA.families){
+  const n1 = f.shipped.length, n2 = f.proposed.length;
+  const d = document.createElement("details"); d.className="fam"; d.id="fam-"+f.code;
+  if (n2) d.open = true;
+  d.innerHTML = `
+    <summary>
+      <span class="dot" style="background:${f.color};box-shadow:0 0 12px ${f.color}88"></span>
+      <span class="code" style="color:${f.color}">${esc(f.code)}</span>
+      <span class="name">${esc(f.name)}</span>
+      <span class="who">${(f.owningMinds||[]).map(m=>(MIND[m]||"")+" "+m).join(" · ")}</span>
+      ${pill(n1+" shipped","#22C55E")} ${n2?pill("+"+n2+" proposed",f.color):""}
+      <span class="q">${esc(f.question)}</span>
+    </summary>
+    <div class="body">
+      ${f.$note?`<p class="note">${esc(f.$note)}</p>`:""}
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>code</th><th>meaning · PI's ask</th><th>domain · capture</th><th>claimants</th><th>verifier</th><th>consumers</th></tr></thead>
+        <tbody>${f.shipped.map(s=>row(s,"shipped",f.color)).join("")}${f.proposed.map(s=>row(s,"proposed",f.color)).join("")}</tbody>
+      </table></div>
+    </div>`;
+  wrap.appendChild(d);
+}
+
+const D = DATA.domains;
+const auth = v => v.authority.map(a=>(MIND[a]||"")+a).join(" › ");
+document.getElementById("domains").innerHTML =
+  Object.entries(D.shipped).map(([k,v])=>`<b>${esc(k)}</b> — ${esc(v.meaning)}<br>&nbsp;&nbsp;${auth(v)}`).join("<br>")
+  + `<br><br><span style="color:#6B7280">proposed</span><br>`
+  + Object.entries(D.proposed).map(([k,v])=>`<b>${esc(k)}</b> — ${esc(v.meaning)}<br>&nbsp;&nbsp;${auth(v)}`).join("<br>");
+
+const C = DATA.claimants;
+document.getElementById("claimants").innerHTML =
+  `<b>seats</b> ${C.seats.map(a=>(MIND[a]||"")+a).join(" · ")}<br><b>claim, no seat</b> ${C.shippedNonSeat.map(a=>(MIND[a]||"")+a).join(" · ")}<br><b>proposed</b> ${C.proposedNonSeat.map(a=>(MIND[a]||"")+a).join(" · ")}<br><span style="color:#6B7280">${esc(C.rule)}</span>`;
+document.getElementById("topology").innerHTML = Object.entries(DATA.topology).filter(([k])=>k!=="$comment").map(([k,v])=>`<b>${k}</b> → ${v.join(", ")}`).join("<br>");
+
+const ch = DATA.codeChangesRequired, chEl = document.getElementById("changes");
+if (ch && chEl) chEl.innerHTML = Object.entries(ch).filter(([k])=>k!=="$comment").map(([k,v])=>`<b>${esc(k)}</b> — ${esc(v)}`).join("<br><br>");
+</script>
+</body>
+</html>

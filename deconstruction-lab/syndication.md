@@ -113,6 +113,7 @@ Spacing the platform posts out by a few days is better than firing them all at o
 | Piece | Canonical | Syndicated |
 |---|---|---|
 | [Taking a Roof Apart in Sections](articles/roof-in-sections.md) | [/insights](https://mlsystemsri.com/insights/taking-a-roof-apart-in-sections) — live | pending: DEV · Hashnode · Medium · LinkedIn · X |
+| [Seven Families, One Ledger](../ontology/articles/seven-families-one-ledger.md) | **DEV** — platform writing; draft ready | pending: DEV first, then Hashnode (Original URL set) · LinkedIn · X. Must link to the existing DEV posts on the Master Ledger and the Seven Minds rather than re-explain them. |
 
 Existing platform posts (see [README](../README.md#writing--updates)) already cover the Master
 Ledger, the Seven Minds and agent cost. The DEV/Hashnode variants of the roof piece should link

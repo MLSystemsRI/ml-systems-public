@@ -48,9 +48,17 @@ with stable codes — for example:
 
 | Code family | Meaning |
 |---|---|
+| `FIN:*` | Finance — the homeowner's budget and the Loan Pit (e.g. `FIN:bridge`) |
+| `DEC:*` | Deconstruction — what is here and how it comes apart (e.g. `DEC:envelope`, `DEC:lift`) |
 | `DES:*` | Design/geometry facts (e.g. `DES:roof-form`, `DES:heights`, `DES:perimeter`) |
 | `BLD:*` | Build facts (e.g. `BLD:load-path`, `BLD:footing`, `BLD:bom`) |
+| `MKT:*` | Market — what recovered material and the home are worth (e.g. `MKT:harvest`) |
 | `VER:*` | Verification stamps (e.g. `VER:code-compliance`, `VER:overlook`) |
+| `LUP:*` | The equity loop — last sale, valuation, equity, the choice to go again (e.g. `LUP:equity`) |
+
+Seven families, one per phase of the value chain; `LUP` is *loop*, and `LUP → FIN` is the edge that
+closes it. Which minds may author codes in each family, and why four families were thin until
+September 2026, is in [The Seven Families](the-seven-families.md).
 
 New knowledge becomes a new code, not a new table. That keeps the ontology **extensible
 without schema churn** and keeps every claim traceable to the mind that made it.

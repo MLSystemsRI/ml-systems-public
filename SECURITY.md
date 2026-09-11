@@ -13,6 +13,7 @@ This is a **public reference** repository. It contains:
 - Product **documentation** (`docs/`)
 - The **Deconstruction Lab** — method, writing brief, and articles (`deconstruction-lab/`)
 - **AI and SEO context** for agents and search (`knowledge/`)
+- The **ontology tranche** — families, workflow diagram, brief, articles (`ontology/`, generated from a private copy with engine paths stripped)
 
 It intentionally does **not** contain:
 

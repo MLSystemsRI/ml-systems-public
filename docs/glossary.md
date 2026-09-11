@@ -16,7 +16,7 @@ Every ML Systems term in one place. Terms link to their full treatment where one
 | **Collective Ontology** | The [shared grammar](collective-ontology.md) that lets every mind describe the same house without collision. |
 | **HomeGenome** | The compact, canonical DNA of one home — the output of [ontological compression](ontological-compression.md). |
 | **Ontological Compression** | Reducing everything known about a home into a HomeGenome; signal over redundancy. |
-| **Ontology codes** | Stable tags for claims/outputs: `DES:*` (design), `BLD:*` (build), `VER:*` (verification). Extend codes, not storage. |
+| **Ontology codes** | Stable `SECTION:task` tags for claims/outputs in seven families — `FIN` `DEC` `DES` `BLD` `MKT` `VER` `LUP`. Extend codes, not storage. See [The Seven Families](the-seven-families.md). |
 | **Envelope** | The building shell that absorbs individual wall/opening claims into one record. |
 | **Assembly stack** | Foundation → floors → walls → roof, each with a takeoff. |
 | **The Seven Minds** | [PI, MIA, VERA, REAPER, PIT LORD, CDA, MURPHY](the-seven-minds.md) — the AI agents, with the Custodian as a human peer. |
