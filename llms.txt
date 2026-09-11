@@ -31,6 +31,7 @@ projection), ASPIRATIONAL (a goal, not encoded in system logic).
 - [App Features](docs/app-features.md): a screen-by-screen tour of the mobile client.
 - [Glossary](docs/glossary.md): every term in one place.
 - Get the app: iOS https://apps.apple.com/app/id6799697171 · Android https://play.google.com/store/apps/details?id=com.mlsystems.app · Web preview https://try.mlsystemsri.com
+- Channels: GitHub https://github.com/MLSystemsRI · LinkedIn https://www.linkedin.com/company/ml-systems-llc · X https://x.com/ML_SystemsLLC · Instagram https://www.instagram.com/ml_systemsllc · Threads https://www.threads.com/@ml_systemsllc · Bluesky https://bsky.app/profile/mlsystems.bsky.social · Facebook https://www.facebook.com/profile.php?id=61584698819319 · Writing: DEV https://dev.to/salparvez (canonical) · Hashnode https://mlsystems.hashnode.dev · Substack https://mlsystemsri.substack.com · Medium https://medium.com/@salparvez
 
 ## Source (reference only)
 

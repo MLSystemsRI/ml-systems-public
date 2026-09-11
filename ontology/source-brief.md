@@ -74,8 +74,9 @@ Say "proposed" or "designed", never "now supports" or "has added", for anything 
 
 Ontology writing is **platform / engineering writing** — its canonical home is **DEV**
 (`dev.to/salparvez`), per the repo README ("canonical for most posts"). Hashnode carries a distinct
-framing with the Original URL field set; Medium gets the builder's version; LinkedIn and X get one
-idea each. `/insights` is optional for this subject — if used, it must be a *different* piece
+framing with the Original URL field set; Medium gets the builder's version; Substack mirrors DEV by
+RSS; LinkedIn, X, Bluesky and Threads get one idea each; Hacker News only as a Show HN with a
+shipped artifact. `/insights` is optional for this subject — if used, it must be a *different* piece
 (homeowner framing: "who gets to say what your house is"), not a copy. Distribution rules and the
 per-channel checklist: [`../deconstruction-lab/syndication.md`](../deconstruction-lab/syndication.md).
 

@@ -23,7 +23,12 @@
     "structure": "Service-area business covering 23 Rhode Island cities and towns",
     "contactEmail": "salparvez@mlsystemsri.com",
     "contactPhone": "+1-401-XXX-XXXX",
-    "linkedin": "https://www.linkedin.com/company/110738139"
+    "linkedin": "https://www.linkedin.com/company/ml-systems-llc",
+    "channels": {
+      "company": ["https://github.com/MLSystemsRI", "https://www.linkedin.com/company/ml-systems-llc", "https://www.facebook.com/profile.php?id=61584698819319", "https://www.instagram.com/ml_systemsllc", "https://www.threads.com/@ml_systemsllc", "https://x.com/ML_SystemsLLC", "https://bsky.app/profile/mlsystems.bsky.social"],
+      "writing": ["https://dev.to/salparvez", "https://mlsystems.hashnode.dev", "https://mlsystemsri.substack.com", "https://medium.com/@salparvez"],
+      "listings": ["https://www.producthunt.com/products/ml-systems", "https://wellfound.com/company/ml-systems-3", "https://apps.apple.com/app/id6799697171", "https://play.google.com/store/apps/details?id=com.mlsystems.app"]
+    }
   },
   "entryPoint": "https://mlsystemsri.com",
   "readingOrder": [

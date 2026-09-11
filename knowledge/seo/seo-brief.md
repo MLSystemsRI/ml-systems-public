@@ -34,8 +34,23 @@
 | API | https://api.mlsystemsri.com | Developer/data product |
 | GitHub showcase | https://github.com/MLSystemsRI/ml-systems-public | Public overview |
 | Yelp | https://www.yelp.com/biz/ml-systems-warwick | Local citation |
-| Facebook | https://www.facebook.com/people/ML-Systems/61584698819319/ | Social |
+| Facebook | https://www.facebook.com/profile.php?id=61584698819319 | Social |
 | Bizapedia | https://www.bizapedia.com/ri/ml-systems-llc.html | Business directory |
+| LinkedIn (company) | https://www.linkedin.com/company/ml-systems-llc | Social · investor lookup |
+| X | https://x.com/ML_SystemsLLC | Social |
+| Instagram | https://www.instagram.com/ml_systemsllc | Social |
+| Threads | https://www.threads.com/@ml_systemsllc | Social (opened 2026-09-11) |
+| Bluesky | https://bsky.app/profile/mlsystems.bsky.social | Social (opened 2026-09-11) |
+| DEV | https://dev.to/salparvez | Writing — canonical for platform posts |
+| Hashnode | https://mlsystems.hashnode.dev | Writing (*ML Systems Engineering*) |
+| Substack | https://mlsystemsri.substack.com | Newsletter (opened 2026-09-11; DEV RSS import pending) |
+| Medium | https://medium.com/@salparvez | Writing — the builder's version |
+| Hacker News | https://news.ycombinator.com/user?id=Salparvezml | Founder (opened 2026-09-11) |
+| Product Hunt | https://www.producthunt.com/products/ml-systems | Launch listing (live 2026-09-03) |
+| Wellfound | https://wellfound.com/company/ml-systems-3 | Investor lookup · hiring |
+| App Store | https://apps.apple.com/app/id6799697171 | iOS listing |
+| Google Play | https://play.google.com/store/apps/details?id=com.mlsystems.app | Android listing |
+| Crunchbase | pending — slug to confirm | Investor lookup |
 
 ## Current SEO status (as of 2026-09)
 

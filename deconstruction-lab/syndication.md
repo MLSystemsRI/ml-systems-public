@@ -31,7 +31,11 @@ pieces for the other channels that stand on their own and link back for the full
 | **Medium** | [medium.com/@salparvez](https://medium.com/@salparvez) | The builder's explanation — narrative, less technical | General / founder-follow |
 | **LinkedIn** | [company](https://www.linkedin.com/company/ml-systems-llc) + founder | Short-form, one idea, link out | Industry, partners, investors |
 | **X** | [@ML_SystemsLLC](https://x.com/ML_SystemsLLC) | Thread or single post | Broad |
-| **Instagram · Facebook · Product Hunt** | see [README](../README.md#writing--updates) | Reach, not depth | Broad |
+| **Bluesky** | [@mlsystems.bsky.social](https://bsky.app/profile/mlsystems.bsky.social) | Same one-idea post as X; the builder/tech audience skews here now | Tech, open-source |
+| **Threads** | [@ml_systemsllc](https://www.threads.com/@ml_systemsllc) | Conversational; pairs with the Instagram visual | Broad |
+| **Substack** | [mlsystemsri.substack.com](https://mlsystemsri.substack.com) | Newsletter mirror of DEV via RSS once the publisher agreement is signed — not a separate canonical | Subscribers |
+| **Hacker News** | [Salparvezml](https://news.ycombinator.com/user?id=Salparvezml) | **Show HN only when there is a real hook** — a shipped artifact, never a repost | Developers |
+| **Instagram · Facebook · Product Hunt · Wellfound** | see [README](../README.md#where-ml-systems-keeps-its-work) | Reach and listings, not depth | Broad |
 
 > **Two canonicals, on purpose.** The repo README calls DEV *"canonical for most posts"* — that
 > holds for the platform/engineering writing (the Master Ledger, the Seven Minds, agent cost),

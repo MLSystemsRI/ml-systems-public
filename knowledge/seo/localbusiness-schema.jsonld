@@ -88,19 +88,27 @@
       ],
 
       "sameAs": [
-        "https://www.linkedin.com/company/110738139",
-        "https://x.com/ML_SystemsLLC",
+        "https://github.com/MLSystemsRI",
+        "https://github.com/MLSystemsRI/ml-systems-public",
+        "https://www.linkedin.com/company/ml-systems-llc",
+        "https://www.facebook.com/profile.php?id=61584698819319",
         "https://www.instagram.com/ml_systemsllc",
-        "https://www.facebook.com/people/ML-Systems/61584698819319/",
+        "https://www.threads.com/@ml_systemsllc",
+        "https://x.com/ML_SystemsLLC",
+        "https://bsky.app/profile/mlsystems.bsky.social",
+        "https://mlsystemsri.substack.com",
+        "https://mlsystems.hashnode.dev",
+        "https://www.producthunt.com/products/ml-systems",
+        "https://wellfound.com/company/ml-systems-3",
         "https://www.yelp.com/biz/ml-systems-warwick",
         "https://www.bizapedia.com/ri/ml-systems-llc.html",
-        "https://github.com/MLSystemsRI/ml-systems-public",
+        "https://apps.apple.com/app/id6799697171",
+        "https://play.google.com/store/apps/details?id=com.mlsystems.app",
         "https://try.mlsystemsri.com",
         "https://mlsystemsri.info",
         "https://mlsystemsri.store",
         "https://mlsystemsri.net",
         "https://mlsystemsri.xyz",
-        "https://api.mlsystemsri.com",
         "https://pit.mlsystemsri.com",
         "https://collective.mlsystemsri.com",
         "https://design.mlsystemsri.com",
@@ -114,7 +122,13 @@
       "jobTitle": "Founder",
       "worksFor": { "@id": "https://mlsystemsri.com/#organization" },
       "url": "https://mlsystemsri.com/about",
-      "sameAs": ["https://www.linkedin.com/in/salman-parvez-63727a4b/"]
+      "sameAs": [
+        "https://www.linkedin.com/in/salman-parvez-63727a4b/",
+        "https://dev.to/salparvez",
+        "https://medium.com/@salparvez",
+        "https://news.ycombinator.com/user?id=Salparvezml",
+        "https://substack.com/@salparvez"
+      ]
     }
   ]
 }

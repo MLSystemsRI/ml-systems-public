@@ -136,14 +136,14 @@ build. The proprietary logic it calls into is the private engine.
 - **Web:** https://mlsystemsri.com
 - **Tag line:** *Tougher Problems Inspire Creative Solutions*
 
-## Writing & updates
+## Where ML Systems keeps its work
 
-Long-form technical writing on the platform — the Master Ledger, the Seven Minds,
-agent cost and coordination — is published on:
-
-- ✍️ **dev.to** — https://dev.to/salparvez (canonical for most posts)
-- 📰 **Hashnode** — https://mlsystems.hashnode.dev (*ML Systems Engineering*)
-- 📝 **Medium** — https://medium.com/@salparvez
+- **Website:** https://mlsystemsri.com · app preview: https://try.mlsystemsri.com
+- **Apps:** [iOS](https://apps.apple.com/app/id6799697171) · [Android](https://play.google.com/store/apps/details?id=com.mlsystems.app)
+- **Writing:** [DEV](https://dev.to/salparvez) (canonical for platform posts) · [Hashnode](https://mlsystems.hashnode.dev) (*ML Systems Engineering*) · [Medium](https://medium.com/@salparvez) · [Substack](https://mlsystemsri.substack.com)
+- **Company:** [LinkedIn](https://www.linkedin.com/company/ml-systems-llc) · [Facebook](https://www.facebook.com/profile.php?id=61584698819319) · [Instagram](https://www.instagram.com/ml_systemsllc) · [Threads](https://www.threads.com/@ml_systemsllc) · [X](https://x.com/ML_SystemsLLC) · [Bluesky](https://bsky.app/profile/mlsystems.bsky.social)
+- **Listings:** [Product Hunt](https://www.producthunt.com/products/ml-systems) · [Wellfound](https://wellfound.com/company/ml-systems-3)
+- **Founder:** [Hacker News](https://news.ycombinator.com/user?id=Salparvezml) · [Substack](https://substack.com/@salparvez)
 
 Recent posts:
 
@@ -153,7 +153,6 @@ Recent posts:
 - [Agent Costs Are Hard to Predict Because We Keep Building Them to Be Unpredictable](https://medium.com/@salparvez/agent-costs-are-hard-to-predict-because-we-keep-building-them-to-be-unpredictable-73b2efc497f2)
 - [The Advice Was "Build on Unique Data." Mine Was a House.](https://medium.com/@salparvez/the-advice-was-build-on-unique-data-mine-was-a-house-1d00d3e2500f)
 
-Company channels: [X](https://x.com/ML_SystemsLLC) · [LinkedIn](https://www.linkedin.com/company/ml-systems-llc) · [Instagram](https://www.instagram.com/ml_systemsllc) · [Product Hunt](https://www.producthunt.com/products/ml-systems) · [Facebook](https://www.facebook.com/profile.php?id=61584698819319)
 
 ## License
 
