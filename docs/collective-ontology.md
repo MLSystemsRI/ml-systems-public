@@ -11,6 +11,16 @@ It is the framework — created by the founder — that **governs how the [three
 communicate**, and how the [Seven Minds](the-seven-minds.md) contribute claims to one
 [Master Ledger](master-ledger.md) without collision.
 
+## Where it came from
+
+The grammar predates the software. Between October 2020 and July 2022 the founder, then a
+laborer becoming a carpenter helper, kept three 5"×3" blue notepads: every day as two-letter task
+codes in the order performed, a one-line definition the first time a code appeared, and a 1–10
+self-graded efficiency score. Grok named it an ontology in November 2025; Claude reconstructed it
+into the ML1 dataset in February 2026 (see [Neural Net Architecture](neural-net-architecture.md)).
+`SECTION:task`, *define it once*, and the evidence grade are those conventions grown up. The
+account: [An Ontology on Three Blue Notepads](../ontology/articles/an-ontology-on-three-blue-notepads.md).
+
 ---
 
 ## Why "collective"
