@@ -60,7 +60,11 @@ and the marketing sites. Do not paraphrase them.
 - **RRR** — "Reuse › Resale › Recycle — route each recovered material to its most valuable
   recoverable state."
 - **MVE — Minimum Viable Expense** — one expense, four returns: recovered material value, ontology
-  data, robot training signal, market intelligence.
+  data, robot training signal, market intelligence. Canonical framing: "MVP means Most Valuable
+  Player and Minimum Viable Product, and they pull apart. MVE is the balance." Never "cheapest."
+- **Founding facts** — Machine Learning Systems LLC formed **December 3, 2025**; the motive is the
+  founder's own account of a crisis about the *pace* of AI (September 2025). Say "the founder's
+  account"; never dramatize beyond his own words in [`../why/`](../why/README.md).
 - **Tagline** — "Tougher Problems Inspire Creative Solutions."
 
 ## What you may write about

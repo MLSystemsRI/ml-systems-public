@@ -43,6 +43,17 @@ not market appreciation — and the homeowner can *choose* to keep building. Tha
 Every house that moves through the loop becomes ground-truth data: a fully specified
 construction sequence that is, itself, the most valuable product ML Systems makes.
 
+## Why it exists
+
+The company was formed on December 3, 2025, after the founder's own crisis about the **pace** of
+AI — capability compounding exponentially, human understanding growing linearly, and the gap
+landing first on ordinary people's houses, equity and lenders. He could not slow the frontier; he
+could build the slow lane in one industry, on purpose. That is why the agents **claim** but may
+never **ground**, why only a human stamps, and why the first thing a machine learning system does
+to a house here is keep it out of the landfill. When Dario Amodei wrote *We Must Pace the
+Frontier* on September 12, 2026 — with Sam Altman and Elon Musk agreeing the same day — the
+founder answered from the ground. → [`why/`](why/) · [the piece](why/articles/pace-the-frontier-pace-the-house.md)
+
 ## The value chain
 
 ```
@@ -147,6 +158,7 @@ build. The proprietary logic it calls into is the private engine.
 
 Recent posts:
 
+- [Pace the Frontier, Pace the House](why/articles/pace-the-frontier-pace-the-house.md) — the founding story, the American Dream attributed to homeownership through deconstruction in lieu of demolition, and MVE as the balance in MVP; written the weekend Amodei, Altman and Musk agreed to pace AI (canonical on `/insights`, pending)
 - [Claims, Not Facts: Building an Auditable Multi-Author Record for a House](https://dev.to/salparvez/claims-not-facts-building-an-auditable-multi-author-record-for-a-house-33d6) — the Master Ledger, domain-scoped authority, multiverification, lapsing signatures
 - [My AI agents don't talk to each other](https://dev.to/salparvez/my-ai-agents-dont-talk-to-each-other-166e) — the Seven Minds
 - [I stopped storing facts and started storing claims](https://dev.to/salparvez/i-stopped-storing-facts-and-started-storing-claims-17fd)

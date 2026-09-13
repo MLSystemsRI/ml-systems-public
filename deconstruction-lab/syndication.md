@@ -117,6 +117,7 @@ Spacing the platform posts out by a few days is better than firing them all at o
 | Piece | Canonical | Syndicated |
 |---|---|---|
 | [Taking a Roof Apart in Sections](articles/roof-in-sections.md) | [/insights](https://mlsystemsri.com/insights/taking-a-roof-apart-in-sections) — live | pending: DEV · Hashnode · Medium · LinkedIn · X |
+| [Pace the Frontier, Pace the House](../why/articles/pace-the-frontier-pace-the-house.md) | `/insights` — ready, not yet published | per [`why/channel-versions.md`](../why/channel-versions.md): LinkedIn (founder) · X thread · Bluesky · Threads · Medium (builder's version) · DEV only if the "embedded evaluators at house scale" angle is written; thread replies included |
 | [Seven Families, One Ledger](../ontology/articles/seven-families-one-ledger.md) | **DEV** — platform writing; draft ready | pending: DEV first, then Hashnode (Original URL set) · LinkedIn · X. Must link to the existing DEV posts on the Master Ledger and the Seven Minds rather than re-explain them. |
 
 Existing platform posts (see [README](../README.md#writing--updates)) already cover the Master

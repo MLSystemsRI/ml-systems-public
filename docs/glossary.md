@@ -33,7 +33,8 @@ Every ML Systems term in one place. Terms link to their full treatment where one
 | **ML1 / ML2 / ML3** | Physical neural net: Manual Labor → Measured Learning → Machine Learning. |
 | **LM / FA / AE** | Financial neural net: Language Modeler / Financial Architect / Accounting Engineer. |
 | **EV / CR / GW** | Dance neural net: Events-Sponsors / Creativity / Generational Wealth. |
-| **TT · LL · MVE lens** | The Custodian's build-logic overlook: grounded-share (TT) · Lucent Lens (LL) · minimum-viable-estimate (MVE). |
+| **MVE** | **Minimum Viable Expense** — the balance in MVP (Most Valuable Player *and* Minimum Viable Product pull apart): the one spend that is both the least that works and the most valuable, because it returns more than once. In the deconstruction lab one spend returns four ways — material value, ontology data, training signal, market intelligence. The same lens governs how the agents spend compute. See [why/](../why/). |
+| **TT · LL · MVE lens** | The Custodian's build-logic overlook: grounded-share / Transparency Trust (TT) · Lucent Lens (LL) · Minimum Viable Expense (MVE). |
 | **MEASURED / MODELED / ASPIRATIONAL** | [Reality labels](../README.md#reality-labels): exists today / calibrated projection / a goal not encoded. |
 | **CONSTRUCTION_VALUE_MULTIPLIER** | 1.43× per cycle (MODELED) — physical value creation, not market appreciation. |
 | **VGSI** | Vision Government Solutions — the town/assessor record source VERA harvests. |
