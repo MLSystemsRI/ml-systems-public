@@ -24,7 +24,7 @@ The progression ML1 → ML2 → ML3 is the arc from *doing* the work, to *learni
 
 | Node | Full name | Description |
 |---|---|---|
-| **LM** | Language Modeler | The founder's spin on vibe coding; narrative & strategy |
+| **LM** | Language Modeler | The founder's spin on vibe coding; narrative & strategy — the role, defined: [The Language Modeler](../why/articles/the-language-modeler.md) |
 | **FA** | Financial Architect | Bootstrapping strategy; the current active role |
 | **AE** | Accounting Engineer | GAAP research + AI's disruption of accounting |
 

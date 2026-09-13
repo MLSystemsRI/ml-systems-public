@@ -31,6 +31,7 @@ first piece in this folder.
 |---|---|---|
 | **Pace is a design decision** | You do not slow a system by asking; you decide, in the grammar, who may say what is true. Every mind claims. Five seats ground. VERA gates. Only the Custodian stamps. | [The Master Ledger](../docs/master-ledger.md) · [The Seven Families](../docs/the-seven-families.md) |
 | **The American Dream, attributed correctly** | The unit of the dream is a home. Deconstruction instead of demolition keeps the house — and the equity — with the family. | [The Value Chain](../docs/value-chain.md) · [The Deconstruction Method](../deconstruction-lab/method.md) |
+| **The Language Modeler** | Model the system in English precisely enough to translate to code; the AI is a moderator between the two languages; the author of the English is the author of record. The job here is a layer — carpenter first, Modeler on top. | [Neural Net Architecture → LM](../docs/neural-net-architecture.md) · [The piece](articles/the-language-modeler.md) |
 | **MVE — the balance in MVP** | MVP means Most Valuable Player *and* Minimum Viable Product, and they pull apart. **Minimum Viable Expense** is the balance: the one spend that is both the least that works and the most valuable, because it returns four ways. | [Glossary](../docs/glossary.md) · [Method → The four returns](../deconstruction-lab/method.md) |
 
 ## Files
@@ -38,6 +39,7 @@ first piece in this folder.
 | File | What it is |
 |---|---|
 | [`articles/pace-the-frontier-pace-the-house.md`](articles/pace-the-frontier-pace-the-house.md) | The canonical piece — live at [`/insights`](https://mlsystemsri.com/insights/pace-the-frontier-pace-the-house). |
+| [`articles/the-language-modeler.md`](articles/the-language-modeler.md) | The role, named: Language Modeler instead of "vibe coding" — model the system in English, the AI moderates the translation, the author of the English is accountable. Carpenter + Language Modeler is the company's first planned hire (not open). |
 | [`channel-versions.md`](channel-versions.md) | Distinct LinkedIn / X / Bluesky / Threads / Medium / DEV versions, plus replies for public threads. |
 
 ## Reality labels, as always

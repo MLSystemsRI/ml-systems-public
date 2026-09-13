@@ -32,6 +32,7 @@ Every ML Systems term in one place. Terms link to their full treatment where one
 | **RCM** | Reversed Conventional Mortgage — a **parked** earlier product; 100% of payment to principal, interest deferred. Not current value-chain logic. |
 | **ML1 / ML2 / ML3** | Physical neural net: Manual Labor → Measured Learning → Machine Learning. |
 | **LM / FA / AE** | Financial neural net: Language Modeler / Financial Architect / Accounting Engineer. |
+| **Language Modeler** | The role ML Systems uses instead of "vibe coding": models the system in English precisely enough to translate to code; the AI moderates between the two languages; the Modeler is the author of record. The `LM` node. At ML Systems the job is a layer — carpenter first, Modeler on top — and the company's first planned hire (not open). See [The Language Modeler](../why/articles/the-language-modeler.md). |
 | **EV / CR / GW** | Dance neural net: Events-Sponsors / Creativity / Generational Wealth. |
 | **MVE** | **Minimum Viable Expense** — the balance in MVP (Most Valuable Player *and* Minimum Viable Product pull apart): the one spend that is both the least that works and the most valuable, because it returns more than once. In the deconstruction lab one spend returns four ways — material value, ontology data, training signal, market intelligence. The same lens governs how the agents spend compute. See [why/](../why/). |
 | **TT · LL · MVE lens** | The Custodian's build-logic overlook: grounded-share / Transparency Trust (TT) · Lucent Lens (LL) · Minimum Viable Expense (MVE). |
