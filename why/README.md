@@ -37,7 +37,7 @@ first piece in this folder.
 
 | File | What it is |
 |---|---|
-| [`articles/pace-the-frontier-pace-the-house.md`](articles/pace-the-frontier-pace-the-house.md) | The canonical piece — ready for `/insights`. |
+| [`articles/pace-the-frontier-pace-the-house.md`](articles/pace-the-frontier-pace-the-house.md) | The canonical piece — live at [`/insights`](https://mlsystemsri.com/insights/pace-the-frontier-pace-the-house). |
 | [`channel-versions.md`](channel-versions.md) | Distinct LinkedIn / X / Bluesky / Threads / Medium / DEV versions, plus replies for public threads. |
 
 ## Reality labels, as always

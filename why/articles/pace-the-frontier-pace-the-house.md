@@ -2,8 +2,8 @@
 
 **Slug:** `pace-the-frontier-pace-the-house`
 **Category:** `technology`
-**Status:** ready
-**Target:** `mlsystemsri.com/insights` (canonical), then per channel — see [channel-versions.md](../channel-versions.md)
+**Status:** published
+**Canonical:** https://mlsystemsri.com/insights/pace-the-frontier-pace-the-house — then per channel — see [channel-versions.md](../channel-versions.md)
 **Author:** Sal, founder of ML Systems — written September 13, 2026
 
 ---
@@ -20,7 +20,7 @@ I read it at my kitchen table in Rhode Island, and I did not feel vindicated. I 
 
 ## A year ago, at the same table
 
-About a year ago I had what I can only call an existential crisis about speed. Not about machines becoming smart — I build with them every day and I like them. It was about the gap. Capability was compounding. Human understanding — mine, my neighbors', the town clerk's, the carpenter's — was not. It grows the way it always has: one person, one conversation, one mistake at a time. Two curves, one exponential and one linear, and the distance between them is where people get hurt. Not in a science-fiction way. In a your-lender-uses-a-model-you-can't-question way. In a your-house-got-torn-down-because-a-spreadsheet-said-so way.
+About a year ago — September 2025 — I had what I can only call an existential crisis about speed. It began as thoughts about AGI and human consciousness. Not a fear that machines would become smart; I build with them every day and I like them. It was that the speed of advancement toward AGI would open an exponential gap to human consciousness, and that the gap itself was the danger. Capability was compounding. Human understanding — mine, my neighbors', the town clerk's, the carpenter's — was not. It grows the way it always has: one person, one conversation, one mistake at a time. Two curves, one exponential and one linear, and the distance between them is where people get hurt. Not in a science-fiction way. In a your-lender-uses-a-model-you-can't-question way. In a your-house-got-torn-down-because-a-spreadsheet-said-so way.
 
 I could not slow the frontier. Nobody can from Warwick. What I could do was choose one place where that gap would land on ordinary people first, and build the slow lane there on purpose.
 
@@ -34,11 +34,11 @@ The industry that serves that dream has a strange habit. When a house needs to b
 
 ML Systems exists to replace that habit with a different one: deconstruction in lieu of demolition. Take the house apart in reverse build order. Route every recovered material to its most valuable recoverable state — reuse it in the rebuild, resell it at a builder's open house, recycle what is left. Then rebuild the home from its own materials — larger, with near-zero waste — and let the equity that creates belong to the people who already lived there. The loop closes when the homeowner chooses to keep building. That choice, not a projection, is the flywheel.
 
-None of this is a report from a completed job. No ML Systems deconstruction has been performed yet. The 80–90% recovery target is MODELED. The two-day crane sequence is ASPIRATIONAL. What is MEASURED is the software: a shipped app, a working ledger, and an ontology that seven agents and one human speak fluently. I say which is which every time, because the whole point is that a person can check.
+None of this is a report from a completed job. No ML Systems deconstruction has been performed yet. The 80–90% recovery target is MODELED. The two-day crane sequence is ASPIRATIONAL. What is MEASURED is the software: a shipped app, a working ledger, and a Collective Ontology that seven agents and one human speak fluently. I say which is which every time, because the whole point is that a person can check.
 
 ## Pace is not a feeling. It is a design decision.
 
-Here is what I learned building it: you cannot slow a system down by asking it nicely. You slow it down by deciding, in the grammar, who is allowed to say what is true.
+Here is what I learned building it: you cannot slow a system down by asking it nicely. You slow it down by deciding, in the ontology's grammar, who is allowed to say what is true.
 
 So the system does not store facts. It stores claims. Every entry on a home's Master Ledger holds claims — who said it, what evidence grade backs it, what value they gave — and claims are reconciled by domain: the homeowner leads on the interior, the record leads on the legal card, VERA leads on what a satellite can see. Every mind claims. Five seats ground. VERA gates. Only the Custodian stamps. The Custodian is me, a person, and my stamp is bound to a content hash; change the content and the signature lapses.
 

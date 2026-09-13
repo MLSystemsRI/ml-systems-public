@@ -13,7 +13,7 @@ projection), ASPIRATIONAL (a goal, not encoded in system logic).
 
 ## Start here
 
-- [Why ML Systems exists](why/README.md): the founding argument — formed December 3, 2025 after the founder's crisis about the pace of AI; pace as a design decision (agents claim, humans stamp); the American Dream attributed to homeownership through deconstruction in lieu of demolition; MVE (Minimum Viable Expense) as the balance in MVP. Canonical piece: why/articles/pace-the-frontier-pace-the-house.md.
+- [Why ML Systems exists](why/README.md): the founding argument — formed December 3, 2025 after the founder's crisis about the pace of AI; pace as a design decision (agents claim, humans stamp); the American Dream attributed to homeownership through deconstruction in lieu of demolition; MVE (Minimum Viable Expense) as the balance in MVP. Canonical piece: why/articles/pace-the-frontier-pace-the-house.md — published at https://mlsystemsri.com/insights/pace-the-frontier-pace-the-house.
 - [The stage we're at](docs/the-stage-were-at.md): what is shipped vs modeled vs aspirational, as of September 2026.
 - [The Value Chain](docs/value-chain.md): Loan Origination (the Loan Pit) → Deconstruction (80–90% recovery, RRR) → Construction (+10% SF, +1 story, 1.43× value multiplier), closed into an equity loop.
 

@@ -158,7 +158,7 @@ build. The proprietary logic it calls into is the private engine.
 
 Recent posts:
 
-- [Pace the Frontier, Pace the House](why/articles/pace-the-frontier-pace-the-house.md) — the founding story, the American Dream attributed to homeownership through deconstruction in lieu of demolition, and MVE as the balance in MVP; written the weekend Amodei, Altman and Musk agreed to pace AI (canonical on `/insights`, pending)
+- [Pace the Frontier, Pace the House](why/articles/pace-the-frontier-pace-the-house.md) — the founding story, the American Dream attributed to homeownership through deconstruction in lieu of demolition, and MVE as the balance in MVP; written the weekend Amodei, Altman and Musk agreed to pace AI (canonical: [mlsystemsri.com/insights/pace-the-frontier-pace-the-house](https://mlsystemsri.com/insights/pace-the-frontier-pace-the-house))
 - [Claims, Not Facts: Building an Auditable Multi-Author Record for a House](https://dev.to/salparvez/claims-not-facts-building-an-auditable-multi-author-record-for-a-house-33d6) — the Master Ledger, domain-scoped authority, multiverification, lapsing signatures
 - [My AI agents don't talk to each other](https://dev.to/salparvez/my-ai-agents-dont-talk-to-each-other-166e) — the Seven Minds
 - [I stopped storing facts and started storing claims](https://dev.to/salparvez/i-stopped-storing-facts-and-started-storing-claims-17fd)

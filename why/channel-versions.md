@@ -3,9 +3,9 @@
 > Companion to [`articles/pace-the-frontier-pace-the-house.md`](articles/pace-the-frontier-pace-the-house.md).
 > The rule from [syndication.md](../deconstruction-lab/syndication.md) holds: **different text per
 > channel, every version links back to the canonical, reality labels survive the cut.** Canonical
-> is `/insights` on mlsystemsri.com; until it is live, link to the GitHub copy.
+> is `/insights` on mlsystemsri.com — live since September 13, 2026. Link to it, not to the GitHub copy.
 
-Canonical URL (once published): `https://mlsystemsri.com/insights/pace-the-frontier-pace-the-house`
+Canonical URL (live): `https://mlsystemsri.com/insights/pace-the-frontier-pace-the-house`
 GitHub copy: `https://github.com/MLSystemsRI/ml-systems-public/blob/main/why/articles/pace-the-frontier-pace-the-house.md`
 
 Quotes used below are the real ones. Amodei (Sept 12, 2026): "We must slow the pace at which we
