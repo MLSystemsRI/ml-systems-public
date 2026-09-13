@@ -5,7 +5,7 @@
 > ML Systems is a Rhode Island construction company (NAICS 236115) building the
 > software layer for a circular building economy: homeowners reach capital markets,
 > houses are **deconstructed** instead of demolished, and the recovered materials
-> go **back into the same home** — a circular loop that compounds equity, cycle after cycle,
+> go through **Reuse, Resale, Recycle** — a circular loop that compounds equity, cycle after cycle,
 > and leaves the home larger each time.
 
 This repository is the **public reference** for the ML Systems platform: the mobile
