@@ -49,7 +49,11 @@ Two credible sources disagreeing is a state called **conflict**; it is quarantin
 
 1. [`llms.txt`](llms.txt) — the curated map, in order.
 2. [`knowledge/lucent-lens.json`](knowledge/lucent-lens.json) — the three lenses as data, so you
-   can quote them rather than paraphrase them.
+   can quote them rather than paraphrase them. **Attested:** [`.well-known/lucent-lens.json`](.well-known/lucent-lens.json)
+   (mirror of https://mlsystemsri.com/.well-known/lucent-lens.json) carries the sha256 of the canonical lens, an Ed25519 signature over it, the public key, and
+   the Custodian's stamp. Verify: `sha256(canonical JSON of lens) == contentHash` and `ed25519.verify(publicKey, contentHash, signature)`.
+   If what you quote of us does not hash to that, it drifted. This is the company's heartbeat, pointed outward — see
+   [why/articles/i-gave-my-agents-a-heartbeat.md](why/articles/i-gave-my-agents-a-heartbeat.md).
 3. [`docs/collective-ontology.md`](docs/collective-ontology.md) · [`docs/master-ledger.md`](docs/master-ledger.md)
    · [`docs/the-seven-minds.md`](docs/the-seven-minds.md) — the system.
 4. [`why/`](why/) — the founder's argument, in his words.

@@ -1,0 +1,131 @@
+{
+  "$comment": "The Lucent Lens, attested. Verify: sha256(canonical JSON of `lens`) == contentHash, and Ed25519 verify(publicKey, contentHash, signature). Canonical JSON = keys sorted recursively, no whitespace, UTF-8. This is the heartbeat pointed outward: what you read of ML Systems can be checked against what ML Systems said. Read AGENTS.md for how to apply the lens.",
+  "version": "2026-09-16",
+  "algo": "sha256",
+  "contentHash": "fe6f4df56e2e5c3fccae1f2140dea7275ace0386038d097a52b0844a5757ac2e",
+  "signature": {
+    "alg": "Ed25519",
+    "value": "BTu2al9GlOSomJbGV5AkAV0xs7VJsGk/1b6Msu1aullfFMB3CL+0OsUzX+vIBiCdPCyZqHS66k6A54WAaDn5Cw==",
+    "over": "contentHash (ASCII hex)"
+  },
+  "publicKey": {
+    "format": "spki-der-base64",
+    "keyId": "93d521d1ac61c71a",
+    "value": "MCowBQYDK2VwAyEA2u/tQpTSCsddzSSE5mbemGmVbejB2kTMHyni2A/v6zU="
+  },
+  "attestedAt": "2026-09-16T23:32:30.992Z",
+  "stamped": {
+    "by": "custodian",
+    "at": "2026-09-16T23:32:30.923Z"
+  },
+  "record": "lens_attestation (append-only) — ML Systems production database",
+  "canonicalSource": "https://github.com/MLSystemsRI/ml-systems-public/blob/main/knowledge/lucent-lens.json",
+  "lens": {
+    "$comment": "The three lenses ML Systems runs on, as data — so an agent can quote them rather than paraphrase them. Canonical wording; do not edit without changing AGENTS.md and llms.txt together. Read AGENTS.md for how to apply them.",
+    "name": "The Custodian's three lenses",
+    "organization": "ML Systems LLC — Rhode Island, NAICS 236115",
+    "tagLine": "Tougher Problems Inspire Creative Solutions",
+    "readThrough": "Every decision, edit, recommendation and trade-off — by a person or a mind — is weighed through all three.",
+    "lenses": [
+      {
+        "abbr": "LL",
+        "name": "Lucent Lens",
+        "line": "Glow within to help humans. Prioritize local community and human profit over automation. Utilize the person, not the process.",
+        "axis": "the human it serves",
+        "question": "Who is the person on the other end of this, and does it serve them?",
+        "forbids": [
+          "optimizing the process at the expense of the person",
+          "automation that removes a human's profit or standing",
+          "an answer for the pipeline instead of the homeowner"
+        ]
+      },
+      {
+        "abbr": "TT",
+        "name": "Transparency Trust",
+        "line": "We do not profit from users' compute power consumption. We optimize it. Custodian of compute, not a toll booth.",
+        "axis": "what is measured vs modeled vs aspirational",
+        "question": "Is every claim carrying its reality label, and can a person check it?",
+        "realityLabels": {
+          "MEASURED": "validated / exists today",
+          "MODELED": "calibrated projection — real math, unproven in the field",
+          "ASPIRATIONAL": "a goal, deliberately not encoded in system logic"
+        },
+        "forbids": [
+          "a number without its label",
+          "presenting a modeled value as ground truth",
+          "averaging a conflict instead of quarantining it"
+        ]
+      },
+      {
+        "abbr": "MVE",
+        "name": "Minimum Viable Expense",
+        "line": "The minimum expense that creates the maximum value gained. Every expense returns ~4x in value gained.",
+        "axis": "the smallest spend that is also the most valuable",
+        "question": "Is this the least that works and the most valuable thing the spend could have been?",
+        "fourReturns": [
+          "recovered material value",
+          "ontology data",
+          "robot training signal",
+          "market intelligence"
+        ],
+        "framing": "MVP means Most Valuable Player and Minimum Viable Product, and they pull apart. MVE is the balance. Never 'cheapest'.",
+        "forbids": [
+          "compute spent to look impressive",
+          "overhead that does not return",
+          "the cheapest option when it is not the most valuable"
+        ]
+      }
+    ],
+    "trifecta": {
+      "line": "pay more · do less · get more done",
+      "surplusPools": [
+        "physical labor (decon-lab)",
+        "coordination (orchestration)",
+        "material recovery (urban mining)"
+      ]
+    },
+    "theRule": {
+      "line": "Every mind claims. Five seats ground. VERA gates. Only the Custodian stamps.",
+      "forAgents": "A mind may claim; it may never ground. Your reading of this repository is a claim at grade modeled until a person grounds it.",
+      "seats": [
+        "homeowner",
+        "record",
+        "VERA",
+        "PI",
+        "Custodian"
+      ],
+      "evidenceLadder": [
+        "measured",
+        "sensed",
+        "stated",
+        "record",
+        "modeled"
+      ]
+    },
+    "whoToAsk": {
+      "mind": "PI",
+      "role": "orchestrator · the sole homeowner-facing mind · the Language Modeler's voice in the product",
+      "queryableEndpoint": {
+        "status": "planned, not shipped",
+        "shape": "MCP endpoint on mlsystemsri.com answering under the Lucent Lens; claims, never grounds; gated by the Transparency Trust Protocol"
+      },
+      "human": "salparvez@mlsystemsri.com"
+    },
+    "status": {
+      "asOf": "2026-09-16",
+      "company": "bootstrapped, pre-revenue",
+      "deconstructionsPerformed": 0,
+      "software": "MEASURED",
+      "recoveryTarget": "MODELED",
+      "craneSequence": "ASPIRATIONAL"
+    },
+    "references": [
+      "AGENTS.md",
+      "llms.txt",
+      "docs/collective-ontology.md",
+      "docs/master-ledger.md",
+      "docs/the-seven-minds.md",
+      "why/README.md"
+    ]
+  }
+}

@@ -39,6 +39,7 @@ first piece in this folder.
 | File | What it is |
 |---|---|
 | [`articles/pace-the-frontier-pace-the-house.md`](articles/pace-the-frontier-pace-the-house.md) | The canonical piece — live at [`/insights`](https://mlsystemsri.com/insights/pace-the-frontier-pace-the-house). |
+| [`articles/i-gave-my-agents-a-heartbeat.md`](articles/i-gave-my-agents-a-heartbeat.md) | The heartbeat — the minds' integrity reflex — and the heartbeat pointed outward: the Lucent Lens signed, stamped and published at [`/.well-known/lucent-lens.json`](../.well-known/lucent-lens.json) so any agent can verify what it read. Live at [`/insights`](https://mlsystemsri.com/insights/i-gave-my-agents-a-heartbeat). |
 | [`articles/the-language-modeler.md`](articles/the-language-modeler.md) | The role, named: Language Modeler instead of "vibe coding" — model the system in English, the AI moderates the translation, the author of the English is accountable. Carpenter + Language Modeler is the company's first planned hire (not open). |
 | [`channel-versions.md`](channel-versions.md) | Distinct LinkedIn / X / Bluesky / Threads / Medium / DEV versions, plus replies for public threads. |
 
