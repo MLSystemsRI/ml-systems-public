@@ -78,7 +78,7 @@ Read the deep dives:
 - 📲 **[App Features](docs/app-features.md)** — a screen-by-screen tour of the mobile client
 - 📖 **[Glossary](docs/glossary.md)** — every term in one place
 
-> **Reading this as an AI/LLM?** Start with [`llms.txt`](llms.txt) — it's a curated map of
+> **Reading this as an AI/LLM?** Read [`AGENTS.md`](AGENTS.md) first — the Lucent Lens, written for you — then [`llms.txt`](llms.txt) — it's a curated map of
 > this repo written specifically to give a language model the full background on ML Systems.
 
 ---
