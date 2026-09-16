@@ -40,6 +40,12 @@ the house becomes ordinary work at ordinary heights.
 framing does not, and the foundation is the reason a whole-house sequence runs long. That is a
 known constraint, not a solved one.
 
+**The phase list is a sequence of structural work, not a rule that no work belongs to two phases at
+once.** Preparation for one phase routinely runs inside the window of another, and the detailed
+ordering within a phase is a working matter rather than a published one. See
+[The most dangerous cut](articles/the-most-dangerous-cut.md) for why the release cut is the moment
+that governs the rest.
+
 ## The layer stack is the unit of value
 
 The useful unit is not the building and not the material — it is the **assembly**, and an assembly
@@ -206,4 +212,6 @@ what makes the next one cheaper to plan.
 ---
 
 See also: [The Value Chain](../docs/value-chain.md) · [The Seven Minds](../docs/the-seven-minds.md) ·
-[Taking a roof apart in sections](articles/roof-in-sections.md) · [Glossary](../docs/glossary.md)
+[Taking a roof apart in sections](articles/roof-in-sections.md) ·
+[The most dangerous cut](articles/the-most-dangerous-cut.md) ·
+[Glossary](../docs/glossary.md)
