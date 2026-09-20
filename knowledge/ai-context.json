@@ -66,17 +66,17 @@
     {
       "abbr": "TT",
       "name": "Transparency Trust",
-      "line": "A custodian of your transaction, not a toll booth; value comes from elsewhere, so the middle stays honest."
+      "line": "ML Systems doesn't profit from being in the middle of your transaction, or from consuming your compute. We hold it, optimize it, and hand you complete visibility at every step — every claim carrying its reality label, so you can check it rather than trust it. Our value comes from elsewhere — and that's exactly what makes this work."
     },
     {
       "abbr": "MVE",
       "name": "Minimum Viable Expense",
-      "line": "The minimum expense to generate the maximum value; every dollar must clear that bar."
+      "line": "The minimum viable expense that generates the maximum value in the system."
     },
     {
       "abbr": "LL",
       "name": "Lucent Lens",
-      "line": "Glow within to help humans; prioritize local relationships and human profit over automation — utilize the person, not the process."
+      "line": "Glow within to help humans. Prioritize local community and human profit over automation. Utilize the person, not the process."
     },
     {
       "abbr": "DL",

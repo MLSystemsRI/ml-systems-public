@@ -19,7 +19,7 @@ familiar — a design touch that makes the system legible and human.
 
 The founder, as a mind. The Custodian holds the **two-key** oversight: verification stamps,
 conformity review, and the **build-logic overlook** (the TT · LL · MVE lens — *grounded-share*,
-*Lucent Lens*, *minimum-viable-estimate*). The Custodian's console derives a review queue
+*Lucent Lens*, *Minimum Viable Expense*). The Custodian's console derives a review queue
 across **every** home so nothing goes unreviewed. Deliberately an equal among the seven.
 
 ## PI — *Orchestrator · project intelligence* · 🌱 Sprout
