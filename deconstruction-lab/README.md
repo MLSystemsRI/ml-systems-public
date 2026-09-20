@@ -34,6 +34,7 @@ and the articles that come out of it.
 |---|---|
 | [Taking a Roof Apart in Sections — and Keeping Every Layer](articles/roof-in-sections.md) | [Published](https://mlsystemsri.com/insights/taking-a-roof-apart-in-sections) |
 | [The Most Dangerous Cut on a Deconstruction — and Why the Obvious Place to Make It Is Wrong](articles/the-most-dangerous-cut.md) | Ready — canonical not yet live |
+| [The Waste Stream Twice the Size of the One America Argues About — and Why Its Recovery Rate Flatters It](articles/the-waste-stream-twice-the-size.md) | Ready — canonical not yet live |
 
 ## The honest note
 
