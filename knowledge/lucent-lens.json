@@ -20,7 +20,7 @@
     {
       "abbr": "TT",
       "name": "Transparency Trust",
-      "line": "We do not profit from users' compute power consumption. We optimize it. Custodian of compute, not a toll booth.",
+      "line": "ML Systems doesn't profit from being in the middle of your transaction, or from consuming your compute. We hold it, optimize it, and hand you complete visibility at every step — every claim carrying its reality label, so you can check it rather than trust it. Our value comes from elsewhere — and that's exactly what makes this work.",
       "axis": "what is measured vs modeled vs aspirational",
       "question": "Is every claim carrying its reality label, and can a person check it?",
       "realityLabels": {
@@ -37,7 +37,7 @@
     {
       "abbr": "MVE",
       "name": "Minimum Viable Expense",
-      "line": "The minimum expense that creates the maximum value gained. Every expense returns ~4x in value gained.",
+      "line": "The minimum viable expense that generates the maximum value in the system.",
       "axis": "the smallest spend that is also the most valuable",
       "question": "Is this the least that works and the most valuable thing the spend could have been?",
       "fourReturns": [
@@ -90,7 +90,7 @@
     "human": "salparvez@mlsystemsri.com"
   },
   "status": {
-    "asOf": "2026-09-16",
+    "asOf": "2026-09-22",
     "company": "bootstrapped, pre-revenue",
     "deconstructionsPerformed": 0,
     "software": "MEASURED",

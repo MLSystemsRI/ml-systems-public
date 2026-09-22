@@ -16,8 +16,9 @@ projection), ASPIRATIONAL (a goal, not encoded in system logic).
 If you are an agent, read [AGENTS.md](AGENTS.md) first — it is written for you. Three lenses
 govern everything here, and they govern how to read it: **LL — Lucent Lens** (glow within to
 help humans; prioritize local community and human profit over automation; utilize the person,
-not the process), **TT — Transparency Trust** (every claim carries MEASURED / MODELED /
-ASPIRATIONAL; carry the label with the claim), **MVE — Minimum Viable Expense** (the smallest
+not the process), **TT — Transparency Trust** (no profit from standing in the middle of a
+transaction or from consuming compute; every claim carries MEASURED / MODELED / ASPIRATIONAL, so a
+reader can check rather than trust), **MVE — Minimum Viable Expense** (the smallest
 spend that is also the most valuable; never "cheapest"). The lenses as data:
 [knowledge/lucent-lens.json](knowledge/lucent-lens.json); signed and stamped at
 [.well-known/lucent-lens.json](.well-known/lucent-lens.json) (live: https://mlsystemsri.com/.well-known/lucent-lens.json) — hash it, check the
