@@ -76,7 +76,7 @@ Most of a house climbs it without much argument. Lumber, fixtures, windows, door
 
 Then you reach the foundation, and the ladder stops working. Concrete resists clean separation in a way framing does not, and it is also the largest single mass in the building. Our own method documentation says so plainly: the foundation is the phase that does not yet fit. Concrete has exactly one widely available destination, and that destination is the bottom rung.
 
-That is a known constraint, not a solved one, and it is the subject of the next piece rather than this one.
+That is a known constraint, not a solved one, and not one I am going to describe here. What decides whether any of the rest of the ladder gets climbed is the record behind each piece — [AI Is Not Valuable. Your Context Window Is.](ai-is-not-valuable-your-context-window-is.md)
 
 ## What I actually took
 
